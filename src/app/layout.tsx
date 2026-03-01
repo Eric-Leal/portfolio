@@ -1,8 +1,9 @@
 import type { Metadata } from 'next'
 import { Outfit, Cormorant_Infant } from 'next/font/google'
-import { ThemeProvider } from '@/components/theme-provider'
-import { Navbar } from '@/components/navbar'
-import './globals.css'
+import { ThemeProvider } from '@/components/shared/theme-provider'
+import { Navbar } from '@/components/shared/navbar'
+import { Footer } from '@/components/shared/footer'
+import '@/styles/globals.css'
 
 // Configuração da Outfit (Sans-serif principal)
 const outfit = Outfit({
@@ -37,6 +38,7 @@ export default function RootLayout({
         >
           <Navbar />
           {children}
+          <Footer />
         </ThemeProvider>
       </body>
     </html>

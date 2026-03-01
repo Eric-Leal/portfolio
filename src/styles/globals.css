@@ -24,6 +24,8 @@
   --color-primary-foreground: var(--primary-foreground);
   --color-border: var(--border);
   --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-muted-foreground: var(--muted-foreground);
 
   /* Cores de Texto Dinâmicas */
   --color-tx-primary: var(--tx-primary);
@@ -38,6 +40,29 @@
   --color-accent-3: var(--accent-3);
   --color-accent-4: var(--accent-4);
   --color-accent-5: var(--accent-5);
+  --animate-aurora: aurora 8s ease-in-out infinite alternate;
+  @keyframes aurora {
+    0% {
+      background-position: 0% 50%;
+      transform: rotate(-5deg) scale(0.9);
+    }
+    25% {
+      background-position: 50% 100%;
+      transform: rotate(5deg) scale(1.1);
+    }
+    50% {
+      background-position: 100% 50%;
+      transform: rotate(-3deg) scale(0.95);
+    }
+    75% {
+      background-position: 50% 0%;
+      transform: rotate(3deg) scale(1.05);
+    }
+    100% {
+      background-position: 0% 50%;
+      transform: rotate(-5deg) scale(0.9);
+    }
+  }
 }
 
 :root {
@@ -51,7 +76,9 @@
   --primary: #77309a;
   --primary-foreground: #ffffff;
   --border: #dcdcdc;
-  --ring: #3068cd;
+  --ring: #77309a;
+  --input: #e5e5e5;
+  --muted-foreground: #525252;
 
   /* TEXTOS LIGHT */
   --tx-primary: #171717;
@@ -76,6 +103,8 @@
   --card-foreground: #ffffff;
   --border: #171717;
   --ring: #77309a;
+  --input: #262626;
+  --muted-foreground: #737373;
 
   /* TEXTOS DARK */
   --tx-primary: #ffffff;
@@ -90,6 +119,34 @@
   --accent-3: #4dc0ff;
   --accent-4: #83a5e2;
   --accent-5: #d5b1e7;
+}
+
+/* Cursores personalizados */
+/* Cursor base global */
+html {
+  /* custom pointer cursor with pointer fallback */
+  cursor: url('/cursors/pointer.cur'), pointer;
+}
+
+/* Garantir que tudo herde */
+*,
+*::before,
+*::after {
+  cursor: inherit;
+}
+
+/* Links e botões */
+a,
+button {
+  /* link cursor with pointer fallback */
+  cursor: url('/cursors/link.cur'), pointer;
+}
+
+/* Inputs e textarea */
+input,
+textarea {
+  /* text input cursor with text fallback */
+  cursor: url('/cursors/beam.cur'), text;
 }
 
 @layer base {
