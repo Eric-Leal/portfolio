@@ -125,9 +125,7 @@
 /* Cursor base global */
 html {
   /* custom pointer cursor with pointer fallback */
-  cursor:
-    url('/cursors/pointer.cur') 16 16,
-    pointer;
+  cursor: url('/cursors/pointer.cur'), pointer;
 }
 
 /* Garantir que tudo herde */
@@ -141,18 +139,14 @@ html {
 a,
 button {
   /* link cursor with pointer fallback */
-  cursor:
-    url('/cursors/link.cur') 16 16,
-    pointer;
+  cursor: url('/cursors/link.cur'), pointer;
 }
 
 /* Inputs e textarea */
 input,
 textarea {
   /* text input cursor with text fallback */
-  cursor:
-    url('/cursors/beam.cur') 16 16,
-    text;
+  cursor: url('/cursors/beam.cur'), text;
 }
 
 @layer base {

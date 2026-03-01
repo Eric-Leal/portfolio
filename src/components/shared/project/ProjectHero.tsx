@@ -1,60 +1,117 @@
 /**
  * @file ProjectHero.tsx
- * @description Componente orquestrador da pagina de detalhes do projeto.
+ * @descrição Orquestra o layout de storytelling da página de detalhes do projeto.
+ * Componente cliente que lê o idioma ativo do store Zustand e repassa para os sub-componentes.
  *
- * Compoe os sub-componentes de midia, informacoes, estatisticas e acoes em
- * dois layouts:
- * - **Desktop** (`md+`): grid de 2 colunas - midia a esquerda, conteudo a direita.
- * - **Mobile**: midia sticky no topo com gradiente de transicao; card de
- *   conteudo sobe sobre a midia em overlay ao rolar.
+ * Desktop: grid assimétrico com mídia e painel de info/stats/ações na primeira linha;
+ * seção "Sobre o projeto" em largura reduzida abaixo.
  *
- * Para personalizar partes individualmente, importe os sub-componentes
- * diretamente: `ProjectMedia`, `ProjectInfo`, `ProjectStats`, `ProjectActions`.
+ * Mobile: mídia sticky no topo, card de conteúdo em overlay e botões fixados na base da tela.
  */
+'use client'
 
 import { ProjectMedia } from './ProjectMedia'
 import { ProjectInfo } from './ProjectInfo'
 import { ProjectStats } from './ProjectStats'
 import { ProjectActions } from './ProjectActions'
+import { AuroraText } from '@/components/ui/aurora-text'
+import { usePortfolioStore } from '@/store/use-portfolio-store'
 import type { Project } from '@/types/project'
+
+const PROJECT_TRANSLATIONS = {
+  pt: { aboutLabel: 'Sobre o', aboutHighlight: 'projeto' },
+  en: { aboutLabel: 'About the', aboutHighlight: 'project' },
+} as const
 
 export interface ProjectHeroProps {
   project: Project
 }
 
+const AURORA_COLORS = [
+  'var(--color-brand-1)',
+  'var(--color-brand-2)',
+  'var(--color-brand-3)',
+  'var(--color-brand-4)',
+  'var(--color-brand-5)',
+]
+
 /**
- * Hero completo da pagina de detalhes - orquestra midia e painel de informacoes.
+ * Orquestrador completo da página de detalhes — gerencia os dois layouts responsivos.
  */
 export function ProjectHero({ project }: ProjectHeroProps) {
-  return (
-    <section aria-label="Detalhes do projeto">
-      {/* Desktop: grid 2 colunas */}
-      <div className="hidden md:grid md:grid-cols-2 md:items-center md:gap-16">
-        <ProjectMedia project={project} />
+  const { language } = usePortfolioStore()
+  const t = PROJECT_TRANSLATIONS[language]
+  const hasStats = project.stats && project.stats.length > 0
 
-        <div className="flex flex-col gap-6">
-          <ProjectInfo project={project} />
-          {project.stats && project.stats.length > 0 && (
-            <ProjectStats stats={project.stats} />
-          )}
-          <ProjectActions project={project} />
+  return (
+    <>
+      <div className="hidden md:block">
+        <div className="mx-auto max-w-6xl px-6">
+          <div className="grid grid-cols-[1.1fr_0.9fr] items-center gap-12 lg:gap-20">
+            <ProjectMedia project={project} />
+
+            <div className="flex flex-col gap-7">
+              <ProjectInfo
+                project={project}
+                language={language}
+                showDescription={false}
+              />
+              {hasStats && (
+                <ProjectStats stats={project.stats!} language={language} />
+              )}
+              <ProjectActions
+                project={project}
+                language={language}
+                buttonClassName="px-8 py-5 text-sm font-semibold"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div className="mx-auto mt-24 max-w-6xl px-6 pb-24">
+          <h2 className="mb-6 flex items-center gap-2">
+            <span className="text-tx-primary font-sans text-2xl font-normal md:text-5xl">
+              {t.aboutLabel}
+            </span>
+            <span className="font-title font-bold">
+              <AuroraText
+                className="text-3xl md:text-6xl"
+                colors={AURORA_COLORS}
+                speed={0.8}
+              >
+                {t.aboutHighlight}
+              </AuroraText>
+            </span>
+          </h2>
+          <p className="text-tx-secondary font-sans text-base leading-relaxed lg:text-lg">
+            {project.description[language]}
+          </p>
         </div>
       </div>
 
-      {/* Mobile: midia sticky + card de conteudo em overlay */}
       <div className="md:hidden">
         <ProjectMedia project={project} />
 
-        <div className="bg-background relative z-10 -mt-8 rounded-t-3xl px-6 pt-8 pb-16 shadow-[0_-8px_30px_rgba(0,0,0,0.12)]">
+        <div className="bg-background relative z-10 -mt-8 rounded-t-3xl px-6 pt-8 pb-40 shadow-[0_-8px_30px_rgba(0,0,0,0.12)]">
           <div className="flex flex-col gap-6">
-            <ProjectInfo project={project} tagScrollable />
-            {project.stats && project.stats.length > 0 && (
-              <ProjectStats stats={project.stats} />
+            <ProjectInfo
+              project={project}
+              language={language}
+              showDescription
+              tagScrollable={false}
+            />
+            {hasStats && (
+              <ProjectStats stats={project.stats!} language={language} />
             )}
-            <ProjectActions project={project} />
+          </div>
+        </div>
+
+        <div className="border-border/60 bg-background/90 fixed bottom-0 left-0 z-50 w-full border-t backdrop-blur-md">
+          <div className="px-4 py-4 pb-6">
+            <ProjectActions project={project} language={language} fullWidth />
           </div>
         </div>
       </div>
-    </section>
+    </>
   )
 }

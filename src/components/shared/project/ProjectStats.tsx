@@ -1,25 +1,30 @@
 import type { ProjectStat } from '@/types/project'
+import type { Language } from '@/constants/navigation'
 
 export interface ProjectStatsProps {
   stats: ProjectStat[]
+  /** Idioma ativo, fornecido pelo orquestrador. */
+  language: Language
 }
 
 /**
- * Exibe uma grade horizontal de estatísticas do projeto separada por uma borda
- * superior sutil.
+ * Grade de estatísticas com título e valor, responsiva ao idioma.
  */
-export function ProjectStats({ stats }: ProjectStatsProps) {
+export function ProjectStats({ stats, language }: ProjectStatsProps) {
   if (stats.length === 0) return null
 
   return (
-    <div className="border-border flex gap-8 border-t pt-6">
+    <div className="border-border flex justify-center gap-16 border-t py-6 md:justify-start md:gap-12 md:py-0 md:pt-6">
       {stats.map((stat) => (
-        <div key={stat.label} className="flex flex-col gap-0.5">
-          <span className="text-tx-primary font-title text-3xl font-bold italic">
+        <div
+          key={stat.label[language]}
+          className="flex flex-col items-center gap-0.5"
+        >
+          <span className="text-tx-primary font-title text-5xl font-bold italic md:text-4xl">
             {stat.value}
           </span>
           <span className="text-tx-secondary font-sans text-xs tracking-widest uppercase">
-            {stat.label}
+            {stat.label[language]}
           </span>
         </div>
       ))}

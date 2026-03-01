@@ -50,7 +50,7 @@ export function Safari({
     >
       {hasVideo && (
         <div
-          className="pointer-events-none absolute z-0 overflow-hidden"
+          className="pointer-events-none absolute z-1 overflow-hidden"
           style={{
             left: `${LEFT_PCT}%`,
             top: `${TOP_PCT}%`,
@@ -72,7 +72,7 @@ export function Safari({
 
       {!hasVideo && imageSrc && (
         <div
-          className="pointer-events-none absolute z-0 overflow-hidden"
+          className="pointer-events-none absolute z-1 overflow-hidden"
           style={{
             left: `${LEFT_PCT}%`,
             top: `${TOP_PCT}%`,
@@ -128,10 +128,12 @@ export function Safari({
           clipPath={`url(#${clipId0})`}
           mask={hasMedia ? `url(#${maskId})` : undefined}
         >
-          <path
-            d="M0 52H1202V741C1202 747.627 1196.63 753 1190 753H12C5.37258 753 0 747.627 0 741V52Z"
-            className="fill-[#E5E5E5] dark:fill-[#404040]"
-          />
+          {!hasMedia && (
+            <path
+              d="M0 52H1202V741C1202 747.627 1196.63 753 1190 753H12C5.37258 753 0 747.627 0 741V52Z"
+              className="fill-[#E5E5E5] dark:fill-[#404040]"
+            />
+          )}
           <path
             fillRule="evenodd"
             clipRule="evenodd"

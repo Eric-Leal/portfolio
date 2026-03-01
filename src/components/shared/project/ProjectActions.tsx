@@ -1,47 +1,81 @@
-import { ExternalLink } from 'lucide-react'
+/**
+ * @file ProjectActions.tsx
+ * @descrição Renderiza os botões de ação do projeto adaptados à categoria e ao idioma ativo.
+ * Recebe `language` do orquestrador para exibir os rótulos traduzidos.
+ * Suporta `fullWidth` para barra fixa mobile e `buttonClassName` para ajuste de tamanho no desktop.
+ */
+
+import { cn } from '@/lib/utils'
+import { ExternalLink, Apple, Store } from 'lucide-react'
 import { LuGithub as Github } from 'react-icons/lu'
 
 import { Button } from '@/components/ui/button'
 import type { Project } from '@/types/project'
 import { isWebProject, isMobileProject } from '@/lib/utils/project-logic'
+import type { Language } from '@/constants/navigation'
+
+const PROJECT_ACTIONS_TRANSLATIONS = {
+  pt: {
+    visitSite: 'Acessar Site',
+    githubRepo: 'Repositório GitHub',
+    appStore: 'App Store',
+    playStore: 'Play Store',
+  },
+  en: {
+    visitSite: 'Visit Site',
+    githubRepo: 'GitHub Repository',
+    appStore: 'App Store',
+    playStore: 'Play Store',
+  },
+} as const
 
 export interface ProjectActionsProps {
   project: Project
+  /** Idioma ativo, fornecido pelo orquestrador. */
+  language: Language
+  /** Aplica `w-full` em cada botão — ideal para a barra fixa mobile. */
+  fullWidth?: boolean
+  /** Classes extras aplicadas a cada botão individualmente. */
+  buttonClassName?: string
 }
 
 /**
- * Renderiza os botões de links externos adaptados à categoria do projeto.
- *
- * * Adapta os botões exibidos conforme a categoria do projeto:
- * - **Web**: "Acessar Site" e "Repositório GitHub".
- * - **Mobile**: "App Store", "Play Store" e "Repositório GitHub" —
- *   cada botão é condicionalmente renderizado se o link existir.
+ * Botões de ação externos adaptados à categoria do projeto (web ou mobile).
  */
-export function ProjectActions({ project }: ProjectActionsProps) {
+export function ProjectActions({
+  project,
+  language,
+  fullWidth,
+  buttonClassName,
+}: ProjectActionsProps) {
+  const t = PROJECT_ACTIONS_TRANSLATIONS[language]
+  const btnCn = cn('rounded-full', fullWidth && 'w-full', buttonClassName)
+  const outlineCn = cn('rounded-full', fullWidth && 'w-full', buttonClassName)
+
   if (isWebProject(project)) {
     return (
-      <div className="flex flex-col gap-3 sm:flex-row">
+      <div className={cn('flex flex-col gap-3', !fullWidth && 'sm:flex-row')}>
         {project.links.website && (
-          <Button asChild size="lg" className="rounded-full">
+          <Button asChild size="lg" className={btnCn}>
             <a
               href={project.links.website}
               target="_blank"
               rel="noopener noreferrer"
             >
               <ExternalLink />
-              Acessar Site
+              {t.visitSite}
             </a>
           </Button>
         )}
         {project.links.github && (
-          <Button asChild size="lg" variant="outline" className="rounded-full">
+          <Button asChild size="lg" variant="outline" className={outlineCn}>
             <a
               href={project.links.github}
               target="_blank"
               rel="noopener noreferrer"
             >
               <Github />
-              Repositório GitHub
+              {t.githubRepo}
             </a>
           </Button>
         )}
@@ -56,32 +90,32 @@ export function ProjectActions({ project }: ProjectActionsProps) {
       'playStore' in project.links ? project.links.playStore : undefined
 
     return (
-      <div className="flex flex-col gap-3 sm:flex-row">
+      <div className={cn('flex flex-col gap-3', !fullWidth && 'sm:flex-row')}>
         {appleStoreUrl && (
-          <Button asChild size="lg" className="rounded-full">
+          <Button asChild size="lg" className={btnCn}>
             <a href={appleStoreUrl} target="_blank" rel="noopener noreferrer">
-              <ExternalLink />
-              App Store
+              <Apple />
+              {t.appStore}
             </a>
           </Button>
         )}
         {playStoreUrl && (
-          <Button asChild size="lg" className="rounded-full">
+          <Button asChild size="lg" className={btnCn}>
             <a href={playStoreUrl} target="_blank" rel="noopener noreferrer">
-              <ExternalLink />
-              Play Store
+              <Store />
+              {t.playStore}
             </a>
           </Button>
         )}
         {project.links.github && (
-          <Button asChild size="lg" variant="outline" className="rounded-full">
+          <Button asChild size="lg" variant="outline" className={outlineCn}>
             <a
               href={project.links.github}
               target="_blank"
               rel="noopener noreferrer"
             >
               <Github />
-              Repositório GitHub
+              {t.githubRepo}
             </a>
           </Button>
         )}
