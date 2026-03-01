@@ -1,6 +1,5 @@
 /**
- * Exibe a mídia principal de um projeto — Safari, trio de iPhones ou iPhone único.
- * Em mobile fica sticky no topo com gradiente de transição; em desktop preenche a coluna do grid.
+ * @descrição Exibe a mídia principal do projeto — Safari, trio de iPhones ou iPhone único.
  */
 'use client'
 
@@ -22,7 +21,7 @@ function WebFrame({ project }: { project: WebProject }) {
       url={project.links.website ?? 'https://example.com'}
       mode="simple"
       {...resolveSafariProps(project.thumbnail as ProjectThumbnail)}
-      className="[&_path]:fill-foreground w-full drop-shadow-2xl"
+      className="[&_path]:fill-foreground w-full drop-shadow-[0_20px_60px_rgba(0,0,0,0.15)] dark:drop-shadow-[0_20px_80px_rgba(255,255,255,0.06)]"
     />
   )
 }
@@ -32,7 +31,7 @@ function SingleMobile({ thumbnail }: { thumbnail: ProjectThumbnail }) {
     <div className="mx-auto w-full max-w-55 md:max-w-70">
       <Iphone
         {...resolveIphoneProps(thumbnail)}
-        className="[&_path]:fill-foreground drop-shadow-2xl"
+        className="[&_path]:fill-foreground drop-shadow-[0_12px_40px_rgba(0,0,0,0.2)] dark:drop-shadow-[0_12px_40px_rgba(255,255,255,0.05)]"
       />
     </div>
   )
