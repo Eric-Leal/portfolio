@@ -1,4 +1,9 @@
 /**
+ * String localizada com versões em português e inglês.
+ */
+export type LocalizedString = { pt: string; en: string }
+
+/**
  * Primitivas compartilhadas
  */
 export interface ProjectThumbnail {
@@ -10,7 +15,7 @@ export interface ProjectThumbnail {
  * Estatísticas ou destaques do projeto, como "1000+ downloads", "5 estrelas na Play Store", etc.
  */
 export interface ProjectStat {
-  label: string
+  label: LocalizedString
   value: string
 }
 
@@ -20,8 +25,8 @@ export interface ProjectStat {
 export interface ProjectBase {
   id: string
   slug: string
-  title: string
-  description: string
+  title: LocalizedString
+  description: LocalizedString
   thumbnail: ProjectThumbnail
   tags: string[]
   stats?: ProjectStat[]
