@@ -55,7 +55,7 @@ export function Footer() {
   ]
 
   return (
-    <footer className="border-primary/30 border-t px-4 py-10 sm:px-6 sm:py-14 lg:px-8 lg:py-16">
+    <footer className="border-primary/30 border-t px-4 pt-10 pb-20 sm:px-6 sm:py-14 lg:px-8 lg:py-16">
       <div className="mx-auto max-w-5xl space-y-10">
         {/* ── Hero Row ───────────────────────────────────────────────────── */}
         <div className="flex flex-col items-center gap-6 lg:flex-row lg:items-center lg:justify-between">
