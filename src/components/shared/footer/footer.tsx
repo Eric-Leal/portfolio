@@ -51,7 +51,7 @@ export function Footer() {
 
   const resourceLinks = [
     { label: t.guestbook, href: '/guestbook' },
-    { label: t.githubActivity, href: 'https://github.com' },
+    { label: t.githubActivity, href: '/github' },
   ]
 
   return (
