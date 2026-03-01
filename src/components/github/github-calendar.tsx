@@ -264,7 +264,6 @@ export function GithubCalendar({ contributionMap }: GithubCalendarProps) {
           style={{
             left: tooltip.x + 12,
             top: tooltip.y - 32,
-            // flip é pré-computado no evento de mouse (não no render)
             transform: tooltip.flip ? 'translateX(-110%)' : undefined,
           }}
         >

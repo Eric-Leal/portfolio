@@ -89,15 +89,12 @@ const githubPageTranslations = {
   },
 } as const
 
-// ─── Helpers ──────────────────────────────────────────────────────────────────
 
-/** Formata números grandes: 1200 → 1.2k */
 function formatCount(n: number): string {
   if (n >= 1_000) return `${(n / 1_000).toFixed(1).replace('.0', '')}k`
   return String(n)
 }
 
-// ─── Component ────────────────────────────────────────────────────────────────
 
 export function GithubPageContent({ data }: { data: GitHubData }) {
   const { language } = usePortfolioStore()
