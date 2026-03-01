@@ -15,3 +15,6 @@ export type { ProjectActionsProps } from './ProjectActions'
 
 export { MobileTrio } from './MobileTrio'
 export type { MobileTrioProps } from './MobileTrio'
+
+export { ProjectGallery } from './gallery/ProjectGallery'
+export type { ProjectGalleryProps } from './gallery/ProjectGallery'

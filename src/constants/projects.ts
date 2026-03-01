@@ -39,6 +39,23 @@ export const projects: Project[] = [
       { label: { pt: 'Visitas/mês', en: 'Visits/month' }, value: '12.4k' },
       { label: { pt: 'GitHub stars', en: 'GitHub stars' }, value: '186' },
     ],
+    gallery: [
+      {
+        type: 'video',
+        url: 'https://storage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+        alt: 'Portfolio homepage demo',
+      },
+      {
+        type: 'image',
+        url: 'https://placehold.co/1200x800/0093e3/white?text=Design+System',
+        alt: 'Design system overview',
+      },
+      {
+        type: 'image',
+        url: 'https://placehold.co/1200x800/29d6d4/white?text=Mobile+View',
+        alt: 'Mobile responsive view',
+      },
+    ],
     featured: true,
   },
   {
@@ -56,6 +73,28 @@ export const projects: Project[] = [
     stats: [
       { label: { pt: 'Downloads', en: 'Downloads' }, value: '45k' },
       { label: { pt: 'Avaliação', en: 'Rating' }, value: '4.5/5' },
+    ],
+    gallery: [
+      {
+        type: 'video',
+        url: 'https://storage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+        alt: 'Finance app dashboard demo',
+      },
+      {
+        type: 'image',
+        url: 'https://placehold.co/800x600/3068cd/white?text=Dashboard',
+        alt: 'Dashboard screen',
+      },
+      {
+        type: 'image',
+        url: 'https://placehold.co/800x600/77309a/white?text=Analytics',
+        alt: 'Analytics screen',
+      },
+      {
+        type: 'image',
+        url: 'https://placehold.co/800x600/00b7e1/white?text=Reports',
+        alt: 'Monthly reports screen',
+      },
     ],
     thumbnail: {
       devices: [
