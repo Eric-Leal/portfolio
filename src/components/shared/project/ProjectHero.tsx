@@ -14,6 +14,7 @@ import { ProjectMedia } from './ProjectMedia'
 import { ProjectInfo } from './ProjectInfo'
 import { ProjectStats } from './ProjectStats'
 import { ProjectActions } from './ProjectActions'
+import { ProjectGallery } from './gallery/ProjectGallery'
 import { AuroraText } from '@/components/ui/aurora-text'
 import { usePortfolioStore } from '@/store/use-portfolio-store'
 import type { Project } from '@/types/project'
@@ -45,7 +46,7 @@ export function ProjectHero({ project }: ProjectHeroProps) {
 
   return (
     <>
-      <div className="hidden md:block">
+      <div className="hidden md:relative md:mt-12 md:block">
         <div className="mx-auto max-w-6xl px-6">
           <div className="grid grid-cols-[1.1fr_0.9fr] items-center gap-12 lg:gap-20">
             <ProjectMedia project={project} />
@@ -68,7 +69,7 @@ export function ProjectHero({ project }: ProjectHeroProps) {
           </div>
         </div>
 
-        <div className="mx-auto mt-24 max-w-6xl px-6 pb-24">
+        <div className="mx-auto mt-16 max-w-6xl px-6 pb-24">
           <h2 className="mb-6 flex items-center gap-2">
             <span className="text-tx-primary font-sans text-2xl font-normal md:text-5xl">
               {t.aboutLabel}
@@ -86,6 +87,12 @@ export function ProjectHero({ project }: ProjectHeroProps) {
           <p className="text-tx-secondary font-sans text-base leading-relaxed lg:text-lg">
             {project.description[language]}
           </p>
+
+          {project.gallery && project.gallery.length >= 3 && (
+            <div className="mt-12">
+              <ProjectGallery gallery={project.gallery} />
+            </div>
+          )}
         </div>
       </div>
 
@@ -103,10 +110,15 @@ export function ProjectHero({ project }: ProjectHeroProps) {
             {hasStats && (
               <ProjectStats stats={project.stats!} language={language} />
             )}
+            {project.gallery && project.gallery.length >= 3 && (
+              <div className="mt-2">
+                <ProjectGallery gallery={project.gallery} />
+              </div>
+            )}
           </div>
         </div>
 
-        <div className="border-border/60 bg-background/90 fixed bottom-0 left-0 z-50 w-full border-t backdrop-blur-md">
+        <div className="border-border/60 bg-background/20 fixed bottom-0 left-0 z-50 w-full border-t backdrop-blur-md">
           <div className="px-4 py-4 pb-6">
             <ProjectActions project={project} language={language} fullWidth />
           </div>

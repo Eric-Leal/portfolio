@@ -29,11 +29,7 @@ const menuVariants = {
 async function handleShare() {
   const shareData = { title: document.title, url: window.location.href }
   if (typeof navigator !== 'undefined' && navigator.share) {
-    try {
-      await navigator.share(shareData)
-    } catch {
-      // user cancelled — no action needed
-    }
+    await navigator.share(shareData)
   } else {
     await navigator.clipboard.writeText(window.location.href)
   }

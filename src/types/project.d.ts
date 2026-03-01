@@ -4,6 +4,17 @@
 export type LocalizedString = { pt: string; en: string }
 
 /**
+ * Item de mídia para a galeria de imagens/vídeos do projeto.
+ * Mínimo 3 itens, máximo 4.
+ */
+export interface GalleryItem {
+  type: 'image' | 'video'
+  url: string
+  /** Texto alternativo para acessibilidade. */
+  alt?: string
+}
+
+/**
  * Primitivas compartilhadas
  */
 export interface ProjectThumbnail {
@@ -31,6 +42,9 @@ export interface ProjectBase {
   tags: string[]
   stats?: ProjectStat[]
   featured?: boolean
+  gallery?:
+    | [GalleryItem, GalleryItem, GalleryItem]
+    | [GalleryItem, GalleryItem, GalleryItem, GalleryItem]
 }
 
 /**
