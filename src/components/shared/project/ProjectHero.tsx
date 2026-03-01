@@ -84,9 +84,10 @@ export function ProjectHero({ project }: ProjectHeroProps) {
               </AuroraText>
             </span>
           </h2>
-          <p className="text-tx-secondary font-sans text-base leading-relaxed lg:text-lg">
-            {project.description[language]}
-          </p>
+          <p
+            className="text-tx-secondary [&_b]:text-tx-primary font-sans text-base leading-relaxed lg:text-lg [&_b]:font-semibold"
+            dangerouslySetInnerHTML={{ __html: project.description[language] }}
+          />
 
           {project.gallery && project.gallery.length >= 3 && (
             <div className="mt-12">
