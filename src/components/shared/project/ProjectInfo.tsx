@@ -67,7 +67,7 @@ export function ProjectInfo({
 }: ProjectInfoProps) {
   return (
     <div className="flex flex-col gap-4">
-      <h1 className="text-tx-primary font-title text-4xl leading-tight font-bold italic md:text-5xl lg:text-6xl">
+      <h1 className="text-tx-primary font-title text-5xl leading-tight font-bold italic md:text-6xl lg:text-7xl">
         {project.title[language]}
       </h1>
 
@@ -75,7 +75,7 @@ export function ProjectInfo({
 
       {showDescription && (
         <p
-          className="text-tx-secondary [&_b]:text-tx-primary font-sans text-sm leading-relaxed md:text-base lg:text-lg [&_b]:font-semibold"
+          className="text-tx-secondary [&_b]:text-tx-primary text-md font-sans leading-relaxed md:text-base lg:text-lg [&_b]:font-semibold"
           dangerouslySetInnerHTML={{ __html: project.description[language] }}
         />
       )}

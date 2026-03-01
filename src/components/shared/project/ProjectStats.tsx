@@ -20,7 +20,7 @@ export function ProjectStats({ stats, language }: ProjectStatsProps) {
           key={stat.label[language]}
           className="flex flex-col items-center gap-0.5"
         >
-          <span className="text-tx-primary font-title text-5xl font-bold italic md:text-4xl">
+          <span className="text-primary font-title text-5xl font-bold italic md:text-4xl">
             {stat.value}
           </span>
           <span className="text-tx-secondary font-sans text-xs tracking-widest uppercase">
