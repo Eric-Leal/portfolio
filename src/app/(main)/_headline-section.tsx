@@ -1,7 +1,7 @@
 'use client'
 
 import { usePortfolioStore } from '@/store/use-portfolio-store'
-import { headlineTranslations } from '@/components/section/section-translations'
+import { headlineTranslations } from '@/components/shared/section/section-translations'
 
 export function HeadlineSection() {
   const { language } = usePortfolioStore()

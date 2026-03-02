@@ -1,6 +1,6 @@
 'use client'
 import { usePortfolioStore } from '@/store/use-portfolio-store'
-import { AuroraText } from '../ui/aurora-text'
+import { AuroraText } from '../../ui/aurora-text'
 
 type SectionTranslations = Record<
   string,

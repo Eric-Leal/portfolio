@@ -1,13 +1,13 @@
 import Spline from '@splinetool/react-spline/next'
 import { ContactForm } from '@/components'
 import { ProjectsGrid } from '@/components/shared/project'
-import { ContentSection } from '@/components/section/content-section'
+import { ContentSection } from '@/components/shared/section/content-section'
 import {
   emailSectionTranslations,
   experienceSectionTranslations,
   projectsSectionTranslations,
-} from '@/components/section/section-translations'
-import { AboutSection } from '@/components/about/about-section'
+} from '@/components/shared/section/section-translations'
+import { AboutSection } from '@/components/shared/about/about-section'
 import { HeadlineSection } from './_headline-section'
 import { Timeline } from '@/components/shared/timeline'
 

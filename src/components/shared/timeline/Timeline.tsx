@@ -8,7 +8,7 @@
 import { useRef } from 'react'
 import { motion, useScroll, useSpring, useTransform } from 'framer-motion'
 import { usePortfolioStore } from '@/store/use-portfolio-store'
-import { experienceSectionTranslations } from '@/components/section/section-translations'
+import { experienceSectionTranslations } from '@/components/shared/section/section-translations'
 import type { Experience } from '@/types/experience'
 import { TimelineIcon } from './TimelineIcon'
 import { TimelineCard } from './TimelineCard'

@@ -11,7 +11,7 @@ import {
   Calendar,
 } from 'lucide-react'
 
-import { GithubCalendar } from '@/components/github/github-calendar'
+import { GithubCalendar } from '@/components/shared/github/github-calendar'
 import type { GitHubData } from '@/lib/github'
 import { usePortfolioStore } from '@/store/use-portfolio-store'
 

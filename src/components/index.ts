@@ -9,4 +9,4 @@ export * from './ui/label'
 export * from './shared'
 
 // contact/ — Contact form components
-export * from './contact'
+export * from './shared/contact'
