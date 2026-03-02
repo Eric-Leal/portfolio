@@ -1,5 +1,5 @@
 import { useId } from 'react'
-import type { HTMLAttributes } from 'react'
+import type { HTMLAttributes, RefObject } from 'react'
 
 const SAFARI_WIDTH = 1203
 const SAFARI_HEIGHT = 753
@@ -15,12 +15,14 @@ const WIDTH_PCT = (SCREEN_WIDTH / SAFARI_WIDTH) * 100
 const HEIGHT_PCT = (SCREEN_HEIGHT / SAFARI_HEIGHT) * 100
 
 type SafariMode = 'default' | 'simple'
+type VideoRefCallback = (videoElement: HTMLVideoElement | null) => void
 
 export interface SafariProps extends HTMLAttributes<HTMLDivElement> {
   url?: string
   imageSrc?: string
   videoSrc?: string
   mode?: SafariMode
+  videoRef?: RefObject<HTMLVideoElement | null> | VideoRefCallback
 }
 
 export function Safari({
@@ -30,6 +32,7 @@ export function Safari({
   mode = 'default',
   className,
   style,
+  videoRef,
   ...props
 }: SafariProps) {
   const uid = useId()
@@ -59,9 +62,10 @@ export function Safari({
           }}
         >
           <video
+            ref={videoRef}
             className="block size-full object-cover"
             src={videoSrc}
-            autoPlay
+            autoPlay={!videoRef}
             loop
             muted
             playsInline

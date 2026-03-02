@@ -18,3 +18,8 @@ export type { MobileTrioProps } from './MobileTrio'
 
 export { ProjectGallery } from './gallery/ProjectGallery'
 export type { ProjectGalleryProps } from './gallery/ProjectGallery'
+
+export { ProjectCard } from './project-card'
+export type { ProjectCardProps } from './project-card'
+
+export { ProjectsGrid } from './projects-grid'

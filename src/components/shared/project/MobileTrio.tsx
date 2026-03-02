@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-
+import type { RefObject } from 'react'
 import { Iphone } from '@/components/ui/iphone'
 import type { MobileHeroMedia } from '@/types/project'
 import { resolveIphoneProps } from '@/lib/utils/project-logic'
@@ -14,19 +14,32 @@ function slideIn(delay: number) {
   }
 }
 
+type VideoRefCallback = (videoElement: HTMLVideoElement | null) => void
+type MakeVideoRefFunction = (videoIndex: number) => VideoRefCallback
+
 export interface MobileTrioProps {
   devices: MobileHeroMedia['devices']
+  containerRef?: RefObject<HTMLDivElement | null>
+  makeVideoRef?: MakeVideoRefFunction
 }
 
 /**
  * Trio de iPhones sobrepostos com animação de entrada escalonada via Framer Motion.
  * Utilizado como hero de projetos mobile que expõem múltiplas telas simultâneas.
  */
-export function MobileTrio({ devices }: MobileTrioProps) {
+export function MobileTrio({
+  devices,
+  containerRef,
+  makeVideoRef,
+}: MobileTrioProps) {
   const [front, leftBack, rightBack] = devices
 
   return (
-    <div className="relative mx-auto w-full" style={{ paddingBottom: '95%' }}>
+    <div
+      ref={containerRef}
+      className="relative mx-auto w-full"
+      style={{ paddingBottom: '95%' }}
+    >
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
@@ -41,6 +54,7 @@ export function MobileTrio({ devices }: MobileTrioProps) {
         <Iphone
           {...resolveIphoneProps(leftBack)}
           className="[&_path]:fill-foreground"
+          videoRef={makeVideoRef ? makeVideoRef(0) : undefined}
         />
       </motion.div>
 
@@ -58,6 +72,7 @@ export function MobileTrio({ devices }: MobileTrioProps) {
         <Iphone
           {...resolveIphoneProps(rightBack)}
           className="[&_path]:fill-foreground"
+          videoRef={makeVideoRef ? makeVideoRef(1) : undefined}
         />
       </motion.div>
 
@@ -70,6 +85,7 @@ export function MobileTrio({ devices }: MobileTrioProps) {
         <Iphone
           {...resolveIphoneProps(front)}
           className="[&_path]:fill-foreground"
+          videoRef={makeVideoRef ? makeVideoRef(2) : undefined}
         />
       </motion.div>
     </div>

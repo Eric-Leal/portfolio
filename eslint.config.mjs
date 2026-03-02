@@ -11,8 +11,8 @@ const eslintConfig = defineConfig([
 
   {
     rules: {
-      'no-unused-vars': ['error', { varsIgnorePattern: '^_' }],
-      '@typescript-eslint/no-unused-vars': ['error', { varsIgnorePattern: '^_', argsIgnorePattern: '^_' }]
+      'no-unused-vars': ['error', { varsIgnorePattern: '^_', argsIgnorePattern: '^(_|video)' }],
+      '@typescript-eslint/no-unused-vars': ['error', { varsIgnorePattern: '^_', argsIgnorePattern: '^(_|video)' }]
     }
   },
 

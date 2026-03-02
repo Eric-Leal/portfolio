@@ -24,15 +24,25 @@ type TooltipState = {
 // ─── Constants ───────────────────────────────────────────────────────────────
 
 const MONTH_LABELS = [
-  'Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun',
-  'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez',
+  'Jan',
+  'Fev',
+  'Mar',
+  'Abr',
+  'Mai',
+  'Jun',
+  'Jul',
+  'Ago',
+  'Set',
+  'Out',
+  'Nov',
+  'Dez',
 ]
 
 // Apenas Seg, Qua e Sex visíveis — igual ao GitHub (Dom = 0)
 const DAY_LABELS: Record<number, string> = { 1: 'Seg', 3: 'Qua', 5: 'Sex' }
 
 const CELL_PX = 12 // largura e altura de cada célula (px)
-const GAP_PX = 3   // espaçamento entre células (px)
+const GAP_PX = 3 // espaçamento entre células (px)
 const DAY_LABEL_W = 28 // largura reservada para os labels de dia
 
 // ─── Color helpers ────────────────────────────────────────────────────────────
@@ -42,10 +52,10 @@ const DAY_LABEL_W = 28 // largura reservada para os labels de dia
  * 5 níveis idênticos ao GitHub: vazio, leve, médio, alto, intenso.
  */
 function getColorClass(count: number): string {
-  if (count === 0)  return 'bg-border hover:ring-1 hover:ring-border'
-  if (count <= 2)   return 'bg-brand-5/25 hover:bg-brand-5/35'
-  if (count <= 5)   return 'bg-brand-5/50 hover:bg-brand-5/60'
-  if (count <= 9)   return 'bg-brand-5/75 hover:bg-brand-5/85'
+  if (count === 0) return 'bg-border hover:ring-1 hover:ring-border'
+  if (count <= 2) return 'bg-brand-5/25 hover:bg-brand-5/35'
+  if (count <= 5) return 'bg-brand-5/50 hover:bg-brand-5/60'
+  if (count <= 9) return 'bg-brand-5/75 hover:bg-brand-5/85'
   return 'bg-brand-5 hover:brightness-110'
 }
 
@@ -167,7 +177,6 @@ export function GithubCalendar({ contributionMap }: GithubCalendarProps) {
       {/* Scroll horizontal em telas pequenas */}
       <div className="overflow-x-auto pb-1">
         <div className="inline-block min-w-max">
-
           {/* ── Linha de meses ─────────────────────────────────────────────── */}
           <div
             className="mb-1 flex"
@@ -204,7 +213,11 @@ export function GithubCalendar({ contributionMap }: GithubCalendarProps) {
 
             {/* Colunas de semanas */}
             {weeks.map((week, wi) => (
-              <div key={wi} className="flex shrink-0 flex-col" style={{ gap: GAP_PX }}>
+              <div
+                key={wi}
+                className="flex shrink-0 flex-col"
+                style={{ gap: GAP_PX }}
+              >
                 {week.map((cell, di) => {
                   if (!cell) {
                     // Célula de padding — transparente

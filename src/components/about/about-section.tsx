@@ -25,10 +25,9 @@ export function AboutSection() {
       className="bg-background px-6 py-20 md:px-8 md:py-28 lg:py-36"
     >
       <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-12 lg:grid-cols-5 lg:gap-20">
-
         {/* ── Texto ─────────────────────────────────────────────────────────── */}
         <div className="order-2 lg:order-1 lg:col-span-3">
-          <h2 className="font-sans mb-6 flex items-baseline gap-3 text-4xl font-bold leading-tight tracking-tight sm:text-5xl">
+          <h2 className="mb-6 flex items-baseline gap-3 font-sans text-4xl leading-tight font-bold tracking-tight sm:text-5xl">
             <span className="text-tx-primary">{t.titleStart}</span>
             <AuroraText colors={AURORA_COLORS} speed={0.8}>
               {t.titleHighlight}
@@ -37,7 +36,10 @@ export function AboutSection() {
 
           <div className="space-y-4">
             {t.paragraphs.map((p, i) => (
-              <p key={i} className="text-tx-secondary text-base leading-relaxed">
+              <p
+                key={i}
+                className="text-tx-secondary text-base leading-relaxed"
+              >
                 {p}
               </p>
             ))}
@@ -56,7 +58,6 @@ export function AboutSection() {
             />
           </div>
         </div>
-
       </div>
     </section>
   )

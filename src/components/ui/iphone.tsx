@@ -1,5 +1,5 @@
 import { useId } from 'react'
-import type { HTMLAttributes } from 'react'
+import type { HTMLAttributes, RefObject } from 'react'
 
 const PHONE_WIDTH = 433
 const PHONE_HEIGHT = 882
@@ -17,9 +17,12 @@ const HEIGHT_PCT = (SCREEN_HEIGHT / PHONE_HEIGHT) * 100
 const RADIUS_H = (SCREEN_RADIUS / SCREEN_WIDTH) * 100
 const RADIUS_V = (SCREEN_RADIUS / SCREEN_HEIGHT) * 100
 
+type VideoRefCallback = (videoElement: HTMLVideoElement | null) => void
+
 export interface IphoneProps extends HTMLAttributes<HTMLDivElement> {
   src?: string
   videoSrc?: string
+  videoRef?: RefObject<HTMLVideoElement | null> | VideoRefCallback
 }
 
 export function Iphone({
@@ -27,6 +30,7 @@ export function Iphone({
   videoSrc,
   className,
   style,
+  videoRef,
   ...props
 }: IphoneProps) {
   const uid = useId()
@@ -56,9 +60,10 @@ export function Iphone({
           }}
         >
           <video
+            ref={videoRef}
             className="block size-full object-cover"
             src={videoSrc}
-            autoPlay
+            autoPlay={!videoRef}
             loop
             muted
             playsInline

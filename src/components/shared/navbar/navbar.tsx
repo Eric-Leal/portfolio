@@ -126,7 +126,9 @@ export function Navbar() {
                         className="mt-0.5 shrink-0 opacity-70"
                       />
                       <div>
-                        <p className="text-sm font-medium">{t.githubActivity}</p>
+                        <p className="text-sm font-medium">
+                          {t.githubActivity}
+                        </p>
                         <p className="text-tx-muted mt-0.5 text-xs">
                           {t.githubActivityDesc}
                         </p>

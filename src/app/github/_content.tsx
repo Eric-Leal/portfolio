@@ -15,17 +15,8 @@ import { GithubCalendar } from '@/components/github/github-calendar'
 import type { GitHubData } from '@/lib/github'
 import { usePortfolioStore } from '@/store/use-portfolio-store'
 
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card'
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from '@/components/ui/avatar'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Separator } from '@/components/ui/separator'
 
 // ─── Translations ─────────────────────────────────────────────────────────────
@@ -89,18 +80,22 @@ const githubPageTranslations = {
   },
 } as const
 
-
 function formatCount(n: number): string {
   if (n >= 1_000) return `${(n / 1_000).toFixed(1).replace('.0', '')}k`
   return String(n)
 }
 
-
 export function GithubPageContent({ data }: { data: GitHubData }) {
   const { language } = usePortfolioStore()
   const t = githubPageTranslations[language]
 
-  const { profile, languages, latestCommit, contributionMap, totalContributions } = data
+  const {
+    profile,
+    languages,
+    latestCommit,
+    contributionMap,
+    totalContributions,
+  } = data
 
   const initials = profile.name
     .split(' ')
@@ -110,9 +105,13 @@ export function GithubPageContent({ data }: { data: GitHubData }) {
     .toUpperCase()
 
   const profileStats = [
-    { label: t.followers,    value: formatCount(profile.followers),  icon: Users },
-    { label: t.repositories, value: String(profile.publicRepos),     icon: BookMarked },
-    { label: 'Stars',        value: formatCount(profile.totalStars), icon: Star },
+    { label: t.followers, value: formatCount(profile.followers), icon: Users },
+    {
+      label: t.repositories,
+      value: String(profile.publicRepos),
+      icon: BookMarked,
+    },
+    { label: 'Stars', value: formatCount(profile.totalStars), icon: Star },
   ]
 
   return (
@@ -122,7 +121,7 @@ export function GithubPageContent({ data }: { data: GitHubData }) {
         <section className="mb-10">
           <h1 className="text-tx-primary mb-3 text-5xl font-bold tracking-tight">
             {t.titleStart}{' '}
-            <span className="font-title italic text-accent-2">Github</span>
+            <span className="font-title text-accent-2 italic">Github</span>
           </h1>
           <p className="text-tx-secondary max-w-lg text-sm leading-relaxed">
             {t.description}
@@ -136,14 +135,14 @@ export function GithubPageContent({ data }: { data: GitHubData }) {
             <CardContent className="p-6">
               {/* Avatar + Nome */}
               <div className="mb-5 flex items-center gap-3">
-                <Avatar className="h-11 w-11 ring-2 ring-border">
+                <Avatar className="ring-border h-11 w-11 ring-2">
                   <AvatarImage src={profile.avatarUrl} alt={profile.name} />
                   <AvatarFallback className="bg-brand-5/20 text-tx-primary text-sm font-bold">
                     {initials}
                   </AvatarFallback>
                 </Avatar>
                 <div>
-                  <p className="text-tx-primary text-sm font-bold leading-tight">
+                  <p className="text-tx-primary text-sm leading-tight font-bold">
                     {profile.name}
                   </p>
                   <p className="text-tx-muted text-xs">@{profile.login}</p>
@@ -155,7 +154,10 @@ export function GithubPageContent({ data }: { data: GitHubData }) {
               {/* Stats */}
               <div className="space-y-3">
                 {profileStats.map(({ label, value }) => (
-                  <div key={label} className="flex items-center justify-between">
+                  <div
+                    key={label}
+                    className="flex items-center justify-between"
+                  >
                     <span className="text-tx-secondary text-sm">{label}</span>
                     <span className="text-tx-primary text-sm font-bold">
                       {value}
@@ -177,12 +179,14 @@ export function GithubPageContent({ data }: { data: GitHubData }) {
             <CardContent className="px-6 pb-6">
               {latestCommit ? (
                 <>
-                  <p className="text-tx-primary mb-3 line-clamp-3 text-base font-bold leading-snug">
+                  <p className="text-tx-primary mb-3 line-clamp-3 text-base leading-snug font-bold">
                     {latestCommit.message}
                   </p>
                   <div className="text-tx-muted mb-4 flex items-center gap-1.5 text-xs">
                     <GitBranch size={12} />
-                    <span className="text-tx-secondary font-medium">{latestCommit.repo}</span>
+                    <span className="text-tx-secondary font-medium">
+                      {latestCommit.repo}
+                    </span>
                     <span>•</span>
                     <span>{t.relativeDate(latestCommit.date)}</span>
                   </div>
@@ -215,8 +219,12 @@ export function GithubPageContent({ data }: { data: GitHubData }) {
                 languages.map(({ name, percentage, colorClass }) => (
                   <div key={name}>
                     <div className="mb-1.5 flex items-center justify-between">
-                      <span className="text-tx-secondary text-xs font-medium">{name}</span>
-                      <span className="text-tx-muted text-xs">{percentage}%</span>
+                      <span className="text-tx-secondary text-xs font-medium">
+                        {name}
+                      </span>
+                      <span className="text-tx-muted text-xs">
+                        {percentage}%
+                      </span>
                     </div>
                     <div className="bg-border h-1.5 w-full overflow-hidden rounded-full">
                       <div
@@ -261,9 +269,9 @@ export function GithubPageContent({ data }: { data: GitHubData }) {
           <p className="text-tx-muted text-xs">{t.rights(profile.name)}</p>
           <div className="flex items-center gap-6">
             {[
-              { label: 'GitHub',   href: `https://github.com/${profile.login}` },
+              { label: 'GitHub', href: `https://github.com/${profile.login}` },
               { label: 'LinkedIn', href: '#' },
-              { label: 'Twitter',  href: '#' },
+              { label: 'Twitter', href: '#' },
             ].map(({ label, href }) => (
               <a
                 key={label}

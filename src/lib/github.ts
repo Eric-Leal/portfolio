@@ -52,7 +52,10 @@ function authHeaders(): HeadersInit {
   }
 }
 
-async function graphql<T>(query: string, variables: Record<string, unknown>): Promise<T> {
+async function graphql<T>(
+  query: string,
+  variables: Record<string, unknown>,
+): Promise<T> {
   const res = await fetch(GITHUB_GRAPHQL, {
     method: 'POST',
     headers: authHeaders(),
@@ -79,14 +82,14 @@ async function graphql<T>(query: string, variables: Record<string, unknown>): Pr
 const LANGUAGE_COLORS: Record<string, string> = {
   TypeScript: 'bg-brand-4',
   JavaScript: 'bg-brand-3',
-  Python:     'bg-accent-4',
-  React:      'bg-brand-5',
-  'C#':       'bg-accent-3',
-  Java:       'bg-brand-2',
-  Go:         'bg-accent-2',
-  Rust:       'bg-brand-1',
-  CSS:        'bg-accent-1',
-  HTML:       'bg-brand-3',
+  Python: 'bg-accent-4',
+  React: 'bg-brand-5',
+  'C#': 'bg-accent-3',
+  Java: 'bg-brand-2',
+  Go: 'bg-accent-2',
+  Rust: 'bg-brand-1',
+  CSS: 'bg-accent-1',
+  HTML: 'bg-brand-3',
 }
 
 function langColor(name: string): string {
@@ -205,7 +208,8 @@ async function fetchLatestCommit(login: string): Promise<LatestCommit | null> {
 
     if (!pushEvent || !pushEvent.payload.commits?.length) return null
 
-    const commit = pushEvent.payload.commits[pushEvent.payload.commits.length - 1]
+    const commit =
+      pushEvent.payload.commits[pushEvent.payload.commits.length - 1]
     const repoName = pushEvent.repo.name.split('/')[1] ?? pushEvent.repo.name
 
     return {

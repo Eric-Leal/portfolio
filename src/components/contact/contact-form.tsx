@@ -220,12 +220,12 @@ export function ContactForm() {
       {/* Feedback */}
       {status === 'success' && (
         <p className="text-tx-success text-sm font-medium">
-          ✓ {t.messageStatusSucess}
+          {t.messageStatusSucess}
         </p>
       )}
       {status === 'error' && (
         <p className="text-sm font-medium text-red-500">
-          ✕ {t.messageStatusError}
+          {t.messageStatusError}
         </p>
       )}
 

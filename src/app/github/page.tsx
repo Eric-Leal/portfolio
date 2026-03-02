@@ -2,7 +2,7 @@
 import type { GitHubData } from '@/lib/github'
 import { GithubPageContent } from './_content'
 
-//  Fallback (quando GITHUB_USERNAME não está configurado) 
+//  Fallback (quando GITHUB_USERNAME não está configurado)
 
 const EMPTY_DATA: GitHubData = {
   profile: {
@@ -19,7 +19,7 @@ const EMPTY_DATA: GitHubData = {
   totalContributions: 0,
 }
 
-//  Page 
+//  Page
 
 export default async function GithubPage() {
   const login = process.env.GITHUB_USERNAME
