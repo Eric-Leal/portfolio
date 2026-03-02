@@ -2,6 +2,7 @@ import Spline from '@splinetool/react-spline/next'
 import { ContactForm } from '@/components'
 import { ContentSection } from '@/components/section/content-section'
 import { emailSectionTranslations } from '@/components/section/section-translations'
+import { AboutSection } from '@/components/about/about-section'
 
 export default function Home() {
   return (
@@ -38,6 +39,8 @@ export default function Home() {
             </div>
           </main>
         </section>
+
+        <AboutSection />
 
         <ContentSection
           translations={emailSectionTranslations}

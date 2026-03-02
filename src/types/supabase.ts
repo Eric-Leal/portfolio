@@ -96,6 +96,27 @@ export type Database = {
           },
         ]
       }
+      contributions: {
+        Row: {
+          id: string
+          user_id: string
+          date: string
+          count: number
+        }
+        Insert: {
+          id?: string
+          user_id: string
+          date: string
+          count?: number
+        }
+        Update: {
+          id?: string
+          user_id?: string
+          date?: string
+          count?: number
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
