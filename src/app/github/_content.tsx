@@ -18,6 +18,7 @@ import { usePortfolioStore } from '@/store/use-portfolio-store'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Separator } from '@/components/ui/separator'
+import { AuroraText } from '@/components/ui/aurora-text'
 
 // ─── Translations ─────────────────────────────────────────────────────────────
 
@@ -119,11 +120,23 @@ export function GithubPageContent({ data }: { data: GitHubData }) {
       <main className="mx-auto max-w-6xl px-8 pt-32 pb-20">
         {/* ── Título da Seção ─────────────────────────────────────────────── */}
         <section className="mb-10">
-          <h1 className="text-tx-primary mb-3 text-5xl font-bold tracking-tight">
+          <h1 className="text-tx-primary mb-3 text-5xl font-medium tracking-tight">
             {t.titleStart}{' '}
-            <span className="font-title text-accent-2 italic">Github</span>
+            <span className="font-title text-6xl font-bold italic">
+              <AuroraText
+                colors={[
+                  'var(--color-brand-1)',
+                  'var(--color-brand-2)',
+                  'var(--color-brand-3)',
+                  'var(--color-brand-4)',
+                  'var(--color-brand-5)',
+                ]}
+              >
+                Github
+              </AuroraText>
+            </span>
           </h1>
-          <p className="text-tx-secondary max-w-lg text-sm leading-relaxed">
+          <p className="text-tx-secondary text-md max-w-lg leading-relaxed">
             {t.description}
           </p>
         </section>
