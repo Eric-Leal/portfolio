@@ -4,7 +4,12 @@ import { AuroraText } from '../ui/aurora-text'
 
 type SectionTranslations = Record<
   string,
-  { title: string; auroraText?: string; description?: string }
+  {
+    title: string
+    auroraText?: string
+    description?: string
+    [key: string]: unknown
+  }
 >
 
 type Props = {
@@ -53,7 +58,7 @@ export function ContentSection({
         >
           <div className="mb-6 flex items-center gap-4">
             <span
-              className={`text-tx-primary font-sans text-5xl font-bold sm:text-6xl md:text-7xl ${titleClassName || ''}`}
+              className={`text-tx-primary font-sans text-5xl font-medium sm:text-6xl md:text-7xl ${titleClassName || ''}`}
             >
               {resolvedTitle}
             </span>

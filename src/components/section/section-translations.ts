@@ -1,3 +1,23 @@
+import type { ExperienceSectionTranslation } from '@/types/experience'
+
+export const headlineTranslations: Record<
+  string,
+  { greeting: string; name: string; rolePart1: string; rolePart2: string }
+> = {
+  pt: {
+    greeting: 'Olá, eu sou',
+    name: 'Carlos Silva',
+    rolePart1: 'Engenheiro',
+    rolePart2: 'de Software',
+  },
+  en: {
+    greeting: "Hello, I'm",
+    name: 'Carlos Silva',
+    rolePart1: 'Software',
+    rolePart2: 'Engineer',
+  },
+}
+
 export const aboutSectionTranslations = {
   pt: {
     titleStart: 'Sobre',
@@ -43,5 +63,75 @@ export const projectsSectionTranslations = {
     title: 'My',
     auroraText: 'projects',
     description: 'Take a look at some of my recent projects.',
+  },
+}
+
+export const experienceSectionTranslations: Record<
+  string,
+  ExperienceSectionTranslation
+> = {
+  pt: {
+    title: 'Jornada',
+    auroraText: 'profissional',
+    description:
+      'Uma linha do tempo da minha evolução técnica e contribuições em diferentes papéis de engenharia.',
+    items: [
+      {
+        year: '2023',
+        role: 'Senior Developer',
+        company: 'Company A',
+        description:
+          'Desenvolvedor líder em projetos de infraestrutura na Company A, com foco em escalabilidade e otimização de performance. Liderou a migração para arquitetura de microsserviços.',
+        category: 'work',
+      },
+      {
+        year: '2021',
+        role: 'Mid-level Developer',
+        company: 'Company B',
+        description:
+          'Desenvolveu aplicações web de alto tráfego com frameworks modernos. Trabalhou com equipes multidisciplinares para entregar experiências pixel-perfect e integrações robustas de API.',
+        category: 'code',
+      },
+      {
+        year: '2019',
+        role: 'Junior Developer',
+        company: 'Company C',
+        description:
+          'Iniciou a jornada contribuindo com módulos front-end e manutenção de sistemas legados. Aprendeu boas práticas de controle de versão e metodologias ágeis apoiando engenheiros sênior.',
+        category: 'education',
+      },
+    ],
+  },
+  en: {
+    title: 'Professional',
+    auroraText: 'journey',
+    description:
+      'A timeline of my technical evolution and contributions across different engineering roles.',
+    items: [
+      {
+        year: '2023',
+        role: 'Senior Developer',
+        company: 'Company A',
+        description:
+          'Lead developer for core infrastructure projects at Company A, focusing on scalability and performance optimization. Spearheaded the transition to microservices architecture.',
+        category: 'work',
+      },
+      {
+        year: '2021',
+        role: 'Mid-level Developer',
+        company: 'Company B',
+        description:
+          'Developed high-traffic web applications using modern frameworks. Collaborated with cross-functional teams to deliver pixel-perfect user experiences and robust API integrations.',
+        category: 'code',
+      },
+      {
+        year: '2019',
+        role: 'Junior Developer',
+        company: 'Company C',
+        description:
+          'Started my journey contributing to front-end modules and maintaining legacy systems. Learned best practices in version control and agile methodologies while supporting senior engineers.',
+        category: 'education',
+      },
+    ],
   },
 }
