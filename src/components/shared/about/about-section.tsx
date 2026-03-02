@@ -30,7 +30,7 @@ export function AboutSection() {
           <h2 className="mb-6 flex items-baseline gap-3 font-sans text-7xl leading-tight font-medium tracking-tight">
             <span className="text-tx-primary">{t.titleStart}</span>
             <AuroraText
-              className="font-title text-6xl sm:text-7xl md:text-8xl"
+              className="font-title text-6xl font-bold sm:text-7xl md:text-8xl"
               colors={AURORA_COLORS}
               speed={0.8}
             >

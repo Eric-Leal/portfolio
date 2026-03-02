@@ -136,7 +136,7 @@ export function GithubPageContent({ data }: { data: GitHubData }) {
               </AuroraText>
             </span>
           </h1>
-          <p className="text-tx-secondary text-md max-w-lg leading-relaxed">
+          <p className="text-tx-primary text-md max-w-lg leading-relaxed">
             {t.description}
           </p>
         </section>

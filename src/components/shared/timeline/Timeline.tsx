@@ -52,7 +52,7 @@ export function Timeline() {
           top: glowTop,
           boxShadow: '0 0 10px 8px var(--color-brand-5)',
         }}
-        className="bg-accent-5 pointer-events-none absolute left-4.5 h-1 w-1 -translate-x-1/2 -translate-y-1/2 rounded-full lg:left-1/2"
+        className="pointer-events-none absolute left-4.5 h-1 w-1 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white lg:left-1/2"
       />
 
       <div className="relative flex flex-col gap-16">
