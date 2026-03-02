@@ -1,9 +1,10 @@
 'use client'
 import { usePortfolioStore } from '@/store/use-portfolio-store'
+import { AuroraText } from '../ui/aurora-text'
 
 type SectionTranslations = Record<
   string,
-  { title: string; description?: string }
+  { title: string; auroraText?: string; description?: string }
 >
 
 type Props = {
@@ -34,19 +35,41 @@ export function ContentSection({
       ? 'max-w-2xl'
       : sectionSize === 'medium'
         ? 'max-w-4xl'
-        : 'max-w-5xl'
+        : 'max-w-7xl'
+
+  const AURORA_COLORS = [
+    'var(--color-brand-1)',
+    'var(--color-brand-2)',
+    'var(--color-brand-3)',
+    'var(--color-brand-4)',
+    'var(--color-brand-5)',
+  ]
 
   return (
     <section className="bg-background flex flex-col items-center justify-center px-6 py-12">
       <div className={`w-full ${sectionSizeClass}`}>
-        <div className={`mb-5 text-${textOrientation || 'center'}`}>
-          <h1
-            className={`font-title text-tx-primary text-4xl font-bold italic sm:text-5xl ${titleClassName || ''}`}
-          >
-            {resolvedTitle}
-          </h1>
+        <div
+          className={`mb-5 flex flex-col ${textOrientation === 'left' ? 'items-start' : textOrientation === 'right' ? 'items-end' : 'items-center'}`}
+        >
+          <div className="mb-6 flex items-center gap-4">
+            <span
+              className={`text-tx-primary font-sans text-5xl font-bold sm:text-6xl md:text-7xl ${titleClassName || ''}`}
+            >
+              {resolvedTitle}
+            </span>
+            <span className="font-title font-bold">
+              <AuroraText
+                className="text-6xl sm:text-7xl md:text-8xl"
+                colors={AURORA_COLORS}
+                speed={0.8}
+              >
+                {t?.auroraText}
+              </AuroraText>
+            </span>
+          </div>
+
           {resolvedDescription && (
-            <p className="text-tx-muted text-base">{resolvedDescription}</p>
+            <p className="text-tx-muted text-xl">{resolvedDescription}</p>
           )}
         </div>
         {children}

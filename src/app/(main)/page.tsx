@@ -1,7 +1,11 @@
 import Spline from '@splinetool/react-spline/next'
 import { ContactForm } from '@/components'
+import { ProjectsGrid } from '@/components/shared/project'
 import { ContentSection } from '@/components/section/content-section'
-import { emailSectionTranslations } from '@/components/section/section-translations'
+import {
+  emailSectionTranslations,
+  projectsSectionTranslations,
+} from '@/components/section/section-translations'
 
 export default function Home() {
   return (
@@ -38,6 +42,14 @@ export default function Home() {
             </div>
           </main>
         </section>
+
+        <ContentSection
+          translations={projectsSectionTranslations}
+          sectionSize="large"
+          textOrientation="center"
+        >
+          <ProjectsGrid />
+        </ContentSection>
 
         <ContentSection
           translations={emailSectionTranslations}
