@@ -277,7 +277,7 @@ export function GithubPageContent({ data }: { data: GitHubData }) {
       </main>
 
       {/* ── Footer ──────────────────────────────────────────────────────────── */}
-      <footer className="border-border border-t py-6">
+      {/* <footer className="border-border border-t py-6">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-8">
           <p className="text-tx-muted text-xs">{t.rights(profile.name)}</p>
           <div className="flex items-center gap-6">
@@ -298,7 +298,7 @@ export function GithubPageContent({ data }: { data: GitHubData }) {
             ))}
           </div>
         </div>
-      </footer>
+      </footer> */}
     </div>
   )
 }
