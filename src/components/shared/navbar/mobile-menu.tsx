@@ -14,6 +14,7 @@ import {
   Menu,
   ChevronLeft,
   Share2,
+  Github,
 } from 'lucide-react'
 import { AnimatedThemeToggler } from '@/components/ui/animated-theme-toggler'
 import { LanguageToggle } from './language-toggle'
@@ -105,6 +106,7 @@ export function MobileMenu() {
                   { href: '/#projects', label: t.projects, icon: Briefcase },
                   { href: '/#contact', label: t.contact, icon: Mail },
                   { href: '/guestbook', label: t.guestbook, icon: BookOpen },
+                  { href: '/github', label: t.githubActivity, icon: Github },
                 ].map((link) => (
                   <Link
                     key={link.href}

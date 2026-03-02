@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { Send, BookOpen } from 'lucide-react'
+import { Send, BookOpen, Github } from 'lucide-react'
 
 import {
   NavigationMenu,
@@ -108,6 +108,29 @@ export function Navbar() {
                         <p className="text-sm font-medium">{t.guestbook}</p>
                         <p className="text-tx-muted mt-0.5 text-xs">
                           {t.guestbookDesc}
+                        </p>
+                      </div>
+                    </Link>
+                  </NavigationMenuLink>
+                  <NavigationMenuLink asChild>
+                    <Link
+                      href="/github"
+                      className={cn(
+                        'flex items-start gap-3 rounded-lg p-3',
+                        'text-tx-secondary hover:text-tx-primary hover:bg-white/5',
+                        'transition-colors duration-150',
+                      )}
+                    >
+                      <Github
+                        size={16}
+                        className="mt-0.5 shrink-0 opacity-70"
+                      />
+                      <div>
+                        <p className="text-sm font-medium">
+                          {t.githubActivity}
+                        </p>
+                        <p className="text-tx-muted mt-0.5 text-xs">
+                          {t.githubActivityDesc}
                         </p>
                       </div>
                     </Link>
