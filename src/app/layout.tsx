@@ -4,6 +4,7 @@ import { ThemeProvider } from '@/components/shared/theme-provider'
 import { Navbar } from '@/components/shared/navbar'
 import { Footer } from '@/components/shared/footer'
 import '@/styles/globals.css'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 
 // Configuração da Outfit (Sans-serif principal)
 const outfit = Outfit({
@@ -45,7 +46,9 @@ export default function RootLayout({
         >
           <Navbar />
           {children}
+
           <Footer />
+          <SpeedInsights />
         </ThemeProvider>
       </body>
     </html>
