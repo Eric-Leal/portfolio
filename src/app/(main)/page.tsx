@@ -9,7 +9,8 @@ import {
 } from '@/components/shared/section/section-translations'
 import { AboutSection } from '@/components/shared/about/about-section'
 import { HeadlineSection } from './_headline-section'
-import { Timeline } from '@/components/shared/timeline'
+import { TimelineExperience } from '@/components/shared/timeline'
+import { SplineWrapper } from '@/components/shared/spline/'
 
 export default function Home() {
   return (
@@ -18,15 +19,15 @@ export default function Home() {
         {/* Heddline*/}
         <section className="relative h-screen w-full overflow-hidden">
           <div className="pointer-events-none absolute inset-0 z-0">
-            <div className="h-full w-full">
+            {/* O Wrapper cliente cuida da performance, o Spline cuida do 3D */}
+            <SplineWrapper>
               <Spline
                 style={{ pointerEvents: 'auto' }}
                 scene="https://prod.spline.design/E3Np8UpeDg8IrCCr/scene.splinecode"
               />
-            </div>
+            </SplineWrapper>
           </div>
 
-          {/* Conteúdo da Headline */}
           <HeadlineSection />
         </section>
 
@@ -45,7 +46,7 @@ export default function Home() {
           sectionSize="large"
           textOrientation="center"
         >
-          <Timeline />
+          <TimelineExperience />
         </ContentSection>
 
         <ContentSection
@@ -55,10 +56,6 @@ export default function Home() {
         >
           <ContactForm />
         </ContentSection>
-
-        <footer className="text-tx-muted pb-8 text-center text-xs md:text-sm">
-          © 2026 • Construído com Next.js
-        </footer>
       </div>
     </>
   )
