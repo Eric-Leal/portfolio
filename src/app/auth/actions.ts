@@ -11,11 +11,14 @@ export async function signInWithProvider(provider: 'google' | 'github') {
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider,
     options: {
-      redirectTo: `${origin}/auth/callback`,
-      queryParams: provider === 'google' ? {
-        access_type: 'offline',
-        prompt: 'consent',
-      } : undefined,
+      redirectTo: `${origin}/auth/callback?next=/guestbook`,
+      queryParams:
+        provider === 'google'
+          ? {
+              access_type: 'offline',
+              prompt: 'consent',
+            }
+          : undefined,
     },
   })
 

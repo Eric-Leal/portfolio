@@ -5,13 +5,13 @@ export async function GET(request: Request) {
   const { searchParams, origin } = new URL(request.url)
   const code = searchParams.get('code')
   // Permite redirecionar o usuário de volta para onde ele estava (ex: /guestbook)
-  const next = searchParams.get('next') ?? '/'
+  const next = searchParams.get('next') ?? '/guestbook'
 
   if (code) {
     const supabase = await createClient()
     // A troca do código pela sessão acontece aqui no servidor
     const { error } = await supabase.auth.exchangeCodeForSession(code)
-    
+
     if (!error) {
       return NextResponse.redirect(`${origin}${next}`)
     }

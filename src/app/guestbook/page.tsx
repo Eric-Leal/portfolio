@@ -2,21 +2,9 @@ import { createClient } from '@/lib/supabase/server'
 import { signInWithProvider, signOut } from '@/app/auth/actions'
 import { Button } from '@/components/ui/button'
 
-// Local server-action wrappers so we don't pass inline closures
-async function signInWithGithubAction(formData: FormData) {
-  'use server'
-  await signInWithProvider('github')
-}
-
-async function signInWithGoogleAction(formData: FormData) {
-  'use server'
-  await signInWithProvider('google')
-}
-
-async function signOutAction(formData: FormData) {
-  'use server'
-  await signOut()
-}
+/**
+ * Página do mural de visitantes com autenticação via Supabase. O componente é um Server Component, o que permite obter a sessão do usuário diretamente no servidor, sem precisar de client-side JavaScript para isso. Os formulários de login e logout usam ações server-side para lidar com a autenticação de forma segura e eficiente.
+ */
 
 export default async function GuestbookPage() {
   const supabase = await createClient()
@@ -33,18 +21,18 @@ export default async function GuestbookPage() {
 
       {!user ? (
         <div className="mt-6 flex flex-col items-center gap-3">
-          <form action={signInWithGithubAction}>
+          <form action={signInWithProvider.bind(null, 'github')}>
             <Button type="submit">Entrar com GitHub</Button>
           </form>
 
-          <form action={signInWithGoogleAction}>
+          <form action={signInWithProvider.bind(null, 'google')}>
             <Button type="submit">Entrar com Google</Button>
           </form>
         </div>
       ) : (
         <div className="mt-6 flex flex-col items-center gap-4">
           <p className="text-tx-primary">Bem-vindo, {user.email}</p>
-          <form action={signOutAction}>
+          <form action={signOut}>
             <Button type="submit">Sair</Button>
           </form>
         </div>
