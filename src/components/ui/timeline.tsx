@@ -34,35 +34,41 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
         {data.map((item, index) => (
           <div
             key={index}
-            className="flex justify-start pt-10 md:gap-10 md:pt-40"
+            className="flex justify-start pt-12 md:gap-10 md:pt-40"
           >
             <div className="sticky top-40 z-40 flex max-w-xs flex-col items-center self-start md:w-full md:flex-row lg:max-w-sm">
               <div className="bg-background absolute left-3 flex h-10 w-10 items-center justify-center rounded-full md:left-3">
-                <div className="bg-border border-border/50 h-4 w-4 rounded-full border p-2" />
+                <div className="border-border/50 h-4 w-4 rounded-full border bg-(--color-accent-5) p-2" />
               </div>
-              <h3 className="font-title text-tx-secondary hidden text-xl font-bold italic md:block md:pl-20 md:text-5xl">
+
+              {/* Título (Ano) Desktop */}
+              <h3 className="font-title text-tx-primary hidden text-xl font-bold md:block md:pl-20 md:text-6xl">
                 {item.title}
               </h3>
             </div>
 
+            {/* Conteúdo do Card */}
             <div className="relative w-full pr-4 pl-20 md:pl-4">
-              <h3 className="font-title text-tx-secondary mb-4 block text-left text-2xl font-bold italic md:hidden">
+              {/* Título (Ano) Mobile */}
+              <h3 className="font-title text-tx-primary mb-4 block text-left text-3xl font-bold md:hidden">
                 {item.title}
               </h3>
               {item.content}
             </div>
           </div>
         ))}
+
+        {/* Linha de Progresso (The Beam) */}
         <div
           style={{ height: height + 'px' }}
-          className="via-border absolute top-0 left-8 w-0.5 overflow-hidden bg-[linear-gradient(to_bottom,var(--tw-gradient-stops))] from-transparent from-0% to-transparent to-99% mask-[linear-gradient(to_bottom,transparent_0%,black_10%,black_90%,transparent_100%)] md:left-8"
+          className="bg-border/20 absolute top-0 left-8 w-[2px] overflow-hidden md:left-8"
         >
           <motion.div
             style={{
               height: heightTransform,
               opacity: opacityTransform,
             }}
-            className="from-brand-3 via-brand-4 to-brand-5 absolute inset-x-0 top-0 w-0.5 rounded-full bg-linear-to-t from-0% via-10%"
+            className="from-brand-3 via-brand-4 to-brand-5 absolute inset-x-0 top-0 w-full rounded-full bg-linear-to-b will-change-transform"
           />
         </div>
       </div>

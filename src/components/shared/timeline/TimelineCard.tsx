@@ -10,6 +10,7 @@
 import { motion } from 'framer-motion'
 import type { Experience } from '@/types/experience'
 import { TimelineIcon } from './TimelineIcon'
+import { cn } from '@/lib/utils'
 
 type Props = {
   item: Experience
@@ -24,15 +25,19 @@ export function TimelineCard({ item }: Props) {
       transition={{ duration: 0.45, ease: 'easeOut' }}
       className="w-full"
     >
-      <div className="bg-card border-border rounded-2xl border p-5 shadow-sm transition-colors duration-300">
+      <div
+        className={cn(
+          'md:bg-card md:border-brand-5/40 rounded-2xl py-5 transition-all duration-500 md:border md:p-5 md:shadow-sm',
+        )}
+      >
         <div className="mb-3 flex items-center gap-3">
           <TimelineIcon category={item.category} />
-          <h3 className="text-tx-primary font-title text-xl leading-tight font-bold italic">
+          <h3 className="text-tx-primary font-sans text-xl leading-tight font-bold">
             {item.role}
           </h3>
         </div>
         <p className="text-accent-5 mb-3 text-sm font-medium">{item.company}</p>
-        <p className="text-tx-muted text-sm leading-relaxed">
+        <p className="text-tx-muted text-md leading-relaxed">
           {item.description}
         </p>
       </div>
