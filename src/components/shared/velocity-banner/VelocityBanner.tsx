@@ -49,7 +49,8 @@ export function VelocityBanner({
           </span>
           <Sparkle
             className="text-border h-5 w-5 shrink-0"
-            size={30}
+            stroke="none"
+            fill="currentColor"
             aria-hidden
           />
         </span>
@@ -63,7 +64,7 @@ export function VelocityBanner({
       aria-label={words.join(' • ')}
       aria-live="off"
       className={cn(
-        'flex h-12 items-center overflow-hidden bg-(--color-accent-5) backdrop-blur-sm md:h-24',
+        'flex h-14.5 items-center overflow-hidden bg-(--color-accent-5) backdrop-blur-sm md:h-24',
         'md:h-16',
         className,
       )}
