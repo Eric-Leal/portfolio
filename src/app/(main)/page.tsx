@@ -11,6 +11,7 @@ import { AboutSection } from '@/components/shared/about/about-section'
 import { HeadlineSection } from './_headline-section'
 import { TimelineExperience } from '@/components/shared/timeline'
 import { SplineWrapper } from '@/components/shared/spline/'
+import { VelocityBanner } from '@/components/shared/velocity-banner'
 
 export default function Home() {
   return (
@@ -29,6 +30,7 @@ export default function Home() {
           </div>
 
           <HeadlineSection />
+          <VelocityBanner className="absolute bottom-0 left-0 z-20 w-full" />
         </section>
 
         <AboutSection />
