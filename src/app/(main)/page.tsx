@@ -3,15 +3,16 @@ import { ContactForm } from '@/components'
 import { ProjectsGrid } from '@/components/shared/project'
 import { ContentSection } from '@/components/shared/section/content-section'
 import {
+  aboutSectionTranslations,
   emailSectionTranslations,
   experienceSectionTranslations,
   projectsSectionTranslations,
 } from '@/components/shared/section/section-translations'
-import { AboutSection } from '@/components/shared/about/about-section'
 import { HeadlineSection } from './_headline-section'
 import { TimelineExperience } from '@/components/shared/timeline'
 import { SplineWrapper } from '@/components/shared/spline/'
 import { VelocityBanner } from '@/components/shared/velocity-banner'
+import { AboutImage } from '@/components/shared/about/about-image'
 
 export default function Home() {
   return (
@@ -33,7 +34,14 @@ export default function Home() {
           <VelocityBanner className="absolute bottom-0 left-0 z-20 w-full" />
         </section>
 
-        <AboutSection />
+        <ContentSection
+          grid={true}
+          translations={aboutSectionTranslations}
+          sectionSize="large"
+          textOrientation="left"
+        >
+          <AboutImage />
+        </ContentSection>
 
         <ContentSection
           translations={projectsSectionTranslations}

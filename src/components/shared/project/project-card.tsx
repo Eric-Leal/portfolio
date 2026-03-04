@@ -9,6 +9,7 @@ import { usePortfolioStore } from '@/store/use-portfolio-store'
 import { useGalleryVideo } from '@/hooks'
 import Link from 'next/link'
 import { cn } from '@/lib/utils'
+import { BRAND_TAG_CLASSES } from '@/styles/constants'
 
 export interface ProjectCardProps {
   project: Project
@@ -163,11 +164,14 @@ export function ProjectCard({ project }: ProjectCardProps) {
 
       {/* Tags */}
       <div className="flex flex-wrap gap-4 px-8 pb-8">
-        {project.tags.slice(0, 3).map((tag) => (
+        {project.tags.slice(0, 3).map((tag, i) => (
           <Badge
             key={tag}
             variant="secondary"
-            className="py-1 text-xs font-medium"
+            className={cn(
+              'py-1 text-xs font-medium',
+              BRAND_TAG_CLASSES[i % BRAND_TAG_CLASSES.length],
+            )}
           >
             {tag}
           </Badge>
