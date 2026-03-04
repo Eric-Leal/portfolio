@@ -63,8 +63,8 @@ export function VelocityBanner({
       aria-label={words.join(' • ')}
       aria-live="off"
       className={cn(
-        'flex h-16 items-center overflow-hidden bg-(--color-accent-5) backdrop-blur-sm md:h-24',
-        'md:h-18',
+        'flex h-12 items-center overflow-hidden bg-(--color-accent-5) backdrop-blur-sm md:h-24',
+        'md:h-16',
         className,
       )}
     >
