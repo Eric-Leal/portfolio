@@ -8,6 +8,7 @@ import {
   projectsSectionTranslations,
 } from '@/components/shared/section/section-translations'
 import { AboutSection } from '@/components/shared/about/about-section'
+import { StackSection } from '@/components/shared/section/stack-section'
 import { HeadlineSection } from './_headline-section'
 import { TimelineExperience } from '@/components/shared/timeline'
 import { SplineWrapper } from '@/components/shared/spline/'
@@ -34,6 +35,8 @@ export default function Home() {
         </section>
 
         <AboutSection />
+
+        <StackSection />
 
         <ContentSection
           translations={projectsSectionTranslations}

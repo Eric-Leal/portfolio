@@ -135,3 +135,17 @@ export const experienceSectionTranslations: Record<
     ],
   },
 }
+
+export const stackSectionTranslations = {
+  pt: {
+    title: '',
+    auroraText: 'Tecnologias',
+    description:
+      'As principais ferramentas e linguagens que uso no meu dia a dia.',
+  },
+  en: {
+    title: '',
+    auroraText: 'Technologies',
+    description: 'The main tools and languages I use on a daily basis.',
+  },
+}
