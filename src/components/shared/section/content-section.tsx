@@ -18,9 +18,9 @@ type Props = {
   description?: string
   children: React.ReactNode
   titleClassName?: string
-  textOrientation: 'left' | 'center' | 'right'
+  textOrientation?: 'left' | 'center' | 'right'
   translations?: SectionTranslations
-  sectionSize: 'small' | 'medium' | 'large'
+  sectionSize?: 'small' | 'medium' | 'large'
   grid?: boolean | false
 }
 
@@ -28,11 +28,11 @@ export function ContentSection({
   title,
   description,
   children,
-  titleClassName,
-  textOrientation,
+  titleClassName = '',
+  textOrientation = 'center',
   translations,
-  sectionSize,
-  grid,
+  sectionSize = 'large',
+  grid = false,
 }: Props) {
   const { language } = usePortfolioStore()
   const t = translations?.[language]
@@ -60,7 +60,7 @@ export function ContentSection({
         >
           <div className="mb-6 flex items-center gap-4">
             <span
-              className={`text-tx-primary font-sans text-5xl font-medium sm:text-6xl md:text-7xl ${titleClassName || ''}`}
+              className={`text-tx-primary font-sans text-5xl font-medium sm:text-6xl md:text-7xl ${titleClassName}`}
             >
               {resolvedTitle}
             </span>

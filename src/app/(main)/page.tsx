@@ -37,31 +37,21 @@ export default function Home() {
         <ContentSection
           grid={true}
           translations={aboutSectionTranslations}
-          sectionSize="large"
           textOrientation="left"
         >
           <AboutImage />
         </ContentSection>
 
-        <ContentSection
-          translations={projectsSectionTranslations}
-          sectionSize="large"
-          textOrientation="center"
-        >
+        <ContentSection translations={projectsSectionTranslations}>
           <ProjectsGrid />
         </ContentSection>
 
-        <ContentSection
-          translations={experienceSectionTranslations}
-          sectionSize="large"
-          textOrientation="center"
-        >
+        <ContentSection translations={experienceSectionTranslations}>
           <TimelineExperience />
         </ContentSection>
 
         <ContentSection
           translations={emailSectionTranslations}
-          textOrientation="center"
           sectionSize="small"
         >
           <ContactForm />
