@@ -29,5 +29,5 @@ export async function signInWithProvider(provider: 'google' | 'github') {
 export async function signOut() {
   const supabase = await createClient()
   await supabase.auth.signOut()
-  redirect('/')
+  redirect('/guestbook')
 }
