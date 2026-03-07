@@ -135,3 +135,26 @@ export const experienceSectionTranslations: Record<
     ],
   },
 }
+
+export const guestbookTranslations = {
+  pt: {
+    title: 'Mural de',
+    titleAccent: 'Visitantes',
+    subtitle:
+      'Entre para deixar uma mensagem, compartilhar um feedback ou apenas dizer olá.',
+    signInGithub: 'Continuar com GitHub',
+    signInGoogle: 'Continuar com Google',
+    welcomeBack: 'Olá',
+    signOut: 'Sair',
+  },
+  en: {
+    title: 'Guest',
+    titleAccent: 'Book',
+    subtitle:
+      'Sign in to leave a message, share feedback, or just say hello to the community.',
+    signInGithub: 'Continue with GitHub',
+    signInGoogle: 'Continue with Google',
+    welcomeBack: 'Hello',
+    signOut: 'Log out',
+  },
+}
