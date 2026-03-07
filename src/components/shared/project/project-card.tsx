@@ -141,7 +141,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
           )}
       </div>
       {/* Header */}
-      <div className="mb-3 flex items-start justify-between px-8">
+      <div className="mb-3 flex items-start justify-between px-8 text-left">
         <div>
           <div className="">
             <h3 className="text-foreground text-3xl font-bold lg:text-4xl">
@@ -151,7 +151,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
               key={project.category.toUpperCase()}
               variant="outline"
               className={cn(
-                'bg-primary mt-2 shrink-0 rounded-full border px-3 py-1 text-xs font-medium transition-opacity hover:opacity-80',
+                'bg-primary mt-2 shrink-0 rounded-full border px-3 py-1 text-xs font-medium text-white transition-opacity hover:opacity-80',
               )}
             >
               {project.category.toUpperCase()}

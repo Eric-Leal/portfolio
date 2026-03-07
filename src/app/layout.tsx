@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Outfit, Cormorant_Infant } from 'next/font/google'
 import { ThemeProvider } from '@/components/shared/theme-provider'
+import { LenisProvider } from '@/components/shared/lenis-scroll/lenis-provider'
 import { Navbar } from '@/components/shared/navbar'
 import { Footer } from '@/components/shared/footer'
 import '@/styles/globals.css'
@@ -44,11 +45,12 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <Navbar />
-          {children}
-
-          <Footer />
-          <SpeedInsights />
+          <LenisProvider>
+            <Navbar />
+            {children}
+            <Footer />
+            <SpeedInsights />
+          </LenisProvider>
         </ThemeProvider>
       </body>
     </html>

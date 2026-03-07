@@ -51,22 +51,22 @@ export function ContentSection({
         : 'max-w-7xl'
 
   return (
-    <section className="bg-background px-6 py-20 md:px-8 md:py-28 lg:py-36">
+    <section className="bg-background mx-6 py-8 md:px-8 md:py-18 lg:py-36">
       <div
-        className={`mx-auto w-full ${sectionSizeClass} ${grid ? 'grid grid-cols-1 items-center gap-12 lg:grid-cols-5 lg:gap-20' : 'flex flex-col items-center'}`}
+        className={`${textOrientation === 'left' ? 'text-center lg:text-left' : 'text-center'} mx-auto w-full ${sectionSizeClass} ${grid ? 'grid grid-cols-1 items-center gap-12 md:grid-cols-2 lg:grid-cols-5 lg:gap-20' : 'flex flex-col items-center'}`}
       >
         <div
-          className={`${grid ? 'order-2 mx-8 lg:order-1 lg:col-span-3' : ''} mb-5 flex flex-col ${textOrientation === 'left' ? 'items-start' : textOrientation === 'right' ? 'items-end' : 'items-center'}`}
+          className={`${grid ? 'order-2 md:order-1 lg:col-span-3' : ''} mb-4 flex flex-col ${textOrientation === 'left' ? 'items-center lg:items-start' : textOrientation === 'right' ? 'items-end' : 'items-center'}`}
         >
-          <div className="mb-6 flex items-center gap-4">
+          <div className="mb-4 flex items-center gap-4 sm:mb-6">
             <span
-              className={`text-tx-primary font-sans text-5xl font-medium sm:text-6xl md:text-7xl ${titleClassName}`}
+              className={`text-tx-primary font-sans text-4xl font-medium sm:text-6xl md:text-7xl ${titleClassName}`}
             >
               {resolvedTitle}
             </span>
             <span className="font-title font-bold">
               <AuroraText
-                className="text-6xl sm:text-7xl md:text-8xl"
+                className="text-5xl sm:text-7xl md:text-8xl"
                 colors={AURORA_COLORS}
                 speed={0.8}
               >
