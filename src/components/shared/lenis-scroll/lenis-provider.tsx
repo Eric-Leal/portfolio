@@ -12,22 +12,22 @@ export function LenisProvider({ children }: { children: React.ReactNode }) {
   const lenisRef = useRef<LenisRef>(null)
 
   useEffect(() => {
-    const lenis = lenisRef.current?.lenis
-
-    // Integração GSAP exatamente como mostra a documentação oficial
+    // Integração GSAP: sempre referencie o ref dentro do RAF/update
+    // para que a instância Lenis seja lida no momento da execução
     function update(time: number) {
-      lenis?.raf(time * 1000)
+      lenisRef.current?.lenis?.raf(time * 1000)
     }
 
     gsap.ticker.add(update)
     gsap.ticker.lagSmoothing(0)
 
-    // Sincroniza Lenis com ScrollTrigger
-    lenis?.on('scroll', ScrollTrigger.update)
+    // Sincroniza Lenis com ScrollTrigger — registre quando disponível
+    const maybeLenis = () => lenisRef.current?.lenis
+    maybeLenis()?.on('scroll', ScrollTrigger.update)
 
     return () => {
       gsap.ticker.remove(update)
-      lenis?.off('scroll', ScrollTrigger.update)
+      maybeLenis()?.off('scroll', ScrollTrigger.update)
     }
   }, [])
 

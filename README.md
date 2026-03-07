@@ -6,14 +6,19 @@
 
 ---
 
-## 🚧 Status do Projeto
-
-[![Versão](https://img.shields.io/badge/Versão-v0.1.0-blue?style=for-the-badge)](https://github.com/Eric-Leal/portfolio/releases)
+[![Versão](https://img.shields.io/badge/Versão-v0.1.0-blue?style=for-the-badge)](https://github.com/LauraPontara/portfolio/releases)
 ![Next.js](https://img.shields.io/badge/Next.js-16.1.6-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)
 ![React](https://img.shields.io/badge/React-19.2.3-61DAFB?style=for-the-badge&logo=react&logoColor=black)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
 ![TailwindCSS](https://img.shields.io/badge/TailwindCSS-4-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)
+![Supabase](https://img.shields.io/badge/Supabase-2.98.0-007ec6?style=for-the-badge&logo=supabase&logoColor=white)
+![GitHub repo size](https://img.shields.io/github/repo-size/LauraPontara/portfolio?style=for-the-badge&logo=files)
+![GitHub directory file count](https://img.shields.io/github/directory-file-count/LauraPontara/portfolio?style=for-the-badge&logo=files)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/m/LauraPontara/portfolio?style=for-the-badge&color=007ec6&logo=gitkraken)
+![GitHub last commit](https://img.shields.io/github/last-commit/LauraPontara/portfolio?style=for-the-badge&logo=clockify)
 ![Vercel](https://img.shields.io/badge/Vercel-Deploy-000000?style=for-the-badge&logo=vercel&logoColor=white)
+
+![Views Counter](https://views-counter.vercel.app/badge?pageId=https%3A%2F%2Fgithub%2Ecom%2FLauraPontara%2Fportfolio&leftColor=555555&rightColor=007ec6&type=total&label=RepoViews)
 
 ---
 
@@ -52,44 +57,44 @@ O portfólio será composto por quatro seções principais, acessíveis através
 
 ### Core
 
-- **[Next.js 16](https://nextjs.org/)** - Framework React para produção com App Router
-- **[TypeScript 5](https://www.typescriptlang.org/)** - Superset tipado do JavaScript
-- **[React 19](https://react.dev/)** - Biblioteca para construção de interfaces
+- <span style="display:inline-flex;align-items:center;gap:0.5rem;"><a href="https://nextjs.org/" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white" alt="Next.js" style="vertical-align:middle;"/></a><span>Framework React para produção com App Router</span></span>
+- <span style="display:inline-flex;align-items:center;gap:0.5rem;"><a href="https://www.typescriptlang.org/" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" style="vertical-align:middle;"/></a><span>Superset tipado do JavaScript</span></span>
+- <span style="display:inline-flex;align-items:center;gap:0.5rem;"><a href="https://react.dev/" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" alt="React" style="vertical-align:middle;"/></a><span>Biblioteca para construção de interfaces</span></span>
 
 ### Estilização e UI
 
-- **[TailwindCSS 4](https://tailwindcss.com/)** - Framework CSS utility-first
-- **[Shadcn UI](https://ui.shadcn.com/)** - Componentes reutilizáveis e acessíveis
-- **[Magic UI](https://magicui.design/)** - Componentes animados e interativos _(Planejado)_
-- **[Radix UI](https://www.radix-ui.com/)** - Primitivos de UI headless e acessíveis
-- **[Lucide React](https://lucide.dev/)** - Ícones SVG modernos
-- **[Class Variance Authority](https://cva.style/docs)** - Gerenciamento de variantes de componentes
+- <span style="display:inline-flex;align-items:center;gap:0.5rem;"><a href="https://tailwindcss.com/" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="TailwindCSS" style="vertical-align:middle;"/></a><span>Framework CSS utility-first</span></span>
+- <span style="display:inline-flex;align-items:center;gap:0.5rem;"><a href="https://ui.shadcn.com/" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/Shadcn_UI-111827?style=for-the-badge&logo=shadcn&logoColor=white" alt="Shadcn UI" style="vertical-align:middle;"/></a><span>Componentes reutilizáveis e acessíveis</span></span>
+- <span style="display:inline-flex;align-items:center;gap:0.5rem;"><a href="https://magicui.design/" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/Magic_UI-7C3AED?style=for-the-badge" alt="Magic UI" style="vertical-align:middle;"/></a><span>Componentes animados e interativos _(Planejado)_</span></span>
+- <span style="display:inline-flex;align-items:center;gap:0.5rem;"><a href="https://www.radix-ui.com/" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/Radix_UI-0f172a?style=for-the-badge" alt="Radix UI" style="vertical-align:middle;"/></a><span>Primitivos de UI headless e acessíveis</span></span>
+- <span style="display:inline-flex;align-items:center;gap:0.5rem;"><a href="https://lucide.dev/" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/Lucide-000000?style=for-the-badge" alt="Lucide React" style="vertical-align:middle;"/></a><span>Ícones SVG modernos</span></span>
+- <span style="display:inline-flex;align-items:center;gap:0.5rem;"><a href="https://cva.style/docs" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/CVA-111827?style=for-the-badge" alt="Class Variance Authority" style="vertical-align:middle;"/></a><span>Gerenciamento de variantes de componentes</span></span>
 
 ### Animações
 
-- **[Framer Motion](https://www.framer.com/motion/)** - Biblioteca de animações para React _(Planejado)_
-- **[GSAP](https://gsap.com/)** - Biblioteca profissional de animações JavaScript _(Planejado)_
-- **[tw-animate-css](https://www.npmjs.com/package/tw-animate-css)** - Animações CSS com Tailwind
+- <span style="display:inline-flex;align-items:center;gap:0.5rem;"><a href="https://www.framer.com/motion/" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/Framer_Motion-0055FF?style=for-the-badge&logo=framer&logoColor=white" alt="Framer Motion" style="vertical-align:middle;"/></a><span>Biblioteca de animações para React _(Planejado)_</span></span>
+- <span style="display:inline-flex;align-items:center;gap:0.5rem;"><a href="https://gsap.com/" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/GSAP-00A86B?style=for-the-badge&logo=greensock&logoColor=white" alt="GSAP" style="vertical-align:middle;"/></a><span>Biblioteca profissional de animações JavaScript _(Planejado)_</span></span>
+- <span style="display:inline-flex;align-items:center;gap:0.5rem;"><a href="https://www.npmjs.com/package/tw-animate-css" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/tw--animate--css-06B6D4?style=for-the-badge" alt="tw-animate-css" style="vertical-align:middle;"/></a><span>Animações CSS com Tailwind</span></span>
 
 ### Gerenciamento de Estado
 
-- **[Zustand](https://zustand.docs.pmnd.rs/)** - Gerenciamento de estado minimalista _(Planejado)_
+- <span style="display:inline-flex;align-items:center;gap:0.5rem;"><a href="https://zustand.docs.pmnd.rs/" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/Zustand-000000?style=for-the-badge" alt="Zustand" style="vertical-align:middle;"/></a><span>Gerenciamento de estado minimalista _(Planejado)_</span></span>
 
 ### Backend e Dados
 
-- **[Supabase](https://supabase.com/)** - Backend como serviço (BaaS) com PostgreSQL _(Planejado)_
-- **[Zod](https://zod.dev/)** - Validação de schemas TypeScript-first _(Planejado)_
+- <span style="display:inline-flex;align-items:center;gap:0.5rem;"><a href="https://supabase.com/" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/Supabase-181818?style=for-the-badge&logo=supabase&logoColor=white" alt="Supabase" style="vertical-align:middle;"/></a><span>Backend como serviço (BaaS) com PostgreSQL _(Planejado)_</span></span>
+- <span style="display:inline-flex;align-items:center;gap:0.5rem;"><a href="https://zod.dev/" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/Zod-7D3C98?style=for-the-badge&logo=zod&logoColor=white" alt="Zod" style="vertical-align:middle;"/></a><span>Validação de schemas TypeScript-first _(Planejado)_</span></span>
 
 ### Qualidade de Código
 
-- **[ESLint 9](https://eslint.org/)** - Linter para identificar problemas no código
-- **[Prettier 3](https://prettier.io/)** - Formatador de código
-- **[Husky 9](https://typicode.github.io/husky/)** - Git hooks para automação
-- **[lint-staged](https://github.com/okonet/lint-staged)** - Executa linters em arquivos staged
+- <span style="display:inline-flex;align-items:center;gap:0.5rem;"><a href="https://eslint.org/" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/ESLint-4B32C3?style=for-the-badge&logo=eslint&logoColor=white" alt="ESLint" style="vertical-align:middle;"/></a><span>Linter para identificar problemas no código</span></span>
+- <span style="display:inline-flex;align-items:center;gap:0.5rem;"><a href="https://prettier.io/" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/Prettier-F7B93E?style=for-the-badge&logo=prettier&logoColor=white" alt="Prettier" style="vertical-align:middle;"/></a><span>Formatador de código</span></span>
+- <span style="display:inline-flex;align-items:center;gap:0.5rem;"><a href="https://typicode.github.io/husky/" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/Husky-000000?style=for-the-badge" alt="Husky" style="vertical-align:middle;"/></a><span>Git hooks para automação</span></span>
+- <span style="display:inline-flex;align-items:center;gap:0.5rem;"><a href="https://github.com/okonet/lint-staged" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/lint-staged-000000?style=for-the-badge" alt="lint-staged" style="vertical-align:middle;"/></a><span>Executa linters em arquivos staged</span></span>
 
 ### Hospedagem
 
-- **[Vercel](https://vercel.com/)** - Plataforma de deploy e hospedagem
+- <span style="display:inline-flex;align-items:center;gap:0.5rem;"><a href="https://vercel.com/" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white" alt="Vercel" style="vertical-align:middle;"/></a><span>Plataforma de deploy e hospedagem</span></span>
 
 ---
 
@@ -319,11 +324,11 @@ O projeto está configurado para deploy automático na **Vercel**. Cada push par
 
 **Entregas:**
 
-- [ ] Página "Sobre Mim" com versões em português e inglês
-- [ ] Página "Projetos" com timeline dinâmica
-- [ ] Página "Experiências" com dados organizados
-- [ ] Página "Contato" com ícones e formulário funcional (ex: envio de e-mail)
-- [ ] Validações básicas e responsividade
+- [x] Seção "Sobre Mim" com versões em português e inglês
+- [x] Seção "Projetos" com timeline dinâmica
+- [x] Seção "Experiências" com dados organizados
+- [x] Seção "Contato" com ícones e formulário funcional (ex: envio de e-mail)
+- [x] Validações básicas e responsividade
 
 **Resultado:** Versão funcional local ou com preview em ambiente temporário (ex: Vercel Preview).
 
@@ -335,21 +340,24 @@ O projeto está configurado para deploy automático na **Vercel**. Cada push par
 
 **Entregas:**
 
-- [ ] Deploy completo em Render, Vercel, Heroku, Fly.io ou similar
-- [ ] Ajustes visuais e de usabilidade
-- [ ] Inserção de imagens/GIFs dos projetos em execução
+- [x] Deploy completo em Render, Vercel, Heroku, Fly.io ou similar
+- [x] Ajustes visuais e de usabilidade
+- [x] Inserção de imagens/GIFs dos projetos em execução
+- [x] Guestbook
 - README final com:
-- [ ] Tecnologias utilizadas
-- [ ] Link para o site publicado
-- [ ] Instruções de uso e desenvolvimento
+- [x] Tecnologias utilizadas
+- [x] Link para o site publicado
+- [x] Instruções de uso e desenvolvimento
 
 **Resultado:** Sistema hospedado e funcional com documentação completa.
 
 ## 👥 Equipe
 
-- **Eric Leal** - [GitHub](https://github.com/Eric-Leal) | [LinkedIn](https://linkedin.com/in/ericgleal)
-- **Giuliano Percope** - [GitHub](https://github.com/GiulianoLBP) | [LinkedIn](https://linkedin.com/in/giuliano-lb-percope)
-- **Laura Pontara** - [GitHub](https://github.com/LauraPontara) | [LinkedIn](https://linkedin.com/in/laura-pontara)
+| 👤 Nome          | 🖼️ Foto                                                                                                                         | :octocat: GitHub                                                                                                                                                    | 💼 LinkedIn                                                                                                                                                                       |
+| ---------------- | ------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Eric Leal        | <div align="center"><img src="https://github.com/Eric-Leal.png" width="70px" height="70px" style="object-fit: cover;"></div>    | <div align="center"><a href="https://github.com/Eric-Leal"><img src="https://joaopauloaramuni.github.io/image/github6.png" width="50px" height="50px"></a></div>    | <div align="center"><a href="https://linkedin.com/in/ericgleal"><img src="https://joaopauloaramuni.github.io/image/linkedin2.png" width="50px" height="50px"></a></div>           |
+| Giuliano Percope | <div align="center"><img src="https://github.com/GiulianoLBP.png" width="70px" height="70px" style="object-fit: cover;"></div>  | <div align="center"><a href="https://github.com/GiulianoLBP"><img src="https://joaopauloaramuni.github.io/image/github6.png" width="50px" height="50px"></a></div>  | <div align="center"><a href="https://linkedin.com/in/giuliano-lb-percope"><img src="https://joaopauloaramuni.github.io/image/linkedin2.png" width="50px" height="50px"></a></div> |
+| Laura Pontara    | <div align="center"><img src="https://github.com/LauraPontara.png" width="70px" height="70px" style="object-fit: cover;"></div> | <div align="center"><a href="https://github.com/LauraPontara"><img src="https://joaopauloaramuni.github.io/image/github6.png" width="50px" height="50px"></a></div> | <div align="center"><a href="https://linkedin.com/in/laura-pontara"><img src="https://joaopauloaramuni.github.io/image/linkedin2.png" width="50px" height="50px"></a></div>       |
 
 ---
 
