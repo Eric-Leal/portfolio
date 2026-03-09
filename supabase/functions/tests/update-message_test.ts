@@ -5,8 +5,8 @@ import {
   createRealTestUser,
   clearAllTestData,
   releaseBody,
-} from '../_shared/test-helpers'
-import { createAdminClient } from '../_shared/supabaseAdmin'
+} from '../_shared/test-helpers.ts'
+import { createAdminClient } from '../_shared/supabaseAdmin.ts'
 
 const supabaseUrl = Deno.env.get('SUPABASE_URL') ?? 'http://127.0.0.1:54321'
 const supabaseAnonKey = Deno.env.get('SUPABASE_ANON_KEY') ?? ''

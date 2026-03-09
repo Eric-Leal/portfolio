@@ -7,7 +7,7 @@ import {
   createRealTestUser,
   generateMockMessage,
   releaseBody,
-} from '../_shared/test-helpers'
+} from '../_shared/test-helpers.ts'
 
 /**
  * Suíte de testes para a Edge Function `create-message`.
