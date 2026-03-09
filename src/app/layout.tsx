@@ -1,19 +1,19 @@
 import type { Metadata } from 'next'
 import { Outfit, Cormorant_Infant } from 'next/font/google'
-import { ThemeProvider } from '@/components/shared/theme-provider'
-import { LenisProvider } from '@/components/shared/lenis-scroll/lenis-provider'
+import { ThemeProvider } from '@/components/providers/theme-provider'
+import { LenisProvider } from '@/components/providers/lenis-provider'
 import { Navbar } from '@/components/shared/navbar'
 import { Footer } from '@/components/shared/footer'
 import '@/styles/globals.css'
 import { SpeedInsights } from '@vercel/speed-insights/next'
+import { QueryProvider } from '@/components/providers/query-provider'
+import { Toaster } from '@/components/ui/sonner'
 
-// Configuração da Outfit (Sans-serif principal)
 const outfit = Outfit({
   subsets: ['latin'],
   variable: '--font-outfit',
 })
 
-// Cormorant Infant (Serif para títulos itálicos)
 const cormorant = Cormorant_Infant({
   subsets: ['latin'],
   weight: ['400', '500', '700'],
@@ -38,20 +38,24 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="pt-BR" suppressHydrationWarning>
-      <body className={`${outfit.variable} ${cormorant.variable} antialiased`}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <LenisProvider>
-            <Navbar />
-            {children}
-            <Footer />
-            <SpeedInsights />
-          </LenisProvider>
-        </ThemeProvider>
+      <body
+        className={`${outfit.variable} ${cormorant.variable} font-sans antialiased`}
+      >
+        <QueryProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="dark"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <LenisProvider>
+              <Navbar />
+              <main className="grow">{children}</main> <Footer />
+              <Toaster position="bottom-right" richColors />
+              <SpeedInsights />
+            </LenisProvider>
+          </ThemeProvider>
+        </QueryProvider>
       </body>
     </html>
   )
