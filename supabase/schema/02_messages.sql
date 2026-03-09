@@ -18,17 +18,20 @@ ON public.messages FOR SELECT
 USING (true);
 
 -- 2. Apenas usuários autenticados podem criar mensagens (validando o dono)
+-- Otimizado com (SELECT auth.uid()) para melhor performance
 CREATE POLICY "Allow authenticated insert on messages" 
 ON public.messages FOR INSERT 
-WITH CHECK (auth.uid() = guest_id);
+WITH CHECK ((SELECT auth.uid()) = guest_id);
 
 -- 3. Apenas o dono da mensagem pode editar (UPDATE)
+-- Otimizado com (SELECT auth.uid()) para melhor performance
 CREATE POLICY "Allow individual update on messages" 
 ON public.messages FOR UPDATE 
-USING (auth.uid() = guest_id) 
-WITH CHECK (auth.uid() = guest_id);
+USING ((SELECT auth.uid()) = guest_id) 
+WITH CHECK ((SELECT auth.uid()) = guest_id);
 
 -- 4. Apenas o dono da mensagem pode excluir (DELETE)
+-- Otimizado com (SELECT auth.uid()) para melhor performance
 CREATE POLICY "Allow individual delete on messages" 
 ON public.messages FOR DELETE 
-USING (auth.uid() = guest_id);
+USING ((SELECT auth.uid()) = guest_id);

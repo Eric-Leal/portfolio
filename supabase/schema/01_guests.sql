@@ -18,6 +18,7 @@ USING (true);
 
 -- 3. FUNÇÃO DO TRIGGER
 -- Esta função extrai os dados do metadados do Google/GitHub
+-- Adicionado SET search_path para evitar avisos de 'mutable search_path'
 CREATE OR REPLACE FUNCTION public.handle_new_guest()
 RETURNS trigger AS $$
 BEGIN
@@ -29,7 +30,7 @@ BEGIN
   );
   RETURN new;
 END;
-$$ LANGUAGE plpgsql security definer;
+$$ LANGUAGE plpgsql security definer SET search_path = public;
 
 -- 4. O TRIGGER
 -- Executa a função sempre que um novo usuário é criado no Auth
