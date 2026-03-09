@@ -1,5 +1,9 @@
 import { createClient } from '@/lib/supabase/server'
 import { LoginBanner } from '@/components/shared/auth'
+import { GuestbookInput, MessageList } from '@/components/shared/guestbook'
+
+/** Nome do dono do portfolio, exibido no placeholder do input e título. */
+const OWNER_NAME = 'Laura'
 
 export default async function GuestbookPage() {
   const supabase = await createClient()
@@ -14,13 +18,28 @@ export default async function GuestbookPage() {
     ''
 
   return (
-    <div className="flex min-h-screen items-center justify-center">
+    <div className="mx-auto flex w-full max-w-7xl flex-col items-center gap-8 px-4 py-12 md:px-6 lg:px-8">
       <LoginBanner
         isAuthenticated={!!user}
         avatarUrl={avatarUrl}
         displayName={displayName || undefined}
         email={user?.email}
       />
+
+      {user && (
+        <div className="w-full max-w-3xl">
+          <GuestbookInput
+            userId={user.id}
+            avatarUrl={avatarUrl}
+            displayName={displayName || undefined}
+            ownerName={OWNER_NAME}
+          />
+        </div>
+      )}
+
+      <div className="w-full">
+        <MessageList currentUserId={user?.id ?? null} />
+      </div>
     </div>
   )
 }
