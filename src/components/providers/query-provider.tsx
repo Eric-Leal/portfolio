@@ -18,7 +18,6 @@ export function QueryProvider({ children }: { children: React.ReactNode }) {
       new QueryClient({
         defaultOptions: {
           queries: {
-            // Evita refetch ao trocar de aba, economizando chamadas no plano Free
             refetchOnWindowFocus: false,
             retry: 1,
           },
