@@ -3,8 +3,6 @@
 import { useState } from 'react'
 import { motion } from 'motion/react'
 import { Pin, Heart, Pencil, Trash2, Check, X } from 'lucide-react'
-import { formatDistanceToNow } from 'date-fns'
-import { ptBR, enUS } from 'date-fns/locale'
 
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
@@ -17,6 +15,21 @@ import { useUpdateMessage, useDeleteMessage } from '@/hooks'
 
 /** Nome exibido no "Liked by". Altere conforme necessário. */
 const OWNER_NAME = 'Laura'
+
+function formatMessageTime(createdAt: string, language: string): string {
+  const date = new Date(createdAt)
+  const diffMs = Date.now() - date.getTime()
+
+  if (diffMs < 24 * 60 * 60 * 1000) {
+    return language === 'pt' ? 'hoje' : 'today'
+  }
+
+  const month = date
+    .toLocaleString(language === 'pt' ? 'pt-BR' : 'en-US', { month: 'short' })
+    .toUpperCase()
+    .replace(/\./g, '')
+  return `${month} ${date.getDate()} ${date.getFullYear()}`
+}
 
 export interface MessageCardProps {
   id: number
@@ -59,10 +72,7 @@ export function MessageCard({
   const displayName = name ?? 'Anonymous'
   const initials = displayName.slice(0, 2).toUpperCase()
 
-  const timeAgo = formatDistanceToNow(new Date(createdAt), {
-    addSuffix: true,
-    locale: language === 'pt' ? ptBR : enUS,
-  })
+  const timeLabel = formatMessageTime(createdAt, language)
 
   function handleSave() {
     if (editValue.trim() === content) {
@@ -88,23 +98,26 @@ export function MessageCard({
       whileHover={{ y: -3, transition: { duration: 0.18 } }}
       whileTap={{ scale: 0.98 }}
       className={cn(
-        'group relative flex flex-col gap-4 overflow-hidden rounded-2xl border bg-[#0a0a0a] p-5 transition-shadow duration-300',
+        'group bg-card relative flex flex-col gap-4 overflow-hidden rounded-2xl border p-5 transition-shadow duration-300',
         pinned
-          ? 'border-accent-2/60 shadow-[0_0_0_1px_var(--color-accent-2),0_0_18px_0_color-mix(in_srgb,var(--color-accent-2)_25%,transparent)]'
-          : 'border-white/5 hover:border-white/10 hover:shadow-[0_4px_24px_0_rgba(0,0,0,0.4)]',
+          ? 'border-brand-5/30 dark:border-brand-5/50'
+          : 'border-border hover:border-border hover:shadow-[0_4px_24px_0_rgba(0,0,0,0.4)]',
       )}
     >
       {pinned && (
-        <span className="text-accent-2 absolute top-3 right-3 flex items-center gap-1 text-xs font-medium tracking-wide">
-          <Pin className="size-3 fill-current" />
-          {t.pinned}
-        </span>
+        <>
+          <span className="bg-brand-5 absolute inset-y-0 left-0 w-0.75" />
+          <span className="text-brand-5 absolute top-3 right-3 flex items-center gap-1 text-xs font-medium tracking-wide">
+            <Pin className="size-3 fill-current" />
+            {t.pinned}
+          </span>
+        </>
       )}
 
       <div className="flex items-start gap-3">
         <Avatar size="default">
           {profileImage && <AvatarImage src={profileImage} alt={displayName} />}
-          <AvatarFallback className="text-tx-muted bg-white/5 text-xs">
+          <AvatarFallback className="text-tx-muted bg-foreground/5 text-xs">
             {initials}
           </AvatarFallback>
         </Avatar>
@@ -114,7 +127,7 @@ export function MessageCard({
             {displayName}
           </span>
           <span className="text-tx-secondary text-xs tracking-widest uppercase">
-            {timeAgo}
+            {timeLabel}
           </span>
         </div>
 
@@ -150,7 +163,7 @@ export function MessageCard({
             onChange={(e) => setEditValue(e.target.value)}
             maxLength={500}
             rows={3}
-            className="text-tx-primary resize-none border-white/10 bg-white/5 text-sm"
+            className="text-tx-primary border-border bg-foreground/5 resize-none text-sm"
             autoFocus
           />
           <div className="flex items-center justify-end gap-2">
@@ -182,7 +195,7 @@ export function MessageCard({
 
       {liked && !isEditing && (
         <>
-          <Separator className="bg-white/5" />
+          <Separator className="bg-border" />
           <div className="flex items-center gap-1.5 text-xs font-medium text-pink-400">
             <Heart className="size-3.5 fill-current" />
             {t.likedBy(OWNER_NAME)}
