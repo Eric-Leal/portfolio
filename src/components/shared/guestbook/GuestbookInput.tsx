@@ -57,7 +57,7 @@ export function GuestbookInput({
 
   return (
     <MagicCard
-      className="w-full rounded-2xl bg-[#0a0a0a]"
+      className="bg-card w-full rounded-2xl"
       gradientColor="var(--color-brand-5)"
       gradientOpacity={0.15}
       gradientFrom="var(--color-brand-2)"
@@ -69,7 +69,7 @@ export function GuestbookInput({
             {avatarUrl && (
               <AvatarImage src={avatarUrl} alt={displayName ?? 'User'} />
             )}
-            <AvatarFallback className="text-tx-muted bg-white/5 text-xs">
+            <AvatarFallback className="text-tx-muted bg-foreground/5 text-xs">
               {initials}
             </AvatarFallback>
           </Avatar>

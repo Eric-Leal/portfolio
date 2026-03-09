@@ -30,13 +30,15 @@ export function MessageList({ currentUserId }: MessageListProps) {
 
   return (
     <div className="flex w-full flex-col gap-6">
-      <div className="flex items-center gap-4">
-        <div className="bg-foreground/20 h-px flex-1" />
-        <span className="text-tx-secondary text-xs font-medium tracking-[0.2em]">
-          {t.recentSignatures}
-        </span>
-        <div className="bg-foreground/20 h-px flex-1" />
-      </div>
+      {messages.length > 0 && (
+        <div className="flex items-center gap-4">
+          <div className="bg-foreground/20 h-px flex-1" />
+          <span className="text-tx-secondary text-xs font-medium tracking-[0.2em]">
+            {t.recentSignatures}
+          </span>
+          <div className="bg-foreground/20 h-px flex-1" />
+        </div>
+      )}
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {isLoading

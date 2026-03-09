@@ -157,6 +157,11 @@ export const guestbookTranslations = {
     deleteButton: 'Deletar',
     saveButton: 'Salvar',
     cancelButton: 'Cancelar',
+    editModalTitle: 'Editar Mensagem',
+    deleteModalTitle: 'Deletar Mensagem?',
+    deleteModalDescription:
+      'Tem certeza que deseja deletar esta mensagem? Esta ação não pode ser desfeita.',
+    confirmDeleteButton: 'Deletar Mensagem',
   },
   en: {
     title: 'Guest',
@@ -178,7 +183,12 @@ export const guestbookTranslations = {
     pinned: 'Pinned',
     editButton: 'Edit',
     deleteButton: 'Delete',
-    saveButton: 'Save',
+    saveButton: 'Save Changes',
     cancelButton: 'Cancel',
+    editModalTitle: 'Edit Message',
+    deleteModalTitle: 'Delete Message?',
+    deleteModalDescription:
+      'Are you sure you want to delete this message? This action cannot be undone.',
+    confirmDeleteButton: 'Delete Message',
   },
 }
