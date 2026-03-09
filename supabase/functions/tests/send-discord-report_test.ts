@@ -94,6 +94,24 @@ Deno.test(
 )
 
 // ---------------------------------------------------------------------------
+// TC-04 — RELATÓRIO dos ultimos 6 dias (CRON)
+// ---------------------------------------------------------------------------
+Deno.test(
+  'TC-04: WEEKLY_REPORT - deve gerar estatísticas dos últimos 6 dias e retornar 200',
+  async () => {
+    const res = await fetch(`${supabaseUrl}/functions/v1/send-discord-report`, {
+      method: 'POST',
+      headers: triggerHeaders,
+      body: JSON.stringify({ type: 'WEEKLY_REPORT' }),
+    })
+
+    const result = await res.json()
+    assertEquals(res.status, 200)
+    assertEquals(result.status, 'notified')
+  },
+)
+
+// ---------------------------------------------------------------------------
 // Teardown
 // ---------------------------------------------------------------------------
 Deno.test(

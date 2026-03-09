@@ -3,6 +3,12 @@ import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
 
 const DISCORD_WEBHOOK_URL = Deno.env.get('DISCORD_WEBHOOK_URL')
 
+const reportColor = {
+  INSERT: 0x29d6d4, // Ciano
+  UPDATE: 0x77309a, // Roxo
+  WEEKLY_REPORT: 0x3498db, // Azul
+}
+
 /**
  * Edge Function para notificar o Discord sobre novos recados ou edições.
  * Recebe o ID da mensagem via payload, busca os detalhes no banco (bypass RLS) e formata um embed bonitão.
@@ -11,52 +17,99 @@ const DISCORD_WEBHOOK_URL = Deno.env.get('DISCORD_WEBHOOK_URL')
 
 Deno.serve(async (req) => {
   try {
-    // Validação de segurança da URL
     if (!DISCORD_WEBHOOK_URL) {
-      throw new Error(
-        'DISCORD_WEBHOOK_URL is not defined in environment variables',
-      )
+      throw new Error('DISCORD_WEBHOOK_URL is not defined')
     }
 
     const { record, type } = await req.json()
-
     const supabaseAdmin = createClient(
       Deno.env.get('SUPABASE_URL') ?? '',
       Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? '',
     )
 
-    // Busca detalhada com log de erro para debug
-    const { data: message, error: dbError } = await supabaseAdmin
-      .from('messages')
-      .select('content, guests(name, profile_image)')
-      .eq('id', record.id)
-      .single()
+    let discordPayload
 
-    if (dbError || !message) {
-      console.error('Database Error:', dbError)
-      throw new Error(
-        `Mensagem ${record.id} não encontrada ou erro no Join com guests`,
-      )
+    // --- CENÁRIO 1: RELATÓRIO SEMANAL (CRON JOB) ---
+    if (type === 'WEEKLY_REPORT') {
+      const reportDays = 6
+      const intervalDate = new Date()
+      intervalDate.setDate(intervalDate.getDate() - reportDays)
+      const isoDate = intervalDate.toISOString()
+
+      // Busca estatísticas simultaneamente
+      const [newUsers, newMessages, updatedMessages] = await Promise.all([
+        supabaseAdmin
+          .from('guests')
+          .select('*', { count: 'exact', head: true })
+          .gt('created_at', isoDate),
+        supabaseAdmin
+          .from('messages')
+          .select('*', { count: 'exact', head: true })
+          .gt('created_at', isoDate),
+        supabaseAdmin
+          .from('messages')
+          .select('*', { count: 'exact', head: true })
+          .gt('updated_at', isoDate)
+          .lt('created_at', isoDate),
+      ])
+
+      discordPayload = {
+        embeds: [
+          {
+            title: '📊 Relatório de Atividade (Últimos 6 dias)',
+            description: 'Resumo das métricas.',
+            color: reportColor.WEEKLY_REPORT,
+            fields: [
+              {
+                name: '👤 Novos Usuários',
+                value: `${newUsers.count || 0}`,
+                inline: true,
+              },
+              {
+                name: '💬 Novas Mensagens',
+                value: `${newMessages.count || 0}`,
+                inline: true,
+              },
+              {
+                name: '📝 Mensagens Editadas',
+                value: `${updatedMessages.count || 0}`,
+                inline: true,
+              },
+            ],
+            footer: { text: 'Relatório Automático • Portfolio' },
+            timestamp: new Date().toISOString(),
+          },
+        ],
+      }
     }
+    // --- CENÁRIO 2: ATIVIDADE DE MENSAGENS (TRIGGER) ---
+    else {
+      const { data: message, error: dbError } = await supabaseAdmin
+        .from('messages')
+        .select('content, guests(name, profile_image)')
+        .eq('id', record.id)
+        .single()
 
-    const guest = message.guests as {
-      name: string
-      profile_image: string
-    } | null
-    const isInsert = type === 'INSERT'
+      if (dbError || !message)
+        throw new Error(`Mensagem ${record.id} não encontrada`)
 
-    const discordPayload = {
-      embeds: [
-        {
-          title: isInsert ? '💬 Novo Recado no Mural' : '📝 Recado Editado',
-          description: `**${guest?.name ?? 'Visitante'}** ${isInsert ? 'escreveu' : 'atualizou'} uma mensagem no seu portfólio.`,
-          color: isInsert ? 0x29d6d4 : 0x77309a,
-          fields: [{ name: 'Mensagem', value: `*"${message.content}"*` }],
-          thumbnail: { url: guest?.profile_image || '' },
-          footer: { text: `ID: ${record.id}` },
-          timestamp: new Date().toISOString(),
-        },
-      ],
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const guest = message.guests as any
+      const isInsert = type === 'INSERT'
+
+      discordPayload = {
+        embeds: [
+          {
+            title: isInsert ? '💬 Novo Recado no Mural' : '📝 Recado Editado',
+            description: `**${guest?.name ?? 'Visitante'}** ${isInsert ? 'escreveu' : 'atualizou'} uma mensagem no seu portfólio.`,
+            color: reportColor[type as 'INSERT' | 'UPDATE'],
+            fields: [{ name: 'Mensagem', value: `*"${message.content}"*` }],
+            thumbnail: { url: guest?.profile_image || '' },
+            footer: { text: `ID: ${record.id}` },
+            timestamp: new Date().toISOString(),
+          },
+        ],
+      }
     }
 
     const discordRes = await fetch(DISCORD_WEBHOOK_URL, {
@@ -65,14 +118,12 @@ Deno.serve(async (req) => {
       body: JSON.stringify(discordPayload),
     })
 
-    if (!discordRes.ok) {
-      const errorText = await discordRes.text()
-      throw new Error(`Discord API Error: ${discordRes.status} - ${errorText}`)
-    }
+    if (!discordRes.ok)
+      throw new Error(`Discord API Error: ${discordRes.status}`)
 
     return new Response(JSON.stringify({ status: 'notified' }), { status: 200 })
   } catch (err) {
-    console.error('Edge Function Error:', err.message)
+    console.error('[FUNCTION ERROR]:', err.message)
     return new Response(JSON.stringify({ error: err.message }), { status: 500 })
   }
 })
