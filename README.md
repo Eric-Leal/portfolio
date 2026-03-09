@@ -6,20 +6,26 @@
 
 ---
 
-## 🚧 Status do Projeto
-
-[![Versão](https://img.shields.io/badge/Versão-v0.1.0-blue?style=for-the-badge)](https://github.com/Eric-Leal/portfolio/releases)
+[![Versão](https://img.shields.io/badge/Versão-v0.1.0-blue?style=for-the-badge)](https://github.com/LauraPontara/portfolio/releases)
 ![Next.js](https://img.shields.io/badge/Next.js-16.1.6-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)
 ![React](https://img.shields.io/badge/React-19.2.3-61DAFB?style=for-the-badge&logo=react&logoColor=black)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
 ![TailwindCSS](https://img.shields.io/badge/TailwindCSS-4-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)
+![Supabase](https://img.shields.io/badge/Supabase-2.98.0-007ec6?style=for-the-badge&logo=supabase&logoColor=white)
+![GitHub repo size](https://img.shields.io/github/repo-size/LauraPontara/portfolio?style=for-the-badge&logo=files)
+![GitHub directory file count](https://img.shields.io/github/directory-file-count/LauraPontara/portfolio?style=for-the-badge&logo=files)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/m/LauraPontara/portfolio?style=for-the-badge&color=007ec6&logo=gitkraken)
+![GitHub last commit](https://img.shields.io/github/last-commit/LauraPontara/portfolio?style=for-the-badge&logo=clockify)
 ![Vercel](https://img.shields.io/badge/Vercel-Deploy-000000?style=for-the-badge&logo=vercel&logoColor=white)
+
+![Views Counter](https://views-counter.vercel.app/badge?pageId=https%3A%2F%2Fgithub%2Ecom%2FLauraPontara%2Fportfolio&leftColor=555555&rightColor=007ec6&type=total&label=RepoViews)
 
 ---
 
 ## 📚 Índice
 
 - [Sobre o Projeto](#-sobre-o-projeto)
+- [Funcionalidades Principais](#-funcionalidades-principais)
 - [Tecnologias Utilizadas](#%EF%B8%8F-tecnologias-utilizadas)
 - [Estrutura do Projeto](#-estrutura-do-projeto)
 - [Design System](#-design-system)
@@ -39,12 +45,32 @@ Este projeto consiste no desenvolvimento de um website de portfólio profissiona
 
 ### Objetivos do Sistema
 
-O portfólio será composto por quatro seções principais, acessíveis através de um menu de navegação intuitivo:
+O portfólio é uma aplicação **single-page** com seções acessadas via menu de navegação fixo, com suporte bilíngue **(PT/EN)** e alternância de **tema claro/escuro**:
 
-1. **Sobre Mim** - Apresentação pessoal em português e inglês, destacando formação, área de atuação e objetivos profissionais
-2. **Projetos** - Linha do tempo com projetos desenvolvidos, incluindo descrição, tecnologias e links para repositórios
-3. **Experiências** - Histórico profissional, estágios, freelas e participações em projetos open source
-4. **Contato** - Formulário de contato com envio de e-mail e links para redes sociais
+1. **Hero** — Tela inicial com cena 3D interativa (Spline), apresentação animada com nome e cargo, e banner de texto em velocidade.
+2. **Sobre Mim** — Apresentação pessoal em português e inglês, destacando formação, área de atuação, interesses e objetivos profissionais.
+3. **Projetos** — Grade de projetos com cards detalhados. Cada projeto contém nome, descrição, tecnologias utilizadas, link para o GitHub, galeria de imagens/vídeos e estatísticas. Página individual de detalhes por slug.
+4. **Experiências** — Linha do tempo vertical com experiências profissionais, estágios e atividades. Cada item exibe empresa/instituição, cargo, período e descrição.
+5. **Contato** — Formulário funcional com campos de nome, e-mail e mensagem, validação via Zod e envio real por e-mail usando EmailJS. Suporte bilíngue completo.
+6. **Guestbook** — Mural de visitantes com autenticação OAuth via GitHub ou Google (Supabase Auth). Usuários autenticados podem deixar mensagens.
+7. **GitHub Stats** — Página dedicada com dados da API do GitHub: perfil, repositórios, linguagens mais usadas, commits recentes e calendário de contribuições.
+8. **Design System** — Página interna que documenta os tokens visuais, paleta de cores, tipografia e componentes reutilizáveis do projeto.
+
+---
+
+## ✨ Funcionalidades Principais
+
+- 🌐 **Conteúdo em dois idiomas (PT/EN):** Todas as seções do site traduzidas dinamicamente com toggle de idioma na navbar e no menu mobile.
+- 🌗 **Tema Claro/Escuro:** Toggle animado com persistência de preferência do usuário e suporte à preferência do sistema operacional.
+- 🎮 **Hero 3D Interativo:** Cena Spline embutida no fundo com animações de entrada e banner de texto em velocidade.
+- 👤 **Sobre Mim:** Apresentação pessoal em português e inglês com imagem de perfil e layout responsivo em grid.
+- 🗂️ **Projetos com Galeria:** Grade de projetos com cards, página de detalhes por slug, galeria de mídia com lightbox, tags de tecnologias e links para GitHub e site ao vivo.
+- ⏱️ **Timeline de Experiências:** Linha do tempo vertical com ícones por categoria, cards animados.
+- 📨 **Formulário de Contato Funcional:** Campos de nome, e-mail e mensagem com validação em tempo real (Zod) e envio real via EmailJS.
+- 📖 **Guestbook:** Mural de visitantes com autenticação OAuth via GitHub e Google (Supabase Auth), gerenciado por Server Actions.
+- 🐙 **GitHub Stats:** Página com dados da API do GitHub — perfil, repositórios, linguagens, commits e mapa de contribuições.
+- 🧭 **Navegação Responsiva:** Navbar fixa com menu dropdown e menu mobile animado, smooth scroll com Lenis + GSAP.
+- 🛡️ **Qualidade de Código:** ESLint + Prettier configurados com Husky e lint-staged para verificação automática a cada commit.
 
 ---
 
@@ -52,44 +78,232 @@ O portfólio será composto por quatro seções principais, acessíveis através
 
 ### Core
 
-- **[Next.js 16](https://nextjs.org/)** - Framework React para produção com App Router
-- **[TypeScript 5](https://www.typescriptlang.org/)** - Superset tipado do JavaScript
-- **[React 19](https://react.dev/)** - Biblioteca para construção de interfaces
+<p align="left">
 
-### Estilização e UI
+<div style="display:flex;align-items:center;gap:0.6rem;margin-bottom:8px;">
+<a href="https://nextjs.org/" target="_blank">
+<img src="https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white"/>
+</a>
+<span>Framework React para produção com App Router</span>
+</div>
 
-- **[TailwindCSS 4](https://tailwindcss.com/)** - Framework CSS utility-first
-- **[Shadcn UI](https://ui.shadcn.com/)** - Componentes reutilizáveis e acessíveis
-- **[Magic UI](https://magicui.design/)** - Componentes animados e interativos _(Planejado)_
-- **[Radix UI](https://www.radix-ui.com/)** - Primitivos de UI headless e acessíveis
-- **[Lucide React](https://lucide.dev/)** - Ícones SVG modernos
-- **[Class Variance Authority](https://cva.style/docs)** - Gerenciamento de variantes de componentes
+<div style="display:flex;align-items:center;gap:0.6rem;margin-bottom:8px;">
+<a href="https://www.typescriptlang.org/" target="_blank">
+<img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white"/>
+</a>
+<span>Superset tipado do JavaScript</span>
+</div>
 
-### Animações
+<div style="display:flex;align-items:center;gap:0.6rem;margin-bottom:8px;">
+<a href="https://react.dev/" target="_blank">
+<img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB"/>
+</a>
+<span>Biblioteca para construção de interfaces</span>
+</div>
 
-- **[Framer Motion](https://www.framer.com/motion/)** - Biblioteca de animações para React _(Planejado)_
-- **[GSAP](https://gsap.com/)** - Biblioteca profissional de animações JavaScript _(Planejado)_
-- **[tw-animate-css](https://www.npmjs.com/package/tw-animate-css)** - Animações CSS com Tailwind
+</p>
 
-### Gerenciamento de Estado
+---
 
-- **[Zustand](https://zustand.docs.pmnd.rs/)** - Gerenciamento de estado minimalista _(Planejado)_
+### 🎨 Estilização e UI
 
-### Backend e Dados
+<p align="left">
 
-- **[Supabase](https://supabase.com/)** - Backend como serviço (BaaS) com PostgreSQL _(Planejado)_
-- **[Zod](https://zod.dev/)** - Validação de schemas TypeScript-first _(Planejado)_
+<div style="display:flex;align-items:center;gap:0.6rem;margin-bottom:8px;">
+<a href="https://tailwindcss.com/" target="_blank">
+<img src="https://img.shields.io/badge/TailwindCSS-38B2AC?style=for-the-badge&logo=tailwindcss&logoColor=white"/>
+</a>
+<span>Framework CSS utility-first</span>
+</div>
 
-### Qualidade de Código
+<div style="display:flex;align-items:center;gap:0.6rem;margin-bottom:8px;">
+<a href="https://ui.shadcn.com/" target="_blank">
+<img src="https://img.shields.io/badge/shadcn/ui-111827?style=for-the-badge&logo=shadcnui&logoColor=white"/>
+</a>
+<span>Componentes reutilizáveis e acessíveis</span>
+</div>
 
-- **[ESLint 9](https://eslint.org/)** - Linter para identificar problemas no código
-- **[Prettier 3](https://prettier.io/)** - Formatador de código
-- **[Husky 9](https://typicode.github.io/husky/)** - Git hooks para automação
-- **[lint-staged](https://github.com/okonet/lint-staged)** - Executa linters em arquivos staged
+<div style="display:flex;align-items:center;gap:0.6rem;margin-bottom:8px;">
+<a href="https://magicui.design/" target="_blank">
+<img src="https://img.shields.io/badge/Magic_UI-7C3AED?style=for-the-badge"/>
+</a>
+<span>Componentes animados e interativos</span>
+</div>
 
-### Hospedagem
+<div style="display:flex;align-items:center;gap:0.6rem;margin-bottom:8px;">
+<a href="https://www.radix-ui.com/" target="_blank">
+<img src="https://img.shields.io/badge/Radix_UI-161618?style=for-the-badge&logo=radixui&logoColor=white"/>
+</a>
+<span>Primitivos de UI headless e acessíveis</span>
+</div>
 
-- **[Vercel](https://vercel.com/)** - Plataforma de deploy e hospedagem
+<div style="display:flex;align-items:center;gap:0.6rem;margin-bottom:8px;">
+<a href="https://lucide.dev/" target="_blank">
+<img src="https://img.shields.io/badge/Lucide-F56565?style=for-the-badge&logo=lucide&logoColor=white"/>
+</a>
+<span>Ícones SVG modernos</span>
+</div>
+
+<div style="display:flex;align-items:center;gap:0.6rem;margin-bottom:8px;">
+<a href="https://react-icons.github.io/react-icons/" target="_blank">
+<img src="https://img.shields.io/badge/React_Icons-E91E63?style=for-the-badge&logo=react&logoColor=white"/>
+</a>
+<span>Biblioteca de ícones populares para React</span>
+</div>
+
+<div style="display:flex;align-items:center;gap:0.6rem;margin-bottom:8px;">
+<a href="https://www.npmjs.com/package/next-themes" target="_blank">
+<img src="https://img.shields.io/badge/next--themes-000000?style=for-the-badge&logo=nextdotjs&logoColor=white"/>
+</a>
+<span>Suporte a dark/light mode no Next.js</span>
+</div>
+
+<div style="display:flex;align-items:center;gap:0.6rem;margin-bottom:8px;">
+<a href="https://cva.style/docs" target="_blank">
+<img src="https://img.shields.io/badge/CVA-111827?style=for-the-badge"/>
+</a>
+<span>Gerenciamento de variantes de componentes</span>
+</div>
+
+</p>
+
+---
+
+### ✨ Animações
+
+<p align="left">
+
+<div style="display:flex;align-items:center;gap:0.6rem;margin-bottom:8px;">
+<a href="https://www.framer.com/motion/" target="_blank">
+<img src="https://img.shields.io/badge/Framer_Motion-0055FF?style=for-the-badge&logo=framer&logoColor=white"/>
+</a>
+<span>Biblioteca de animações para React</span>
+</div>
+
+<div style="display:flex;align-items:center;gap:0.6rem;margin-bottom:8px;">
+<a href="https://gsap.com/" target="_blank">
+<img src="https://img.shields.io/badge/GSAP-00A86B?style=for-the-badge&logo=greensock&logoColor=white"/>
+</a>
+<span>Biblioteca profissional de animações JavaScript</span>
+</div>
+
+<div style="display:flex;align-items:center;gap:0.6rem;margin-bottom:8px;">
+<a href="https://lenis.darkroom.engineering/" target="_blank">
+<img src="https://img.shields.io/badge/Lenis-F56565?style=for-the-badge"/>
+</a>
+<span>Smooth scroll de alta performance</span>
+</div>
+
+<div style="display:flex;align-items:center;gap:0.6rem;margin-bottom:8px;">
+<a href="https://spline.design/" target="_blank">
+<img src="https://img.shields.io/badge/Spline-1D1D1D?style=for-the-badge"/>
+</a>
+<span>Cenas 3D interativas na web</span>
+</div>
+
+<div style="display:flex;align-items:center;gap:0.6rem;margin-bottom:8px;">
+<a href="https://www.npmjs.com/package/tw-animate-css" target="_blank">
+<img src="https://img.shields.io/badge/tw--animate--css-06B6D4?style=for-the-badge"/>
+</a>
+<span>Animações CSS com Tailwind</span>
+</div>
+
+</p>
+
+---
+
+### 🧠 Gerenciamento de Estado
+
+<p align="left">
+
+<div style="display:flex;align-items:center;gap:0.6rem;margin-bottom:8px;">
+<a href="https://zustand.docs.pmnd.rs/" target="_blank">
+<img src="https://img.shields.io/badge/Zustand-000000?style=for-the-badge"/>
+</a>
+<span>Gerenciamento de estado minimalista</span>
+</div>
+
+</p>
+
+---
+
+### 🗄 Backend e Dados
+
+<p align="left">
+
+<div style="display:flex;align-items:center;gap:0.6rem;margin-bottom:8px;">
+<a href="https://supabase.com/" target="_blank">
+<img src="https://img.shields.io/badge/Supabase-3FCF8E?style=for-the-badge&logo=supabase&logoColor=white"/>
+</a>
+<span>Backend como serviço (BaaS) com PostgreSQL</span>
+</div>
+
+<div style="display:flex;align-items:center;gap:0.6rem;margin-bottom:8px;">
+<a href="https://zod.dev/" target="_blank">
+<img src="https://img.shields.io/badge/Zod-408AFF?style=for-the-badge&logo=zod&logoColor=white"/>
+</a>
+<span>Validação de schemas TypeScript-first</span>
+</div>
+
+<div style="display:flex;align-items:center;gap:0.6rem;margin-bottom:8px;">
+<a href="https://www.emailjs.com/" target="_blank">
+<img src="https://img.shields.io/badge/EmailJS-FF9800?style=for-the-badge"/>
+</a>
+<span>Envio de e-mails direto do front-end</span>
+</div>
+
+</p>
+
+---
+
+### 🧹 Qualidade de Código
+
+<p align="left">
+
+<div style="display:flex;align-items:center;gap:0.6rem;margin-bottom:8px;">
+<a href="https://eslint.org/" target="_blank">
+<img src="https://img.shields.io/badge/ESLint-4B32C3?style=for-the-badge&logo=eslint&logoColor=white"/>
+</a>
+<span>Linter para identificar problemas no código</span>
+</div>
+
+<div style="display:flex;align-items:center;gap:0.6rem;margin-bottom:8px;">
+<a href="https://prettier.io/" target="_blank">
+<img src="https://img.shields.io/badge/Prettier-F7B93E?style=for-the-badge&logo=prettier&logoColor=black"/>
+</a>
+<span>Formatador de código</span>
+</div>
+
+<div style="display:flex;align-items:center;gap:0.6rem;margin-bottom:8px;">
+<a href="https://typicode.github.io/husky/" target="_blank">
+<img src="https://img.shields.io/badge/Husky-000000?style=for-the-badge"/>
+</a>
+<span>Git hooks para automação</span>
+</div>
+
+<div style="display:flex;align-items:center;gap:0.6rem;margin-bottom:8px;">
+<a href="https://github.com/okonet/lint-staged" target="_blank">
+<img src="https://img.shields.io/badge/lint--staged-000000?style=for-the-badge"/>
+</a>
+<span>Executa linters em arquivos staged</span>
+</div>
+
+</p>
+
+---
+
+### ☁️ Hospedagem
+
+<p align="left">
+
+<div style="display:flex;align-items:center;gap:0.6rem;margin-bottom:8px;">
+<a href="https://vercel.com/" target="_blank">
+<img src="https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white"/>
+</a>
+<span>Plataforma de deploy e hospedagem</span>
+</div>
+
+</p>
 
 ---
 
@@ -97,36 +311,156 @@ O portfólio será composto por quatro seções principais, acessíveis através
 
 ```
 portfolio/
-├── public/                      # Arquivos públicos estáticos
-├── docs/                        # Documentação e wireframes
-│   └── wireframes/              # Imagens dos protótipos do Figma
+├── /.husky                              # 🐺 Git hooks para automação pré-commit.
+├── /docs                                # 📚 Documentação e wireframes do projeto.
+│   └── /wireframes                      # 🖼️ Imagens dos protótipos do Figma.
 │       ├── Home&Sobre.png
 │       ├── Projetos&Tecnologias.png
 │       ├── Experiencias.png
 │       ├── Contato.png
 │       ├── DetalhesProjeto.png
 │       └── Guestbook.png
-├── src/
-│   ├── app/                    # App Router do Next.js
-│   │   ├── design-system/
+├── /public                              # 📂 Arquivos públicos estáticos.
+│   └── /cursors                         # 🖱️ Cursores personalizados.
+│       ├── beam.cur
+│       ├── link.cur
+│       └── pointer.cur
+├── /src                                 # 📂 Código-fonte da aplicação.
+│   ├── /app                             # 🗺️ App Router do Next.js.
+│   │   ├── /(main)                      # 🏠 Grupo de rotas principal.
+│   │   │   ├── _headline-section.tsx
+│   │   │   └── page.tsx                 # 📄 Página inicial (home).
+│   │   ├── /api
+│   │   │   └── /contact
+│   │   │       └── route.ts             # 📨 Rota de envio de mensagens de contato.
+│   │   ├── /auth                        # 🔐 Autenticação via Supabase.
+│   │   │   ├── actions.ts
+│   │   │   └── /callback
+│   │   │       └── route.ts             # 🔄 Callback OAuth do Supabase.
+│   │   ├── /design-system
 │   │   │   └── page.tsx
-│   │   ├── globals.css         # Estilos globais e variáveis CSS
-│   │   ├── layout.tsx          # Layout principal da aplicação
-│   │   └── page.tsx            # Página inicial (home)
-│   ├── components/             # Componentes React reutilizáveis
-│   │   ├── ui/                 # Componentes de interface
-│   │   │   └── animated-theme-toggler.tsx
-│   │   └── theme-provider.tsx  # Provider de temas
-│   └── lib/
-│       └── utils.ts            # Funções utilitárias
-├── .eslintrc.json             # Configuração do ESLint
-├── components.json            # Configuração do Shadcn UI
-├── eslint.config.mjs          # Configuração adicional do ESLint
-├── next.config.ts             # Configuração do Next.js
-├── package.json               # Dependências e scripts
-├── postcss.config.mjs         # Configuração do PostCSS
-├── tsconfig.json              # Configuração do TypeScript
-└── README.md                  # Documentação principal
+│   │   ├── /github
+│   │   │   ├── _content.tsx
+│   │   │   └── page.tsx
+│   │   ├── /guestbook
+│   │   │   └── page.tsx
+│   │   ├── /projects
+│   │   │   └── /[slug]
+│   │   │       └── page.tsx             # 🗂️ Página dinâmica de detalhes do projeto.
+│   │   ├── favicon.ico
+│   │   └── layout.tsx                   # 🧩 Layout principal da aplicação.
+│   ├── /components
+│   │   ├── /shared                      # 🤝 Componentes compartilhados entre páginas.
+│   │   │   ├── /about
+│   │   │   │   └── about-image.tsx
+│   │   │   ├── /contact
+│   │   │   │   ├── contact-form.tsx
+│   │   │   │   └── index.ts
+│   │   │   ├── /footer
+│   │   │   │   ├── footer.tsx
+│   │   │   │   └── index.ts
+│   │   │   ├── /github
+│   │   │   │   └── github-calendar.tsx
+│   │   │   ├── /lenis-scroll            # 🌊 Smooth scroll com Lenis + GSAP.
+│   │   │   │   └── lenis-provider.tsx
+│   │   │   ├── /navbar                  # 🧭 Barra de navegação principal.
+│   │   │   │   ├── index.ts
+│   │   │   │   ├── language-toggle.tsx
+│   │   │   │   ├── mobile-menu.tsx
+│   │   │   │   └── navbar.tsx
+│   │   │   ├── /project                 # 🗂️ Componentes de card e detalhes de projeto.
+│   │   │   │   ├── /gallery             # 🖼️ Galeria de mídia dos projetos.
+│   │   │   │   │   ├── GalleryCell.tsx
+│   │   │   │   │   ├── GalleryLightbox.tsx
+│   │   │   │   │   └── ProjectGallery.tsx
+│   │   │   │   ├── index.ts
+│   │   │   │   ├── MobileTrio.tsx
+│   │   │   │   ├── project-card.tsx
+│   │   │   │   ├── ProjectActions.tsx
+│   │   │   │   ├── ProjectHero.tsx
+│   │   │   │   ├── ProjectInfo.tsx
+│   │   │   │   ├── ProjectMedia.tsx
+│   │   │   │   ├── projects-grid.tsx
+│   │   │   │   └── ProjectStats.tsx
+│   │   │   ├── /section                 # 📄 Estrutura base de seção de conteúdo.
+│   │   │   │   ├── content-section.tsx
+│   │   │   │   └── section-translations.ts
+│   │   │   ├── /spline                  # 🌐 Wrapper para cenas 3D com Spline.
+│   │   │   │   ├── index.ts
+│   │   │   │   └── spline-wrapper.tsx
+│   │   │   ├── /timeline                # ⏱️ Linha do tempo de experiências.
+│   │   │   │   ├── index.ts
+│   │   │   │   ├── TimelineCard.tsx
+│   │   │   │   ├── TimelineExperience.tsx
+│   │   │   │   └── TimelineIcon.tsx
+│   │   │   ├── /velocity-banner         # 🎞️ Banner animado com texto em velocidade.
+│   │   │   │   ├── index.ts
+│   │   │   │   └── VelocityBanner.tsx
+│   │   │   ├── index.ts
+│   │   │   └── theme-provider.tsx       # 🌗 Provider de temas (next-themes).
+│   │   └── /ui                          # 🎛️ Componentes de interface (shadcn + Magic UI).
+│   │       ├── animated-theme-toggler.tsx
+│   │       ├── aurora-text.tsx
+│   │       ├── avatar.tsx
+│   │       ├── badge.tsx
+│   │       ├── blur-fade.tsx
+│   │       ├── button.tsx
+│   │       ├── card.tsx
+│   │       ├── input.tsx
+│   │       ├── iphone.tsx
+│   │       ├── label.tsx
+│   │       ├── navigation-menu.tsx
+│   │       ├── progress.tsx
+│   │       ├── safari.tsx
+│   │       ├── scroll-based-velocity.tsx
+│   │       ├── separator.tsx
+│   │       ├── textarea.tsx
+│   │       └── timeline.tsx
+│   ├── /config
+│   │   └── emailjs.config.ts            # ⚙️ Configuração do EmailJS.
+│   ├── /constants                       # 📌 Constantes e dados estáticos globais.
+│   │   ├── index.ts
+│   │   ├── navigation.ts
+│   │   └── projects.ts
+│   ├── /hooks                           # 🎣 Hooks personalizados.
+│   │   ├── index.ts
+│   │   └── useGalleryVideo.ts
+│   ├── /lib                             # 🛠️ Utilitários e integrações externas.
+│   │   ├── /supabase                    # 🗄️ Clientes Supabase (browser e servidor).
+│   │   │   ├── client.ts
+│   │   │   ├── index.ts
+│   │   │   └── server.ts
+│   │   ├── /utils
+│   │   │   └── project-logic.ts
+│   │   ├── github.ts                    # 🐙 Integração com a API do GitHub.
+│   │   ├── index.ts
+│   │   └── utils.ts                     # 🔧 Funções utilitárias (cn, etc.).
+│   ├── /store
+│   │   └── use-portfolio-store.ts       # 🧠 Estado global com Zustand.
+│   ├── /styles
+│   │   ├── constants.ts
+│   │   └── globals.css                  # 🎨 Estilos globais e tokens CSS.
+│   └── /types                           # 📝 Tipos e interfaces TypeScript.
+│       ├── experience.d.ts
+│       ├── project.d.ts
+│       └── supabase.ts
+├── /supabase                            # 🗃️ Configuração e migrações do Supabase local.
+│   ├── /migrations                      # 📜 Scripts de migração do banco de dados.
+│   │   └── 20260225000558_add_rls_policies.sql
+│   ├── /schema                          # 🏗️ Definição do schema do banco de dados.
+│   │   ├── 01_guests.sql
+│   │   └── 02_messages.sql
+│   └── config.toml
+├── .gitignore                           # 🧹 Ignora arquivos não versionados.
+├── .prettierrc                          # 🎨 Configuração do Prettier.
+├── components.json                      # 🧩 Configuração do Shadcn UI.
+├── eslint.config.mjs                    # ✨ Regras de linting do ESLint.
+├── next.config.ts                       # ⚙️ Configuração do Next.js.
+├── next-env.d.ts                        # 📝 Tipos gerados pelo Next.js.
+├── package.json                         # 📦 Dependências e scripts do projeto.
+├── postcss.config.mjs                   # 🎨 Configuração do PostCSS.
+├── tsconfig.json                        # 🔷 Configuração do TypeScript.
+└── README.md                            # 📘 Documentação principal do projeto.
 ```
 
 ---
@@ -140,34 +474,6 @@ O projeto utiliza um design system customizado com suporte a **tema claro e escu
 - **Componentes Reutilizáveis:** Biblioteca baseada em Shadcn UI com customizações
 - **Responsividade:** Mobile-first com breakpoints otimizados
 - **Acessibilidade:** Componentes seguem padrões WCAG
-
-### Funcionalidades Implementadas (Sprint 1)
-
-✅ **Layout Principal**
-
-- Header com navegação responsiva
-- Footer com informações de copyright
-- Sistema de grid responsivo
-
-✅ **Theme Switcher**
-
-- Toggle animado entre tema claro e escuro
-- Persistência de preferência do usuário
-- Suporte a preferência do sistema
-
-✅ **Página Inicial**
-
-- Hero section com apresentação
-- Call-to-actions destacados
-- Indicador de disponibilidade para projetos
-
-✅ **Navegação**
-
-- Estrutura de páginas definida
-- Sistema de roteamento do Next.js configurado
-- Links entre seções implementados
-
----
 
 ## 🖼️ Protótipos e Wireframes
 
@@ -303,53 +609,61 @@ O projeto está configurado para deploy automático na **Vercel**. Cada push par
 - [x] Criação do repositório GitHub com README inicial
 - [x] Wireframes das páginas no Figma (média fidelidade)
 - [x] Protótipo inicial do front-end com Next.js e TypeScript
-- [x] Implementação da navegação (estrutura de páginas e links entre seções)
-- [x] Layout principal (organização visual base com cabeçalho, rodapé e área de conteúdo)
-- [x] Theme switcher (dark/light mode)
-- [x] Design system base
-- [x] Configuração de ferramentas de qualidade (ESLint, Prettier, Husky)
+- [x] Implementação da navegação (navbar fixa, menu mobile, links entre seções)
+- [x] Layout principal (cabeçalho, rodapé e área de conteúdo)
+- [x] Theme switcher animado (dark/light mode com next-themes)
+- [x] Design system base (tokens CSS, tipografia, paleta de cores)
+- [x] Configuração de ferramentas de qualidade (ESLint, Prettier, Husky, lint-staged)
+- [x] Internacionalização PT/EN com Zustand
+- [x] Hero section com cena Spline 3D e VelocityBanner
+- [x] Smooth scroll com Lenis + GSAP ScrollTrigger
 
 **Resultado:** README com imagens dos protótipos, descrição do projeto, tecnologias previstas e estrutura inicial do site.
 
 ---
 
-### 🔄 Sprint 2 (Lab01S02) - Implementação das Funcionalidades Principais - 4 pontos
+### ✅ Sprint 2 (Lab01S02) - Implementação das Funcionalidades Principais - 4 pontos
 
-**Status:** Em Planejamento
+**Status:** Concluída
 
 **Entregas:**
 
-- [ ] Página "Sobre Mim" com versões em português e inglês
-- [ ] Página "Projetos" com timeline dinâmica
-- [ ] Página "Experiências" com dados organizados
-- [ ] Página "Contato" com ícones e formulário funcional (ex: envio de e-mail)
-- [ ] Validações básicas e responsividade
+- [x] Seção "Sobre Mim" com versões em português e inglês
+- [x] Seção "Projetos" com grade de cards e página de detalhes por slug
+- [x] Galeria de mídia com lightbox e suporte a vídeo
+- [x] Seção "Experiências" com timeline vertical animada
+- [x] Seção "Contato" com formulário funcional (EmailJS) e validação Zod
+- [x] Guestbook com autenticação OAuth (GitHub e Google) via Supabase
+- [x] Página de GitHub Stats integrada com a API REST do GitHub
+- [x] Validações bilíngues e responsividade em todas as seções
 
-**Resultado:** Versão funcional local ou com preview em ambiente temporário (ex: Vercel Preview).
+**Resultado:** Versão funcional local com todas as seções do enunciado implementadas.
 
 ---
 
-### 📋 Sprint 3 (Lab01S03) - Hospedagem e Finalização do Sistema - 7 pontos
+### ✅ Sprint 3 (Lab01S03) - Hospedagem e Finalização do Sistema - 7 pontos
 
-**Status:** Aguardando Sprint 2
+**Status:** Concluída
 
 **Entregas:**
 
-- [ ] Deploy completo em Render, Vercel, Heroku, Fly.io ou similar
-- [ ] Ajustes visuais e de usabilidade
-- [ ] Inserção de imagens/GIFs dos projetos em execução
-- README final com:
-- [ ] Tecnologias utilizadas
-- [ ] Link para o site publicado
-- [ ] Instruções de uso e desenvolvimento
+- [x] Deploy completo na Vercel
+- [x] Ajustes visuais e de usabilidade finais
+- [x] Inserção de imagens/GIFs reais dos projetos em execução
+- [x] Guestbook implementado com Supabase Auth
+- [x] Tecnologias documentadas no README
+- [x] Link para o site publicado
+- [x] Instruções de instalação e execução local no README
 
 **Resultado:** Sistema hospedado e funcional com documentação completa.
 
 ## 👥 Equipe
 
-- **Eric Leal** - [GitHub](https://github.com/Eric-Leal) | [LinkedIn](https://linkedin.com/in/ericgleal)
-- **Giuliano Percope** - [GitHub](https://github.com/GiulianoLBP) | [LinkedIn](https://linkedin.com/in/giuliano-lb-percope)
-- **Laura Pontara** - [GitHub](https://github.com/LauraPontara) | [LinkedIn](https://linkedin.com/in/laura-pontara)
+| 👤 Nome          | 🖼️ Foto                                                                                                                         | :octocat: GitHub                                                                                                                                                    | 💼 LinkedIn                                                                                                                                                                       |
+| ---------------- | ------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Eric Leal        | <div align="center"><img src="https://github.com/Eric-Leal.png" width="70px" height="70px" style="object-fit: cover;"></div>    | <div align="center"><a href="https://github.com/Eric-Leal"><img src="https://joaopauloaramuni.github.io/image/github6.png" width="50px" height="50px"></a></div>    | <div align="center"><a href="https://linkedin.com/in/ericgleal"><img src="https://joaopauloaramuni.github.io/image/linkedin2.png" width="50px" height="50px"></a></div>           |
+| Giuliano Percope | <div align="center"><img src="https://github.com/GiulianoLBP.png" width="70px" height="70px" style="object-fit: cover;"></div>  | <div align="center"><a href="https://github.com/GiulianoLBP"><img src="https://joaopauloaramuni.github.io/image/github6.png" width="50px" height="50px"></a></div>  | <div align="center"><a href="https://linkedin.com/in/giuliano-lb-percope"><img src="https://joaopauloaramuni.github.io/image/linkedin2.png" width="50px" height="50px"></a></div> |
+| Laura Pontara    | <div align="center"><img src="https://github.com/LauraPontara.png" width="70px" height="70px" style="object-fit: cover;"></div> | <div align="center"><a href="https://github.com/LauraPontara"><img src="https://joaopauloaramuni.github.io/image/github6.png" width="50px" height="50px"></a></div> | <div align="center"><a href="https://linkedin.com/in/laura-pontara"><img src="https://joaopauloaramuni.github.io/image/linkedin2.png" width="50px" height="50px"></a></div>       |
 
 ---
 

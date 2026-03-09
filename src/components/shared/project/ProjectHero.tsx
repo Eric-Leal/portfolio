@@ -18,6 +18,7 @@ import { ProjectGallery } from './gallery/ProjectGallery'
 import { AuroraText } from '@/components/ui/aurora-text'
 import { usePortfolioStore } from '@/store/use-portfolio-store'
 import type { Project } from '@/types/project'
+import { AURORA_COLORS } from '@/styles/constants'
 
 const PROJECT_TRANSLATIONS = {
   pt: { aboutLabel: 'Sobre o', aboutHighlight: 'projeto' },
@@ -27,14 +28,6 @@ const PROJECT_TRANSLATIONS = {
 export interface ProjectHeroProps {
   project: Project
 }
-
-const AURORA_COLORS = [
-  'var(--color-brand-1)',
-  'var(--color-brand-2)',
-  'var(--color-brand-3)',
-  'var(--color-brand-4)',
-  'var(--color-brand-5)',
-]
 
 /**
  * Orquestrador completo da página de detalhes — gerencia os dois layouts responsivos.

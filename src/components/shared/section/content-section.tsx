@@ -1,13 +1,14 @@
 'use client'
 import { usePortfolioStore } from '@/store/use-portfolio-store'
 import { AuroraText } from '../../ui/aurora-text'
+import { AURORA_COLORS } from '@/styles/constants'
 
 type SectionTranslations = Record<
   string,
   {
     title: string
     auroraText?: string
-    description?: string
+    description?: string | string[]
     [key: string]: unknown
   }
 >
@@ -17,24 +18,31 @@ type Props = {
   description?: string
   children: React.ReactNode
   titleClassName?: string
-  textOrientation: 'left' | 'center' | 'right'
+  textOrientation?: 'left' | 'center' | 'right'
   translations?: SectionTranslations
-  sectionSize: 'small' | 'medium' | 'large'
+  sectionSize?: 'small' | 'medium' | 'large'
+  grid?: boolean | false
 }
 
 export function ContentSection({
   title,
   description,
   children,
-  titleClassName,
-  textOrientation,
+  titleClassName = '',
+  textOrientation = 'center',
   translations,
-  sectionSize,
+  sectionSize = 'large',
+  grid = false,
 }: Props) {
   const { language } = usePortfolioStore()
   const t = translations?.[language]
   const resolvedTitle = t?.title ?? title ?? ''
   const resolvedDescription = t?.description ?? description
+  const paragraphs = resolvedDescription
+    ? Array.isArray(resolvedDescription)
+      ? resolvedDescription
+      : [resolvedDescription]
+    : []
   const sectionSizeClass =
     sectionSize === 'small'
       ? 'max-w-2xl'
@@ -42,29 +50,23 @@ export function ContentSection({
         ? 'max-w-4xl'
         : 'max-w-7xl'
 
-  const AURORA_COLORS = [
-    'var(--color-brand-1)',
-    'var(--color-brand-2)',
-    'var(--color-brand-3)',
-    'var(--color-brand-4)',
-    'var(--color-brand-5)',
-  ]
-
   return (
-    <section className="bg-background flex flex-col items-center justify-center px-6 py-12">
-      <div className={`w-full ${sectionSizeClass}`}>
+    <section className="bg-background mx-6 py-8 md:px-8 md:py-18 lg:py-36">
+      <div
+        className={`${textOrientation === 'left' ? 'text-center lg:text-left' : 'text-center'} mx-auto w-full ${sectionSizeClass} ${grid ? 'grid grid-cols-1 items-center gap-12 md:grid-cols-2 lg:grid-cols-5 lg:gap-20' : 'flex flex-col items-center'}`}
+      >
         <div
-          className={`mb-5 flex flex-col ${textOrientation === 'left' ? 'items-start' : textOrientation === 'right' ? 'items-end' : 'items-center'}`}
+          className={`${grid ? 'order-2 md:order-1 lg:col-span-3' : ''} mb-4 flex flex-col ${textOrientation === 'left' ? 'items-center lg:items-start' : textOrientation === 'right' ? 'items-end' : 'items-center'}`}
         >
-          <div className="mb-6 flex items-center gap-4">
+          <div className="mb-4 flex items-center gap-4 sm:mb-6">
             <span
-              className={`text-tx-primary font-sans text-5xl font-medium sm:text-6xl md:text-7xl ${titleClassName || ''}`}
+              className={`text-tx-primary font-sans text-4xl font-medium sm:text-6xl md:text-7xl ${titleClassName}`}
             >
               {resolvedTitle}
             </span>
             <span className="font-title font-bold">
               <AuroraText
-                className="text-6xl sm:text-7xl md:text-8xl"
+                className="text-5xl sm:text-7xl md:text-8xl"
                 colors={AURORA_COLORS}
                 speed={0.8}
               >
@@ -73,9 +75,11 @@ export function ContentSection({
             </span>
           </div>
 
-          {resolvedDescription && (
-            <p className="text-tx-muted text-xl">{resolvedDescription}</p>
-          )}
+          {paragraphs.map((p, i) => (
+            <p key={i} className="text-tx-muted text-xl">
+              {p}
+            </p>
+          ))}
         </div>
         {children}
       </div>

@@ -124,8 +124,7 @@
 /* Cursores personalizados */
 /* Cursor base global */
 html {
-  /* custom pointer cursor with pointer fallback */
-  cursor: url('/cursors/pointer.cur'), pointer;
+  cursor: url('/cursors/pointer.cur'), default;
 }
 
 /* Garantir que tudo herde */
@@ -138,14 +137,12 @@ html {
 /* Links e botões */
 a,
 button {
-  /* link cursor with pointer fallback */
   cursor: url('/cursors/link.cur'), pointer;
 }
 
 /* Inputs e textarea */
 input,
 textarea {
-  /* text input cursor with text fallback */
   cursor: url('/cursors/beam.cur'), text;
 }
 
@@ -163,4 +160,43 @@ textarea {
 ::view-transition-new(root) {
   animation: none;
   mix-blend-mode: normal;
+}
+
+/* SCROLLBAR */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    180deg,
+    var(--color-brand-2),
+    var(--color-brand-5)
+  );
+  border-radius: 999px;
+  border: 3px solid transparent;
+  background-clip: padding-box;
+  transition: background 0.25s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(
+    180deg,
+    var(--color-accent-2),
+    var(--color-accent-5)
+  );
+  background-clip: padding-box;
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: linear-gradient(
+    180deg,
+    var(--color-accent-3),
+    var(--color-accent-5)
+  );
+  background-clip: padding-box;
 }

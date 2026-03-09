@@ -29,8 +29,8 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
   const opacityTransform = useTransform(scrollYProgress, [0, 0.1], [0, 1])
 
   return (
-    <div className="w-full font-sans md:px-10" ref={containerRef}>
-      <div ref={ref} className="relative mx-auto max-w-7xl pb-20">
+    <div className="w-full font-sans" ref={containerRef}>
+      <div ref={ref} className="relative pb-20">
         {data.map((item, index) => (
           <div
             key={index}
@@ -61,7 +61,7 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
         {/* Linha de Progresso (The Beam) */}
         <div
           style={{ height: height + 'px' }}
-          className="bg-border/20 absolute top-0 left-8 w-[2px] overflow-hidden md:left-8"
+          className="bg-border/20 absolute top-0 left-8 w-0.5 overflow-hidden md:left-8"
         >
           <motion.div
             style={{

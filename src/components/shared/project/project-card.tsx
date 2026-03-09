@@ -9,6 +9,7 @@ import { usePortfolioStore } from '@/store/use-portfolio-store'
 import { useGalleryVideo } from '@/hooks'
 import Link from 'next/link'
 import { cn } from '@/lib/utils'
+import { BRAND_TAG_CLASSES } from '@/styles/constants'
 
 export interface ProjectCardProps {
   project: Project
@@ -140,7 +141,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
           )}
       </div>
       {/* Header */}
-      <div className="mb-3 flex items-start justify-between px-8">
+      <div className="mb-3 flex items-start justify-between px-8 text-left">
         <div>
           <div className="">
             <h3 className="text-foreground text-3xl font-bold lg:text-4xl">
@@ -150,7 +151,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
               key={project.category.toUpperCase()}
               variant="outline"
               className={cn(
-                'bg-primary mt-2 shrink-0 rounded-full border px-3 py-1 text-xs font-medium transition-opacity hover:opacity-80',
+                'bg-primary mt-2 shrink-0 rounded-full border px-3 py-1 text-xs font-medium text-white transition-opacity hover:opacity-80',
               )}
             >
               {project.category.toUpperCase()}
@@ -163,11 +164,14 @@ export function ProjectCard({ project }: ProjectCardProps) {
 
       {/* Tags */}
       <div className="flex flex-wrap gap-4 px-8 pb-8">
-        {project.tags.slice(0, 3).map((tag) => (
+        {project.tags.slice(0, 3).map((tag, i) => (
           <Badge
             key={tag}
             variant="secondary"
-            className="py-1 text-xs font-medium"
+            className={cn(
+              'py-1 text-xs font-medium',
+              BRAND_TAG_CLASSES[i % BRAND_TAG_CLASSES.length],
+            )}
           >
             {tag}
           </Badge>
