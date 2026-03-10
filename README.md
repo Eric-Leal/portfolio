@@ -52,9 +52,10 @@ O portfólio é uma aplicação **single-page** com seções acessadas via menu 
 3. **Projetos** — Grade de projetos com cards detalhados. Cada projeto contém nome, descrição, tecnologias utilizadas, link para o GitHub, galeria de imagens/vídeos e estatísticas. Página individual de detalhes por slug.
 4. **Experiências** — Linha do tempo vertical com experiências profissionais, estágios e atividades. Cada item exibe empresa/instituição, cargo, período e descrição.
 5. **Contato** — Formulário funcional com campos de nome, e-mail e mensagem, validação via Zod e envio real por e-mail usando EmailJS. Suporte bilíngue completo.
-6. **Guestbook** — Mural de visitantes com autenticação OAuth via GitHub ou Google (Supabase Auth). Usuários autenticados podem deixar mensagens.
-7. **GitHub Stats** — Página dedicada com dados da API do GitHub: perfil, repositórios, linguagens mais usadas, commits recentes e calendário de contribuições.
-8. **Design System** — Página interna que documenta os tokens visuais, paleta de cores, tipografia e componentes reutilizáveis do projeto.
+6. **Tecnologias** — Grade de tags exibindo as principais tecnologias do stack, com ícones coloridos oficiais de cada ferramenta.
+7. **Guestbook** — Mural de visitantes com autenticação OAuth via GitHub ou Google (Supabase Auth). Usuários autenticados podem deixar mensagens.
+8. **GitHub Stats** — Página dedicada com dados da API do GitHub: perfil, repositórios, linguagens mais usadas, commits recentes e calendário de contribuições.
+9. **Design System** — Página interna que documenta os tokens visuais, paleta de cores, tipografia e componentes reutilizáveis do projeto.
 
 ---
 
@@ -64,7 +65,8 @@ O portfólio é uma aplicação **single-page** com seções acessadas via menu 
 - 🌗 **Tema Claro/Escuro:** Toggle animado com persistência de preferência do usuário e suporte à preferência do sistema operacional.
 - 🎮 **Hero 3D Interativo:** Cena Spline embutida no fundo com animações de entrada e banner de texto em velocidade.
 - 👤 **Sobre Mim:** Apresentação pessoal em português e inglês com imagem de perfil e layout responsivo em grid.
-- 🗂️ **Projetos com Galeria:** Grade de projetos com cards, página de detalhes por slug, galeria de mídia com lightbox, tags de tecnologias e links para GitHub e site ao vivo.
+- �️ **Seção de Tecnologias:** Grade de tags com ícones coloridos oficiais exibindo as principais ferramentas e linguagens do stack, com suporte bilíngue.
+- �🗂️ **Projetos com Galeria:** Grade de projetos com cards, página de detalhes por slug, galeria de mídia com lightbox, tags de tecnologias e links para GitHub e site ao vivo.
 - ⏱️ **Timeline de Experiências:** Linha do tempo vertical com ícones por categoria, cards animados.
 - 📨 **Formulário de Contato Funcional:** Campos de nome, e-mail e mensagem com validação em tempo real (Zod) e envio real via EmailJS.
 - 📖 **Guestbook:** Mural de visitantes com autenticação OAuth via GitHub e Google (Supabase Auth), gerenciado por Server Actions.
@@ -149,6 +151,13 @@ O portfólio é uma aplicação **single-page** com seções acessadas via menu 
 <img src="https://img.shields.io/badge/React_Icons-E91E63?style=for-the-badge&logo=react&logoColor=white"/>
 </a>
 <span>Biblioteca de ícones populares para React</span>
+</div>
+
+<div style="display:flex;align-items:center;gap:0.6rem;margin-bottom:8px;">
+<a href="https://iconify.design/" target="_blank">
+<img src="https://img.shields.io/badge/Iconify-1769AA?style=for-the-badge&logo=iconify&logoColor=white"/>
+</a>
+<span>Ícones coloridos oficiais de marcas e tecnologias</span>
 </div>
 
 <div style="display:flex;align-items:center;gap:0.6rem;margin-bottom:8px;">
@@ -384,7 +393,8 @@ portfolio/
 │   │   │   │   └── ProjectStats.tsx
 │   │   │   ├── /section                 # 📄 Estrutura base de seção de conteúdo.
 │   │   │   │   ├── content-section.tsx
-│   │   │   │   └── section-translations.ts
+│   │   │   │   ├── section-translations.ts
+│   │   │   │   └── techstack.tsx        # 🛠️ Grid de tags de tecnologias.
 │   │   │   ├── /spline                  # 🌐 Wrapper para cenas 3D com Spline.
 │   │   │   │   ├── index.ts
 │   │   │   │   └── spline-wrapper.tsx
@@ -421,7 +431,8 @@ portfolio/
 │   ├── /constants                       # 📌 Constantes e dados estáticos globais.
 │   │   ├── index.ts
 │   │   ├── navigation.ts
-│   │   └── projects.ts
+│   │   ├── projects.ts
+│   │   └── stacks.ts                    # 🛠️ Lista de tecnologias com ícones Iconify.
 │   ├── /hooks                           # 🎣 Hooks personalizados.
 │   │   ├── index.ts
 │   │   └── useGalleryVideo.ts
@@ -629,6 +640,7 @@ O projeto está configurado para deploy automático na **Vercel**. Cada push par
 **Entregas:**
 
 - [x] Seção "Sobre Mim" com versões em português e inglês
+- [x] Seção "Tecnologias"
 - [x] Seção "Projetos" com grade de cards e página de detalhes por slug
 - [x] Galeria de mídia com lightbox e suporte a vídeo
 - [x] Seção "Experiências" com timeline vertical animada

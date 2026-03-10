@@ -7,7 +7,9 @@ import {
   emailSectionTranslations,
   experienceSectionTranslations,
   projectsSectionTranslations,
+  stackSectionTranslations,
 } from '@/components/shared/section/section-translations'
+import { TechStack } from '@/components/shared/section/techstack'
 import { HeadlineSection } from './_headline-section'
 import { TimelineExperience } from '@/components/shared/timeline'
 import { SplineWrapper } from '@/components/shared/spline/'
@@ -58,6 +60,15 @@ export default function Home() {
           translations={experienceSectionTranslations}
         >
           <TimelineExperience />
+        </ContentSection>
+
+        {/* Seção Tecnologias */}
+        <ContentSection
+          translations={stackSectionTranslations}
+          sectionSize="large"
+          textOrientation="center"
+        >
+          <TechStack />
         </ContentSection>
 
         {/* Seção Contato (Email) */}
