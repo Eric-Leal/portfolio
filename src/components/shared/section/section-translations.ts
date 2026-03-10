@@ -20,22 +20,20 @@ export const headlineTranslations: Record<
 
 export const aboutSectionTranslations = {
   pt: {
-    titleStart: 'Sobre',
-    titleHighlight: 'mim',
-    paragraphs: [
+    title: 'Sobre',
+    auroraText: 'mim',
+    description: [
       'Engenheiro de Software apaixonado por construir produtos digitais com foco em experiência do usuário, performance e código limpo. Tenho experiência com aplicações web full-stack, desde a concepção até a entrega em produção.',
       'Atualmente trabalho com React, Next.js e TypeScript no front-end, e Node.js com Supabase no back-end. Adoro explorar novas tecnologias, contribuir com open-source e transformar problemas complexos em soluções elegantes.',
     ],
-    imageAlt: 'Foto de perfil',
   },
   en: {
-    titleStart: 'About',
-    titleHighlight: 'me',
-    paragraphs: [
+    title: 'About',
+    auroraText: 'me',
+    description: [
       'Software Engineer passionate about building digital products with a focus on user experience, performance, and clean code. I have experience with full-stack web applications, from conception to production delivery.',
       'I currently work with React, Next.js and TypeScript on the front-end, and Node.js with Supabase on the back-end. I love exploring new technologies, contributing to open-source, and turning complex problems into elegant solutions.',
     ],
-    imageAlt: 'Profile photo',
   },
 }
 
@@ -147,5 +145,74 @@ export const stackSectionTranslations = {
     title: '',
     auroraText: 'Technologies',
     description: 'The main tools and languages I use on a daily basis.',
+  },
+}
+
+export const guestbookTranslations = {
+  pt: {
+    title: 'Mural de',
+    titleAccent: 'Visitantes',
+    subtitle:
+      'Entre para deixar uma mensagem, compartilhar um feedback ou apenas dizer olá.',
+    signInGithub: 'Continuar com GitHub',
+    signInGoogle: 'Continuar com Google',
+    welcomeBack: 'Olá',
+    signOut: 'Sair',
+    inputPlaceholder: (name: string) => `Deixe uma mensagem para ${name}...`,
+    charCount: (count: number, max: number) => `${count}/${max}`,
+    signButton: 'Assinar Guestbook',
+    signingButton: 'Assinando...',
+    recentSignatures: 'ASSINATURAS RECENTES',
+    loadMore: 'Carregar mais',
+    loading: 'Carregando...',
+    likedBy: (name: string) => `Curtido por ${name}`,
+    pinned: 'Fixado',
+    editButton: 'Editar',
+    deleteButton: 'Deletar',
+    saveButton: 'Salvar',
+    cancelButton: 'Cancelar',
+    editModalTitle: 'Editar Mensagem',
+    deleteModalTitle: 'Deletar Mensagem?',
+    deleteModalDescription:
+      'Tem certeza que deseja deletar esta mensagem? Esta ação não pode ser desfeita.',
+    confirmDeleteButton: 'Deletar Mensagem',
+    // Toast messages
+    toastSigned: 'Mensagem assinada!',
+    toastUpdated: 'Mensagem atualizada!',
+    toastDeleted: 'Mensagem deletada!',
+    toastError: 'Erro ao processar a solicitação.',
+  },
+  en: {
+    title: 'Guest',
+    titleAccent: 'Book',
+    subtitle:
+      'Sign in to leave a message, share feedback, or just say hello to the community.',
+    signInGithub: 'Continue with GitHub',
+    signInGoogle: 'Continue with Google',
+    welcomeBack: 'Hello',
+    signOut: 'Log out',
+    inputPlaceholder: (name: string) => `Leave a message for ${name}...`,
+    charCount: (count: number, max: number) => `${count}/${max}`,
+    signButton: 'Sign Guestbook',
+    signingButton: 'Signing...',
+    recentSignatures: 'RECENT SIGNATURES',
+    loadMore: 'Load more',
+    loading: 'Loading...',
+    likedBy: (name: string) => `Liked by ${name}`,
+    pinned: 'Pinned',
+    editButton: 'Edit',
+    deleteButton: 'Delete',
+    saveButton: 'Save Changes',
+    cancelButton: 'Cancel',
+    editModalTitle: 'Edit Message',
+    deleteModalTitle: 'Delete Message?',
+    deleteModalDescription:
+      'Are you sure you want to delete this message? This action cannot be undone.',
+    confirmDeleteButton: 'Delete Message',
+    // Toast messages
+    toastSigned: 'Message signed!',
+    toastUpdated: 'Message updated!',
+    toastDeleted: 'Message deleted!',
+    toastError: 'Error processing request.',
   },
 }

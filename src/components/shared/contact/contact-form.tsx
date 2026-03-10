@@ -234,7 +234,7 @@ export function ContactForm() {
         type="submit"
         disabled={status === 'loading'}
         className={cn(
-          'mt-1 rounded-lg px-6 py-3 text-sm font-semibold tracking-wide text-white',
+          'mt-1 rounded-full px-6 py-3 text-sm font-semibold tracking-wide text-white',
           'bg-brand-5 hover:bg-brand-5/80',
         )}
         size="lg"

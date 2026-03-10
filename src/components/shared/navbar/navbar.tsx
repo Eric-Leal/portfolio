@@ -2,7 +2,10 @@
 
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { Send, BookOpen, Github } from 'lucide-react'
+import { LuGithub } from 'react-icons/lu'
+import { Send, BookOpen } from 'lucide-react'
+import gsap from 'gsap'
+import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
 
 import {
   NavigationMenu,
@@ -18,17 +21,41 @@ import { MobileMenu } from './mobile-menu'
 import { usePortfolioStore } from '@/store/use-portfolio-store'
 import { navigationTranslations } from '@/constants/navigation'
 import { cn } from '@/lib/utils'
+import { usePathname, useRouter } from 'next/navigation'
+
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollToPlugin)
+}
 
 const navItemClass = cn(
-  'text-tx-secondary hover:text-tx-primary',
+  'text-tx-secondary hover:text-tx-primary cursor-pointer',
   'rounded-full px-3 py-1.5 text-sm font-medium',
-  'transition-colors duration-150 hover:/5',
+  'transition-colors duration-150 hover:bg-white/5',
   'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-border',
 )
 
 export function Navbar() {
   const { language } = usePortfolioStore()
   const t = navigationTranslations[language]
+  const router = useRouter()
+  const pathname = usePathname()
+  const isHome = pathname === '/'
+
+  const handleScroll = (id: string) => {
+    if (!isHome) {
+      router.push(`/#${id}`)
+      return
+    }
+
+    gsap.to(window, {
+      duration: 1.2,
+      scrollTo: {
+        y: `#${id}`,
+        offsetY: 20,
+      },
+      ease: 'power4.inOut',
+    })
+  }
 
   return (
     <>
@@ -49,35 +76,30 @@ export function Navbar() {
           <NavigationMenu viewport={false}>
             <NavigationMenuList className="gap-0 rounded-full px-1 py-1">
               <NavigationMenuItem>
-                <NavigationMenuLink asChild>
-                  <Link href="/#about" className={navItemClass}>
-                    {t.about}
-                  </Link>
-                </NavigationMenuLink>
+                <button
+                  onClick={() => handleScroll('about')}
+                  className={navItemClass}
+                >
+                  {t.about}
+                </button>
               </NavigationMenuItem>
 
               <NavigationMenuItem>
-                <NavigationMenuLink asChild>
-                  <Link href="/#projects" className={navItemClass}>
-                    {t.projects}
-                  </Link>
-                </NavigationMenuLink>
+                <button
+                  onClick={() => handleScroll('projects')}
+                  className={navItemClass}
+                >
+                  {t.projects}
+                </button>
               </NavigationMenuItem>
 
               <NavigationMenuItem>
-                <NavigationMenuLink asChild>
-                  <Link href="/#experience" className={navItemClass}>
-                    {t.experience}
-                  </Link>
-                </NavigationMenuLink>
-              </NavigationMenuItem>
-
-              <NavigationMenuItem>
-                <NavigationMenuLink asChild>
-                  <Link href="/#contact" className={navItemClass}>
-                    {t.contact}
-                  </Link>
-                </NavigationMenuLink>
+                <button
+                  onClick={() => handleScroll('experience')}
+                  className={navItemClass}
+                >
+                  {t.experience}
+                </button>
               </NavigationMenuItem>
 
               <NavigationMenuItem>
@@ -121,7 +143,7 @@ export function Navbar() {
                         'transition-colors duration-150',
                       )}
                     >
-                      <Github
+                      <LuGithub
                         size={16}
                         className="mt-0.5 shrink-0 opacity-70"
                       />
@@ -143,13 +165,13 @@ export function Navbar() {
           <div className="flex items-center gap-8">
             <AnimatedThemeToggler className="text-tx-secondary hover:text-tx-primary flex h-8 w-8 items-center justify-center rounded-full transition-colors [&_svg]:size-5" />
             <LanguageToggle />
-            <Link
-              href="/#contact"
+            <button
+              onClick={() => handleScroll('contact')}
               className="from-brand-3 to-brand-5 flex items-center gap-1.5 rounded-full bg-linear-to-r px-4 py-2 text-sm font-semibold text-white shadow-sm transition-opacity hover:opacity-90"
             >
               <Send size={20} />
               {t.cta}
-            </Link>
+            </button>
           </div>
         </div>
       </motion.header>

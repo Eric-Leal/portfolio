@@ -7,6 +7,7 @@ import { AuroraText } from '@/components/ui/aurora-text'
 import { usePortfolioStore } from '@/store/use-portfolio-store'
 import { navigationTranslations } from '@/constants/navigation'
 import { cn } from '@/lib/utils'
+import { AURORA_COLORS } from '@/styles/constants'
 
 // ─── Data ─────────────────────────────────────────────────────────────────────
 
@@ -26,15 +27,6 @@ const socialLinks = [
     href: 'https://instagram.com',
     icon: LuInstagram,
   },
-]
-
-// Use CSS variables so aurora respects the design token system (no hardcoded hex)
-const AURORA_COLORS = [
-  'var(--color-brand-1)',
-  'var(--color-brand-2)',
-  'var(--color-brand-3)',
-  'var(--color-brand-4)',
-  'var(--color-brand-5)',
 ]
 
 // ─── Component ────────────────────────────────────────────────────────────────

@@ -38,25 +38,26 @@ export default function Home() {
 
         <StackSection />
 
+        {/* Seção Projetos */}
         <ContentSection
+          id="projects"
           translations={projectsSectionTranslations}
-          sectionSize="large"
-          textOrientation="center"
         >
           <ProjectsGrid />
         </ContentSection>
 
+        {/* Seção Experiência */}
         <ContentSection
+          id="experience"
           translations={experienceSectionTranslations}
-          sectionSize="large"
-          textOrientation="center"
         >
           <TimelineExperience />
         </ContentSection>
 
+        {/* Seção Contato (Email) */}
         <ContentSection
+          id="contact"
           translations={emailSectionTranslations}
-          textOrientation="center"
           sectionSize="small"
         >
           <ContactForm />
