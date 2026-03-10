@@ -32,6 +32,7 @@ const githubPageTranslations = {
     lastCommit: 'Último Commit',
     viewOnGithub: 'Ver no GitHub',
     noCommit: 'Nenhum commit encontrado',
+    privateWork: 'Trabalho privado',
     topLanguages: 'Top Linguagens',
     noLanguages: 'Nenhuma linguagem encontrada',
     contributionsTitle: 'Contribuições no último ano',
@@ -60,6 +61,7 @@ const githubPageTranslations = {
     lastCommit: 'Latest Commit',
     viewOnGithub: 'View on GitHub',
     noCommit: 'No commit found',
+    privateWork: 'Private work',
     topLanguages: 'Top Languages',
     noLanguages: 'No languages found',
     contributionsTitle: 'Contributions in the last year',
@@ -198,20 +200,24 @@ export function GithubPageContent({ data }: { data: GitHubData }) {
                   <div className="text-tx-muted mb-4 flex items-center gap-1.5 text-xs">
                     <GitBranch size={12} />
                     <span className="text-tx-secondary font-medium">
-                      {latestCommit.repo}
+                      {latestCommit.isPrivate
+                        ? t.privateWork
+                        : latestCommit.repo}
                     </span>
                     <span>•</span>
                     <span>{t.relativeDate(latestCommit.date)}</span>
                   </div>
-                  <a
-                    href={latestCommit.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-accent-2 hover:text-accent-1 inline-flex items-center gap-1.5 text-xs font-semibold tracking-wider uppercase transition-colors"
-                  >
-                    {t.viewOnGithub}
-                    <ExternalLink size={11} />
-                  </a>
+                  {!latestCommit.isPrivate && (
+                    <a
+                      href={latestCommit.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-accent-2 hover:text-accent-1 inline-flex items-center gap-1.5 text-xs font-semibold tracking-wider uppercase transition-colors"
+                    >
+                      {t.viewOnGithub}
+                      <ExternalLink size={11} />
+                    </a>
+                  )}
                 </>
               ) : (
                 <p className="text-tx-muted text-sm">{t.noCommit}</p>

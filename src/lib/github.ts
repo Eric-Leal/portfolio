@@ -28,6 +28,7 @@ export type LatestCommit = {
   repo: string
   date: string // ISO string
   url: string
+  isPrivate: boolean
 }
 
 export type ContributionMap = Record<string, number> // { "YYYY-MM-DD": count }
@@ -52,6 +53,7 @@ function authHeaders(): HeadersInit {
 }
 
 const FETCH_OPTIONS = { next: { revalidate: 3600 } } as const
+const COMMIT_FETCH_OPTIONS = { next: { revalidate: 3600 } } as const
 
 async function restGet<T>(path: string): Promise<T> {
   const res = await fetch(`${GITHUB_API}${path}`, {
@@ -119,14 +121,11 @@ async function fetchAllRepos(login: string): Promise<RestRepo[]> {
   return allRepos
 }
 
-//  GraphQL: último commit (mais confiável que a Events API)
-
 const LATEST_COMMIT_QUERY = /* graphql */ `
-  query LatestCommit($login: String!) {
-    user(login: $login) {
+  query LatestCommit {
+    viewer {
       repositories(
         first: 10
-        privacy: PUBLIC
         isFork: false
         orderBy: { field: PUSHED_AT, direction: DESC }
       ) {
@@ -134,14 +133,20 @@ const LATEST_COMMIT_QUERY = /* graphql */ `
           name
           url
           pushedAt
+          isPrivate
           defaultBranchRef {
             target {
               ... on Commit {
-                history(first: 1) {
+                history(first: 10) {
                   nodes {
                     message
                     committedDate
                     url
+                    author {
+                      user {
+                        login
+                      }
+                    }
                   }
                 }
               }
@@ -154,12 +159,13 @@ const LATEST_COMMIT_QUERY = /* graphql */ `
 `
 
 type GQLLatestCommit = {
-  user: {
+  viewer: {
     repositories: {
       nodes: Array<{
         name: string
         url: string
         pushedAt: string
+        isPrivate: boolean
         defaultBranchRef: {
           target: {
             history: {
@@ -167,6 +173,9 @@ type GQLLatestCommit = {
                 message: string
                 committedDate: string
                 url: string
+                author: {
+                  user: { login: string } | null
+                } | null
               }>
             }
           }
@@ -183,9 +192,9 @@ async function fetchLatestCommit(login: string): Promise<LatestCommit | null> {
       headers: { ...authHeaders(), 'Content-Type': 'application/json' },
       body: JSON.stringify({
         query: LATEST_COMMIT_QUERY,
-        variables: { login },
+        variables: {},
       }),
-      ...FETCH_OPTIONS,
+      ...COMMIT_FETCH_OPTIONS,
     })
 
     if (!res.ok) return null
@@ -197,10 +206,11 @@ async function fetchLatestCommit(login: string): Promise<LatestCommit | null> {
     if (json.errors?.length)
       console.error('[github] latest commit errors:', json.errors)
 
-    const repos = json.data?.user?.repositories?.nodes ?? []
+    const repos = json.data?.viewer?.repositories?.nodes ?? []
 
     for (const repo of repos) {
-      const commit = repo.defaultBranchRef?.target?.history?.nodes?.[0]
+      const commits = repo.defaultBranchRef?.target?.history?.nodes ?? []
+      const commit = commits.find((c) => c.author?.user?.login === login)
       if (!commit) continue
 
       return {
@@ -208,6 +218,7 @@ async function fetchLatestCommit(login: string): Promise<LatestCommit | null> {
         repo: repo.name,
         date: commit.committedDate,
         url: commit.url,
+        isPrivate: repo.isPrivate,
       }
     }
 
