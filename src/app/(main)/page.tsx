@@ -3,16 +3,18 @@ import { ContactForm } from '@/components'
 import { ProjectsGrid } from '@/components/shared/project'
 import { ContentSection } from '@/components/shared/section/content-section'
 import {
+  aboutSectionTranslations,
   emailSectionTranslations,
   experienceSectionTranslations,
   projectsSectionTranslations,
+  stackSectionTranslations,
 } from '@/components/shared/section/section-translations'
-import { AboutSection } from '@/components/shared/about/about-section'
-import { StackSection } from '@/components/shared/section/stack-section'
+import { TechStack } from '@/components/shared/section/techstack'
 import { HeadlineSection } from './_headline-section'
 import { TimelineExperience } from '@/components/shared/timeline'
 import { SplineWrapper } from '@/components/shared/spline/'
 import { VelocityBanner } from '@/components/shared/velocity-banner'
+import { AboutImage } from '@/components/shared/about/about-image'
 
 export default function Home() {
   return (
@@ -34,9 +36,15 @@ export default function Home() {
           <VelocityBanner className="absolute bottom-0 left-0 z-20 w-full" />
         </section>
 
-        <AboutSection />
-
-        <StackSection />
+        {/* Seção Sobre Mim */}
+        <ContentSection
+          id="about"
+          grid={true}
+          translations={aboutSectionTranslations}
+          textOrientation="left"
+        >
+          <AboutImage />
+        </ContentSection>
 
         {/* Seção Projetos */}
         <ContentSection
@@ -52,6 +60,15 @@ export default function Home() {
           translations={experienceSectionTranslations}
         >
           <TimelineExperience />
+        </ContentSection>
+
+        {/* Seção Tecnologias */}
+        <ContentSection
+          translations={stackSectionTranslations}
+          sectionSize="large"
+          textOrientation="center"
+        >
+          <TechStack />
         </ContentSection>
 
         {/* Seção Contato (Email) */}
