@@ -36,8 +36,10 @@ export function TimelineCard({ item }: Props) {
             {item.role}
           </h3>
         </div>
-        <p className="text-accent-5 mb-3 text-sm font-medium">{item.company}</p>
-        <p className="text-tx-muted text-md leading-relaxed">
+        <p className="text-accent-5 mb-3 text-start text-sm font-medium">
+          {item.company}
+        </p>
+        <p className="text-tx-muted text-md text-start leading-relaxed">
           {item.description}
         </p>
       </div>

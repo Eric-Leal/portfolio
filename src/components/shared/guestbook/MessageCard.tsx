@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { motion } from 'motion/react'
+import { motion } from 'framer-motion'
 import { Pin, Heart, Pencil, Trash2 } from 'lucide-react'
 
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar'
@@ -13,7 +13,6 @@ import { guestbookTranslations } from '@/components/shared/section/section-trans
 import { EditMessageModal } from './EditMessageModal'
 import { DeleteMessageModal } from './DeleteMessageModal'
 
-/** Nome exibido no "Liked by". Altere conforme necessário. */
 const OWNER_NAME = 'Laura'
 
 function formatMessageTime(createdAt: string, language: string): string {
@@ -41,12 +40,15 @@ export interface MessageCardProps {
   pinned: boolean
   liked: boolean
   currentUserId: string | null
+  isActive?: boolean
+  onActivate?: () => void
 }
 
 /**
  * Card somente leitura de uma mensagem do Guestbook.
  * Ações de edição e exclusão abrem modais externos para manter o card limpo.
  */
+
 export function MessageCard({
   id,
   content,
@@ -57,6 +59,8 @@ export function MessageCard({
   pinned,
   liked,
   currentUserId,
+  isActive,
+  onActivate,
 }: MessageCardProps) {
   const { language } = usePortfolioStore()
   const t = guestbookTranslations[language]
@@ -69,6 +73,12 @@ export function MessageCard({
   const initials = displayName.slice(0, 2).toUpperCase()
   const timeLabel = formatMessageTime(createdAt, language)
 
+  const handleCardClick = () => {
+    if (isOwner && onActivate) {
+      onActivate()
+    }
+  }
+
   return (
     <>
       <motion.div
@@ -77,11 +87,14 @@ export function MessageCard({
         exit={{ opacity: 0, y: -8 }}
         whileHover={{ y: -3, transition: { duration: 0.18 } }}
         whileTap={{ scale: 0.98 }}
+        onClick={handleCardClick}
         className={cn(
-          'group bg-card relative flex flex-col gap-4 overflow-hidden rounded-2xl border p-5 transition-shadow duration-300',
+          'group bg-card relative flex cursor-pointer flex-col gap-4 overflow-hidden rounded-2xl border p-5 transition-all duration-300 select-none',
           pinned
             ? 'border-brand-5/30 dark:border-brand-5/50'
             : 'border-border hover:shadow-[0_4px_24px_0_rgba(0,0,0,0.15)]',
+
+          isActive && 'border-brand-5/60 ring-brand-5/20 ring-1',
         )}
       >
         {pinned && (
@@ -95,7 +108,7 @@ export function MessageCard({
         )}
 
         <div className="flex items-start gap-3">
-          <Avatar size="default">
+          <Avatar className="h-10 w-10">
             {profileImage && (
               <AvatarImage src={profileImage} alt={displayName} />
             )}
@@ -108,18 +121,29 @@ export function MessageCard({
             <span className="text-tx-primary truncate text-sm leading-tight font-semibold">
               {displayName}
             </span>
-            <span className="text-tx-secondary text-xs tracking-widest uppercase">
+            <span className="text-tx-secondary text-[10px] tracking-widest uppercase">
               {timeLabel}
             </span>
           </div>
 
           {isOwner && (
-            <div className="flex items-center gap-1 opacity-0 transition-opacity duration-200 group-hover:opacity-100">
+            <div
+              className={cn(
+                'flex items-center gap-1 transition-all duration-200',
+                'md:opacity-0 md:group-hover:opacity-100',
+                isActive
+                  ? 'translate-x-0 opacity-100'
+                  : 'translate-x-2 opacity-0 md:translate-x-0',
+              )}
+            >
               <Button
                 variant="ghost"
                 size="sm"
-                className="text-tx-muted hover:text-tx-primary h-7 w-7 p-0"
-                onClick={() => setEditOpen(true)}
+                className="text-tx-muted hover:text-accent-5 hover:bg-primary/10 h-8 w-8 p-0"
+                onClick={(e) => {
+                  e.stopPropagation()
+                  setEditOpen(true)
+                }}
                 aria-label={t.editButton}
               >
                 <Pencil className="size-3.5" />
@@ -127,8 +151,11 @@ export function MessageCard({
               <Button
                 variant="ghost"
                 size="sm"
-                className="text-tx-muted h-7 w-7 p-0 hover:text-red-400"
-                onClick={() => setDeleteOpen(true)}
+                className="text-tx-muted h-8 w-8 p-0 hover:bg-red-400/10 hover:text-red-400"
+                onClick={(e) => {
+                  e.stopPropagation()
+                  setDeleteOpen(true)
+                }}
                 aria-label={t.deleteButton}
               >
                 <Trash2 className="size-3.5" />
@@ -142,13 +169,13 @@ export function MessageCard({
         </p>
 
         {liked && (
-          <>
-            <Separator className="bg-border" />
-            <div className="flex items-center gap-1.5 text-xs font-medium text-pink-400">
+          <div className="mt-auto">
+            <Separator className="bg-foreground/25 origin-top scale-y-50" />
+            <div className="mt-3 flex items-center gap-1.5 text-xs font-medium text-pink-400">
               <Heart className="size-3.5 fill-current" />
               {t.likedBy(OWNER_NAME)}
             </div>
-          </>
+          </div>
         )}
       </motion.div>
 

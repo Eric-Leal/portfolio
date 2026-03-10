@@ -35,7 +35,7 @@ export function LoginBanner({
 
   return (
     <MagicCard
-      className="bg-card w-11/12 rounded-2xl p-8 md:max-w-4/5"
+      className="bg-card w-full rounded-2xl p-8"
       gradientColor="var(--color-brand-5)"
       gradientOpacity={0.2}
       gradientFrom="var(--color-brand-2)"

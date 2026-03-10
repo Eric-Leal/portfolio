@@ -14,6 +14,7 @@ type SectionTranslations = Record<
 >
 
 type Props = {
+  id?: string
   title?: string
   description?: string
   children: React.ReactNode
@@ -25,6 +26,7 @@ type Props = {
 }
 
 export function ContentSection({
+  id,
   title,
   description,
   children,
@@ -51,7 +53,11 @@ export function ContentSection({
         : 'max-w-7xl'
 
   return (
-    <section className="bg-background mx-6 py-8 md:px-8 md:py-18 lg:py-36">
+    // Reduzi de py-36 para py-16/24 para melhor fluxo visual
+    <section
+      id={id}
+      className="bg-background mx-6 scroll-mt-5 py-12 md:px-8 md:py-16 lg:py-24"
+    >
       <div
         className={`${textOrientation === 'left' ? 'text-center lg:text-left' : 'text-center'} mx-auto w-full ${sectionSizeClass} ${grid ? 'grid grid-cols-1 items-center gap-12 md:grid-cols-2 lg:grid-cols-5 lg:gap-20' : 'flex flex-col items-center'}`}
       >
@@ -64,19 +70,23 @@ export function ContentSection({
             >
               {resolvedTitle}
             </span>
-            <span className="font-title font-bold">
-              <AuroraText
-                className="text-5xl sm:text-7xl md:text-8xl"
-                colors={AURORA_COLORS}
-                speed={0.8}
-              >
-                {t?.auroraText}
-              </AuroraText>
-            </span>
+            {t?.auroraText && (
+              <span className="font-title font-bold">
+                <AuroraText
+                  className="text-5xl sm:text-7xl md:text-8xl"
+                  colors={AURORA_COLORS}
+                >
+                  {t.auroraText}
+                </AuroraText>
+              </span>
+            )}
           </div>
 
           {paragraphs.map((p, i) => (
-            <p key={i} className="text-tx-muted text-xl">
+            <p
+              key={i}
+              className="text-tx-secondary mb-4 max-w-2xl font-sans text-base leading-relaxed sm:text-lg md:text-xl lg:mb-6"
+            >
               {p}
             </p>
           ))}

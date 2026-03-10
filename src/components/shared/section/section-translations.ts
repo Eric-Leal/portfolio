@@ -162,6 +162,11 @@ export const guestbookTranslations = {
     deleteModalDescription:
       'Tem certeza que deseja deletar esta mensagem? Esta ação não pode ser desfeita.',
     confirmDeleteButton: 'Deletar Mensagem',
+    // Toast messages
+    toastSigned: 'Mensagem assinada!',
+    toastUpdated: 'Mensagem atualizada!',
+    toastDeleted: 'Mensagem deletada!',
+    toastError: 'Erro ao processar a solicitação.',
   },
   en: {
     title: 'Guest',
@@ -190,5 +195,10 @@ export const guestbookTranslations = {
     deleteModalDescription:
       'Are you sure you want to delete this message? This action cannot be undone.',
     confirmDeleteButton: 'Delete Message',
+    // Toast messages
+    toastSigned: 'Message signed!',
+    toastUpdated: 'Message updated!',
+    toastDeleted: 'Message deleted!',
+    toastError: 'Error processing request.',
   },
 }
