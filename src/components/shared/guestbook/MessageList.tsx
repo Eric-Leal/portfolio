@@ -1,5 +1,6 @@
 'use client'
 
+import { useState } from 'react'
 import { AnimatePresence, motion } from 'motion/react'
 import { Loader2 } from 'lucide-react'
 
@@ -22,6 +23,8 @@ export interface MessageListProps {
 export function MessageList({ currentUserId }: MessageListProps) {
   const { language } = usePortfolioStore()
   const t = guestbookTranslations[language]
+
+  const [activeMessageId, setActiveMessageId] = useState<number | null>(null)
 
   const { data, isLoading, isFetchingNextPage, hasNextPage, fetchNextPage } =
     useMessages()
@@ -64,6 +67,10 @@ export function MessageList({ currentUserId }: MessageListProps) {
                 pinned={msg.pinned}
                 liked={msg.liked}
                 currentUserId={currentUserId}
+                isActive={activeMessageId === msg.id}
+                onActivate={() =>
+                  setActiveMessageId(msg.id === activeMessageId ? null : msg.id)
+                }
               />
             )
           })}

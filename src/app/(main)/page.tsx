@@ -34,7 +34,9 @@ export default function Home() {
           <VelocityBanner className="absolute bottom-0 left-0 z-20 w-full" />
         </section>
 
+        {/* Seção Sobre Mim */}
         <ContentSection
+          id="about"
           grid={true}
           translations={aboutSectionTranslations}
           textOrientation="left"
@@ -42,15 +44,25 @@ export default function Home() {
           <AboutImage />
         </ContentSection>
 
-        <ContentSection translations={projectsSectionTranslations}>
+        {/* Seção Projetos */}
+        <ContentSection
+          id="projects"
+          translations={projectsSectionTranslations}
+        >
           <ProjectsGrid />
         </ContentSection>
 
-        <ContentSection translations={experienceSectionTranslations}>
+        {/* Seção Experiência */}
+        <ContentSection
+          id="experience"
+          translations={experienceSectionTranslations}
+        >
           <TimelineExperience />
         </ContentSection>
 
+        {/* Seção Contato (Email) */}
         <ContentSection
+          id="contact"
           translations={emailSectionTranslations}
           sectionSize="small"
         >

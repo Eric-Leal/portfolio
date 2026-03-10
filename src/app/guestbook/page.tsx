@@ -18,7 +18,7 @@ export default async function GuestbookPage() {
     ''
 
   return (
-    <div className="mx-auto flex w-full max-w-7xl flex-col items-center gap-8 px-4 py-12 md:px-6 lg:px-8">
+    <div className="mx-auto mt-11 flex w-full max-w-7xl flex-col items-center gap-8 px-4 py-12 md:px-6 lg:mt-10 lg:px-8">
       <LoginBanner
         isAuthenticated={!!user}
         avatarUrl={avatarUrl}

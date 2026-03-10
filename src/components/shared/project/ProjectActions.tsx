@@ -6,7 +6,8 @@
  */
 
 import { cn } from '@/lib/utils'
-import { ExternalLink, Apple, Store } from 'lucide-react'
+import { ExternalLink } from 'lucide-react'
+import { FaApple, FaGooglePlay } from 'react-icons/fa'
 import { LuGithub as Github } from 'react-icons/lu'
 
 import { Button } from '@/components/ui/button'
@@ -49,8 +50,18 @@ export function ProjectActions({
   buttonClassName,
 }: ProjectActionsProps) {
   const t = PROJECT_ACTIONS_TRANSLATIONS[language]
-  const btnCn = cn('rounded-full', fullWidth && 'w-full', buttonClassName)
-  const outlineCn = cn('rounded-full', fullWidth && 'w-full', buttonClassName)
+  const btnCn = cn(
+    'rounded-full h-12 text-base px-5 gap-3',
+    'sm:h-10 sm:text-sm sm:px-4',
+    fullWidth && 'w-full',
+    buttonClassName,
+  )
+  const outlineCn = cn(
+    'rounded-full h-12 text-base px-5 gap-3',
+    'sm:h-10 sm:text-sm sm:px-4',
+    fullWidth && 'w-full',
+    buttonClassName,
+  )
 
   if (isWebProject(project)) {
     return (
@@ -62,7 +73,7 @@ export function ProjectActions({
               target="_blank"
               rel="noopener noreferrer"
             >
-              <ExternalLink />
+              <ExternalLink className="size-6" />
               {t.visitSite}
             </a>
           </Button>
@@ -74,7 +85,7 @@ export function ProjectActions({
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Github />
+              <Github className="size-6" />
               {t.githubRepo}
             </a>
           </Button>
@@ -94,7 +105,7 @@ export function ProjectActions({
         {appleStoreUrl && (
           <Button asChild size="lg" className={btnCn}>
             <a href={appleStoreUrl} target="_blank" rel="noopener noreferrer">
-              <Apple />
+              <FaApple className="size-6" />
               {t.appStore}
             </a>
           </Button>
@@ -102,7 +113,7 @@ export function ProjectActions({
         {playStoreUrl && (
           <Button asChild size="lg" className={btnCn}>
             <a href={playStoreUrl} target="_blank" rel="noopener noreferrer">
-              <Store />
+              <FaGooglePlay className="size-6" />
               {t.playStore}
             </a>
           </Button>
@@ -114,7 +125,7 @@ export function ProjectActions({
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Github />
+              <Github className="size-6" />
               {t.githubRepo}
             </a>
           </Button>

@@ -6,7 +6,7 @@ import { Skeleton } from '@/components/ui/skeleton'
  */
 export function MessageSkeleton() {
   return (
-    <div className="flex flex-col gap-4 rounded-2xl border border-white/5 bg-[#0a0a0a] p-5">
+    <div className="bg-card flex flex-col gap-4 rounded-2xl border border-white/5 p-5">
       <div className="flex items-center gap-3">
         <Skeleton className="size-10 rounded-full" />
         <div className="flex flex-col gap-1.5">
