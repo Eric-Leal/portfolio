@@ -52,6 +52,54 @@ Observações:
 
 ---
 
+## Schema das tabelas
+
+As tabelas principais usadas pelo Guestbook estão definidas em `supabase/schema`.
+
+- `guests` — armazena dados dos usuários autenticados (vindo do Auth).
+- `messages` — mensagens do guestbook vinculadas a `guests`.
+
+Segue imagem do schema das tabelas:
+
+![Schema das tabelas](./tabelas/schema.png)
+
+SQL (trechos relevantes):
+
+```sql
+-- guests
+CREATE TABLE IF NOT EXISTS public.guests (
+	id UUID REFERENCES auth.users ON DELETE CASCADE NOT NULL PRIMARY KEY,
+	name TEXT,
+	profile_image TEXT,
+	created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW() NOT NULL, 
+	updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW() NOT NULL
+);
+
+-- messages
+CREATE TABLE IF NOT EXISTS public.messages (
+	id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+	guest_id UUID REFERENCES public.guests(id) ON DELETE CASCADE NOT NULL,
+	content VARCHAR(500) NOT NULL,
+	pinned BOOLEAN DEFAULT FALSE NOT NULL,
+	liked BOOLEAN DEFAULT FALSE NOT NULL,
+	created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW() NOT NULL,
+	updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW() NOT NULL
+);
+```
+
+Policies e triggers (resumo):
+
+- Ambas as tabelas têm RLS ativado.
+- `guests`: política de leitura pública e trigger que popula `guests` quando um novo `auth.users` é criado.
+- `messages`: política pública de leitura; apenas usuários autenticados podem inserir mensagens onde `guest_id = auth.uid()`; apenas o dono pode atualizar/excluir suas mensagens.
+- Trigger `on_message_activity_report` chama a função `notify_discord_on_message_activity` que utiliza `pg_net`/`net.http_post` para acionar a Edge Function de relatório para o Discord.
+
+Para ver o SQL completo, consulte:
+
+- [supabase/schema/01_guests.sql](../supabase/schema/01_guests.sql)
+- [supabase/schema/02_messages.sql](../supabase/schema/02_messages.sql)
+
+
 ## 2. Autenticação Social (OAuth) — Guestbook
 
 O Guestbook usa autenticação via Supabase (Providers). As credenciais obtidas no Google e GitHub devem ser inseridas no painel do Supabase (Authentication → Providers) ou como secrets.
