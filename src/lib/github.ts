@@ -53,7 +53,6 @@ function authHeaders(): HeadersInit {
 }
 
 const FETCH_OPTIONS = { next: { revalidate: 60 } } as const
-const COMMIT_FETCH_OPTIONS = { next: { revalidate: 60 } } as const
 
 async function restGet<T>(path: string): Promise<T> {
   const res = await fetch(`${GITHUB_API}${path}`, {
@@ -121,104 +120,121 @@ async function fetchAllRepos(login: string): Promise<RestRepo[]> {
   return allRepos
 }
 
-const LATEST_COMMIT_QUERY = /* graphql */ `
-  query LatestCommit {
-    viewer {
-      repositories(
-        first: 10
-        isFork: false
-        orderBy: { field: PUSHED_AT, direction: DESC }
-      ) {
-        nodes {
-          name
-          url
-          pushedAt
-          isPrivate
-          defaultBranchRef {
-            target {
-              ... on Commit {
-                history(first: 10) {
-                  nodes {
-                    message
-                    committedDate
-                    url
-                    author {
-                      user {
-                        login
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
+type RestPushEvent = {
+  type: string
+  public?: boolean
+  created_at: string
+  repo: {
+    name: string
   }
-`
+  payload: {
+    commits?: Array<{
+      sha: string
+      message: string
+    }>
+  } | null
+}
 
-type GQLLatestCommit = {
-  viewer: {
-    repositories: {
-      nodes: Array<{
-        name: string
-        url: string
-        pushedAt: string
-        isPrivate: boolean
-        defaultBranchRef: {
-          target: {
-            history: {
-              nodes: Array<{
-                message: string
-                committedDate: string
-                url: string
-                author: {
-                  user: { login: string } | null
-                } | null
-              }>
-            }
-          }
-        } | null
-      }>
-    }
+type RestAuthRepo = {
+  full_name: string
+  name: string
+  private: boolean
+  default_branch: string
+  pushed_at: string
+}
+
+type RestRepoCommit = {
+  html_url: string
+  commit: {
+    message: string
+    committer: {
+      date: string
+    } | null
+    author: {
+      date: string
+    } | null
   }
 }
 
-async function fetchLatestCommit(login: string): Promise<LatestCommit | null> {
+function commitUrlFromRepoAndSha(repoFullName: string, sha: string): string {
+  return `https://github.com/${repoFullName}/commit/${sha}`
+}
+
+async function fetchLatestCommitFromEvents(
+  login: string,
+  includePrivate: boolean,
+): Promise<LatestCommit | null> {
+  const path = includePrivate
+    ? `/users/${login}/events?per_page=100`
+    : `/users/${login}/events/public?per_page=100`
+
   try {
-    const res = await fetch(GITHUB_GRAPHQL, {
-      method: 'POST',
-      headers: { ...authHeaders(), 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        query: LATEST_COMMIT_QUERY,
-        variables: {},
-      }),
-      ...COMMIT_FETCH_OPTIONS,
-    })
+    const events = await restGet<RestPushEvent[]>(path)
 
-    if (!res.ok) return null
+    const pushEvent = events.find(
+      (event) =>
+        event.type === 'PushEvent' &&
+        Array.isArray(event.payload?.commits) &&
+        event.payload!.commits!.length > 0,
+    )
 
-    const json = (await res.json()) as {
-      data: GQLLatestCommit
-      errors?: unknown[]
+    if (!pushEvent?.payload?.commits?.length) {
+      return null
     }
-    if (json.errors?.length)
-      console.error('[github] latest commit errors:', json.errors)
 
-    const repos = json.data?.viewer?.repositories?.nodes ?? []
+    // GitHub Events usually list commits in push order; the last one is the newest.
+    const commit =
+      pushEvent.payload.commits[pushEvent.payload.commits.length - 1]
+    const repoName = pushEvent.repo.name.split('/').pop() ?? pushEvent.repo.name
+
+    return {
+      message: commit.message.split('\n')[0],
+      repo: repoName,
+      date: pushEvent.created_at,
+      url: commitUrlFromRepoAndSha(pushEvent.repo.name, commit.sha),
+      isPrivate: pushEvent.public === false,
+    }
+  } catch {
+    return null
+  }
+}
+
+async function fetchLatestCommitFromOwnedRepos(
+  login: string,
+): Promise<LatestCommit | null> {
+  if (!process.env.GITHUB_TOKEN) return null
+
+  try {
+    const viewer = await restGet<RestUser>('/user')
+    if (viewer.login.toLowerCase() !== login.toLowerCase()) {
+      return null
+    }
+
+    const repos = await restGet<RestAuthRepo[]>(
+      '/user/repos?affiliation=owner&sort=pushed&direction=desc&per_page=30',
+    )
 
     for (const repo of repos) {
-      const commits = repo.defaultBranchRef?.target?.history?.nodes ?? []
-      const commit = commits.find((c) => c.author?.user?.login === login)
-      if (!commit) continue
+      if (!repo.default_branch) continue
+
+      const commits = await restGet<RestRepoCommit[]>(
+        `/repos/${repo.full_name}/commits?sha=${repo.default_branch}&per_page=1`,
+      )
+
+      const latest = commits[0]
+      if (!latest) continue
+
+      const date =
+        latest.commit.committer?.date ??
+        latest.commit.author?.date ??
+        repo.pushed_at
 
       return {
-        message: commit.message.split('\n')[0],
+        message: latest.commit.message.split('\n')[0],
         repo: repo.name,
-        date: commit.committedDate,
-        url: commit.url,
-        isPrivate: repo.isPrivate,
+        date,
+        url: latest.html_url,
+        isPrivate: repo.private,
       }
     }
 
@@ -226,6 +242,18 @@ async function fetchLatestCommit(login: string): Promise<LatestCommit | null> {
   } catch {
     return null
   }
+}
+
+async function fetchLatestCommit(login: string): Promise<LatestCommit | null> {
+  if (process.env.GITHUB_TOKEN) {
+    const latestWithPrivate = await fetchLatestCommitFromEvents(login, true)
+    if (latestWithPrivate) return latestWithPrivate
+
+    const latestFromRepos = await fetchLatestCommitFromOwnedRepos(login)
+    if (latestFromRepos) return latestFromRepos
+  }
+
+  return fetchLatestCommitFromEvents(login, false)
 }
 
 //  GraphQL: contribuições + linguagens por bytes
@@ -283,21 +311,48 @@ type GQLData = {
           edges: Array<{
             size: number
             node: { name: string }
-          }>
-        }
-      }>
+          } | null> | null
+        } | null
+      } | null>
     }
-  }
+  } | null
 }
 
-async function fetchContribsAndLanguages(login: string): Promise<GQLData> {
+const EMPTY_GQL_DATA: GQLData = {
+  user: {
+    contributionsCollection: {
+      contributionCalendar: {
+        totalContributions: 0,
+        weeks: [],
+      },
+    },
+    repositories: {
+      nodes: [],
+    },
+  },
+}
+
+async function gqlContribsRequest(
+  login: string,
+  useAuth: boolean,
+): Promise<{ data: GQLData; errors?: unknown[] } | null> {
   const now = new Date()
   const oneYearAgo = new Date(now)
   oneYearAgo.setDate(now.getDate() - 364)
 
+  const headers: HeadersInit = {
+    Accept: 'application/vnd.github+json',
+    'X-GitHub-Api-Version': '2022-11-28',
+    'Content-Type': 'application/json',
+  }
+
+  if (useAuth && process.env.GITHUB_TOKEN) {
+    headers.Authorization = `Bearer ${process.env.GITHUB_TOKEN}`
+  }
+
   const res = await fetch(GITHUB_GRAPHQL, {
     method: 'POST',
-    headers: { ...authHeaders(), 'Content-Type': 'application/json' },
+    headers,
     body: JSON.stringify({
       query: CONTRIBUTIONS_AND_LANGUAGES_QUERY,
       variables: {
@@ -309,17 +364,36 @@ async function fetchContribsAndLanguages(login: string): Promise<GQLData> {
     ...FETCH_OPTIONS,
   })
 
-  if (!res.ok) {
-    throw new Error(`GitHub GraphQL error: ${res.status} ${res.statusText}`)
+  if (!res.ok) return null
+
+  return (await res.json()) as { data: GQLData; errors?: unknown[] }
+}
+
+async function fetchContribsAndLanguages(login: string): Promise<GQLData> {
+  try {
+    const withAuth = await gqlContribsRequest(login, true)
+
+    if (withAuth?.data?.user) {
+      return withAuth.data
+    }
+
+    // If token is missing/invalid, retry without auth for public profile data.
+    if (withAuth?.errors?.length) {
+      console.warn(
+        '[github] GraphQL auth query failed, retrying unauthenticated',
+      )
+    }
+
+    const withoutAuth = await gqlContribsRequest(login, false)
+
+    if (withoutAuth?.errors?.length) {
+      console.warn('[github] GraphQL public query returned errors')
+    }
+
+    return withoutAuth?.data?.user ? withoutAuth.data : EMPTY_GQL_DATA
+  } catch {
+    return EMPTY_GQL_DATA
   }
-
-  const json = (await res.json()) as { data: GQLData; errors?: unknown[] }
-
-  if (json.errors?.length) {
-    console.error('[github] GraphQL errors:', json.errors)
-  }
-
-  return json.data
 }
 
 //  Main export
@@ -328,7 +402,7 @@ export async function fetchGitHubData(login: string): Promise<GitHubData> {
   const [restUser, repos, gqlData, latestCommit] = await Promise.all([
     restGet<RestUser>(`/users/${login}`),
     fetchAllRepos(login),
-    fetchContribsAndLanguages(login),
+    fetchContribsAndLanguages(login).catch(() => EMPTY_GQL_DATA),
     fetchLatestCommit(login),
   ])
 
@@ -347,9 +421,13 @@ export async function fetchGitHubData(login: string): Promise<GitHubData> {
 
   //  Linguagens (por bytes de código, via GraphQL)
   const langBytes: Record<string, number> = {}
+  const user = gqlData.user
 
-  for (const repo of gqlData.user.repositories.nodes) {
-    for (const edge of repo.languages.edges) {
+  for (const repo of user?.repositories?.nodes ?? []) {
+    const edges = repo?.languages?.edges ?? []
+
+    for (const edge of edges) {
+      if (!edge?.node?.name) continue
       const name = edge.node.name
       langBytes[name] = (langBytes[name] ?? 0) + edge.size
     }
@@ -357,20 +435,23 @@ export async function fetchGitHubData(login: string): Promise<GitHubData> {
 
   const totalBytes = Object.values(langBytes).reduce((s, n) => s + n, 0)
 
-  const languages: LanguageStat[] = Object.entries(langBytes)
-    .sort(([, a], [, b]) => b - a)
-    .slice(0, 5)
-    .map(([name, bytes]) => ({
-      name,
-      percentage: Math.round((bytes / totalBytes) * 100),
-      colorClass: langColor(name),
-    }))
+  const languages: LanguageStat[] =
+    totalBytes > 0
+      ? Object.entries(langBytes)
+          .sort(([, a], [, b]) => b - a)
+          .slice(0, 5)
+          .map(([name, bytes]) => ({
+            name,
+            percentage: Math.round((bytes / totalBytes) * 100),
+            colorClass: langColor(name),
+          }))
+      : []
 
   //  Contribution Map
   const contributionMap: ContributionMap = {}
-  const calendar = gqlData.user.contributionsCollection.contributionCalendar
+  const calendar = user?.contributionsCollection?.contributionCalendar
 
-  for (const week of calendar.weeks) {
+  for (const week of calendar?.weeks ?? []) {
     for (const day of week.contributionDays) {
       if (day.contributionCount > 0) {
         contributionMap[day.date] = day.contributionCount
@@ -383,6 +464,6 @@ export async function fetchGitHubData(login: string): Promise<GitHubData> {
     languages,
     latestCommit,
     contributionMap,
-    totalContributions: calendar.totalContributions,
+    totalContributions: calendar?.totalContributions ?? 0,
   }
 }
