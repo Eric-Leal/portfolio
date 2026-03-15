@@ -599,7 +599,7 @@ A homepage é uma página única com scroll contendo todas as seções principai
  
 ### Infraestrutura local (Supabase, OAuth, Webhooks, Testes Deno)
 
-O repositório inclui documentação detalhada sobre como configurar e rodar o ambiente de backend local (Supabase CLI, migrações, OAuth providers, Discord Webhook e testes das Edge Functions com Deno). Veja `docs/infrastructure.md` para passos completos e recomendações de segurança.
+O repositório inclui documentação detalhada sobre como configurar e rodar o ambiente de backend local (Supabase CLI, migrações, OAuth providers, Discord Webhook e testes das Edge Functions com Deno). Veja - [infrastruture.md](./infrastructure.md) para passos completos e recomendações de segurança.
 
 Comandos úteis rápidos (executar no root do repositório):
 

@@ -14,9 +14,9 @@ Este documento reúne os passos essenciais para configurar o backend/infra do pr
 
 O projeto usa Supabase para banco, autenticação e Edge Functions. Arquivos relacionados estão em:
 
-- [supabase/config.toml](https://github.com/LauraPontara/portfolio/blob/main/supabase/config.toml)
-- [supabase/migrations](https://github.com/LauraPontara/portfolio/tree/main/supabase/migrations)
-- [supabase/functions](https://github.com/LauraPontara/portfolio/tree/main/supabase/functions)
+- [supabase/config.toml](./supabase/config.toml)
+- [supabase/migrations](./supabase/migrations/)
+- [supabase/functions](./supabase/functions/)
 
 Comandos comuns (executar no root do repositório):
 
@@ -61,7 +61,7 @@ As tabelas principais usadas pelo Guestbook estão definidas em `supabase/schema
 
 Segue imagem do schema das tabelas:
 
-![Schema das tabelas](./tabelas/schema.png)
+![Schema das tabelas](./docs/tabelas/schema.png)
 
 SQL (trechos relevantes):
 
@@ -148,7 +148,7 @@ Usamos Database Webhooks + Edge Function `send-discord-report` para enviar notif
 npx supabase secrets set DISCORD_WEBHOOK_URL="https://discord.com/api/webhooks/...."
 ```
 
-3. O trigger/trigger function no banco chama a Edge Function `send-discord-report` (veja [supabase/functions/send-discord-report](https://github.com/LauraPontara/portfolio/tree/main/supabase/functions/send-discord-report)).
+3. O trigger/trigger function no banco chama a Edge Function `send-discord-report` (veja [supabase/functions/send-discord-report](./supabase/functions/send-discord-report/index.ts)).
 
 Observações:
 - Teste o webhook manualmente antes de integrá-lo no fluxo de DB.
@@ -183,7 +183,7 @@ Notas:
 
 - Adicione credenciais apenas via secrets do Supabase ou variáveis de ambiente do CI.
 - Documente qualquer alteração de triggers ou policies em `supabase/migrations`.
-- Arquivos de função ficam em: [supabase/functions](https://github.com/LauraPontara/portfolio/tree/main/supabase/functions)
-- Para referência rápida do projeto, veja o [README principal](https://github.com/LauraPontara/portfolio/blob/main/README.md).
+- Arquivos de função ficam em: [supabase/functions](./supabase/functions/)
+- Para referência rápida do projeto, veja o [README principal](./README.md).
 
 
