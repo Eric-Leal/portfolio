@@ -21,6 +21,9 @@ O projeto usa Supabase para banco, autenticação e Edge Functions. Arquivos rel
 Comandos comuns (executar no root do repositório):
 
 ```bash
+# intalar Supabase CLI
+npm install supabase --save-dev
+
 # autenticar o CLI (abre o navegador)
 npx supabase login
 
