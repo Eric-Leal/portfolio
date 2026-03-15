@@ -14,9 +14,9 @@ Este documento reúne os passos essenciais para configurar o backend/infra do pr
 
 O projeto usa Supabase para banco, autenticação e Edge Functions. Arquivos relacionados estão em:
 
-- [supabase/config.toml](blob/main/supabase/config.toml)
-- [supabase/migrations](supabase/migrations)
-- [supabase/functions](supabase/functions)
+- [supabase/config.toml](https://github.com/LauraPontara/portfolio/blob/main/supabase/config.toml)
+- [supabase/migrations](https://github.com/LauraPontara/portfolio/tree/main/supabase/migrations)
+- [supabase/functions](https://github.com/LauraPontara/portfolio/tree/main/supabase/functions)
 
 Comandos comuns (executar no root do repositório):
 
@@ -97,7 +97,7 @@ Usamos Database Webhooks + Edge Function `send-discord-report` para enviar notif
 npx supabase secrets set DISCORD_WEBHOOK_URL="https://discord.com/api/webhooks/...."
 ```
 
-3. O trigger/trigger function no banco chama a Edge Function `send-discord-report` (veja [supabase/functions/send-discord-report](/tree/main/supabase/functions/send-discord-report)).
+3. O trigger/trigger function no banco chama a Edge Function `send-discord-report` (veja [supabase/functions/send-discord-report](https://github.com/LauraPontara/portfolio/tree/main/supabase/functions/send-discord-report)).
 
 Observações:
 - Teste o webhook manualmente antes de integrá-lo no fluxo de DB.
