@@ -52,8 +52,8 @@ function authHeaders(): HeadersInit {
   }
 }
 
-const FETCH_OPTIONS = { next: { revalidate: 3600 } } as const
-const COMMIT_FETCH_OPTIONS = { next: { revalidate: 3600 } } as const
+const FETCH_OPTIONS = { next: { revalidate: 60 } } as const
+const COMMIT_FETCH_OPTIONS = { next: { revalidate: 60 } } as const
 
 async function restGet<T>(path: string): Promise<T> {
   const res = await fetch(`${GITHUB_API}${path}`, {
