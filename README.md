@@ -596,6 +596,31 @@ A homepage é uma página única com scroll contendo todas as seções principai
 - `npm run start` - Inicia servidor de produção
 - `npm run lint` - Executa o linter
 - `npm run prepare` - Configura Husky hooks
+ 
+### Infraestrutura local (Supabase, OAuth, Webhooks, Testes Deno)
+
+O repositório inclui documentação detalhada sobre como configurar e rodar o ambiente de backend local (Supabase CLI, migrações, OAuth providers, Discord Webhook e testes das Edge Functions com Deno). Veja `docs/infrastructure.md` para passos completos e recomendações de segurança.
+
+Comandos úteis rápidos (executar no root do repositório):
+
+```bash
+# autenticar o Supabase CLI
+npx supabase login
+
+# vincular ao projeto remoto
+npx supabase link --project-ref <id-do-projeto>
+
+# iniciar ambiente local (docker)
+npx supabase start
+
+# resetar banco local e aplicar migrations
+npx supabase db reset
+
+# rodar testes Deno para as Edge Functions
+deno test --allow-all --env-file=.env.test supabase/functions/tests/create-message_test.ts
+```
+
+Notas: não versionar credenciais; use `supabase secrets` ou variáveis de ambiente (`.env.local`, `.env.test`).
 
 ---
 
