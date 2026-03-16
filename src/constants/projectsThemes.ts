@@ -24,4 +24,50 @@ export const projectThemes = {
       text: '/cursors/beam.cur',
     },
   },
+  gestarMais: {
+    dark: {
+      accent1: '#ff4bd8',
+      accent2: '#d946ef',
+      accent3: '#a21caf',
+      accent4: '#9333ea',
+      accent5: '#7e22ce',
+      primary: '#7e22ce',
+    },
+    light: {
+      accent1: '#c026d3',
+      accent2: '#a21caf',
+      accent3: '#9333ea',
+      accent4: '#7e22ce',
+      accent5: '#6b21a8',
+      primary: '#6b21a8',
+    },
+    cursors: {
+      default: '/cursors/gestarmais/pointer.cur',
+      pointer: '/cursors/gestarmais/hand.cur',
+      text: '/cursors/gestarmais/beam.cur',
+    },
+  },
+  foodBridge: {
+    dark: {
+      accent1: '#ff4bd8',
+      accent2: '#d946ef',
+      accent3: '#a21caf',
+      accent4: '#9333ea',
+      accent5: '#7e22ce',
+      primary: '#7e22ce',
+    },
+    light: {
+      accent1: '#c026d3',
+      accent2: '#a21caf',
+      accent3: '#9333ea',
+      accent4: '#7e22ce',
+      accent5: '#6b21a8',
+      primary: '#6b21a8',
+    },
+    cursors: {
+      default: '/cursors/foodbridge/pointer.cur',
+      pointer: '/cursors/foodbridge/hand.cur',
+      text: '/cursors/foodbridge/beam.cur',
+    },
+  },
 } as const satisfies Record<string, ProjectTheme>
