@@ -3,7 +3,7 @@ import { LoginBanner } from '@/components/shared/auth'
 import { GuestbookInput, MessageList } from '@/components/shared/guestbook'
 
 /** Nome do dono do portfolio, exibido no placeholder do input e título. */
-const OWNER_NAME = 'Laura'
+const OWNER_NAME = 'Eric'
 
 export default async function GuestbookPage() {
   const supabase = await createClient()

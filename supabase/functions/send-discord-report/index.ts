@@ -4,9 +4,9 @@ import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
 const DISCORD_WEBHOOK_URL = Deno.env.get('DISCORD_WEBHOOK_URL')
 
 const reportColor = {
-  INSERT: 0x29d6d4, // Ciano
-  UPDATE: 0x77309a, // Roxo
-  WEEKLY_REPORT: 0x3498db, // Azul
+  INSERT: 0x22c55e, // Verde
+  UPDATE: 0x14b8a6, // Verde-azulado
+  WEEKLY_REPORT: 0x0ea5e9, // Azul
 }
 
 /**

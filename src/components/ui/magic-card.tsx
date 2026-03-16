@@ -24,10 +24,10 @@ export function MagicCard({
   children,
   className,
   gradientSize = 200,
-  gradientColor = '#262626',
+  gradientColor = '#008f39',
   gradientOpacity = 0.8,
-  gradientFrom = '#9E7AFF',
-  gradientTo = '#FE8BBB',
+  gradientFrom = '#84cc16',
+  gradientTo = '#008f39',
 }: MagicCardProps) {
   const ref = useRef<HTMLDivElement>(null)
 

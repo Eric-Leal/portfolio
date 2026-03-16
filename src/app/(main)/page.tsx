@@ -27,7 +27,7 @@ export default function Home() {
             <SplineWrapper>
               <Spline
                 style={{ pointerEvents: 'auto' }}
-                scene="https://prod.spline.design/E3Np8UpeDg8IrCCr/scene.splinecode"
+                scene="https://prod.spline.design/b1uXntkbxq8Yjb3p/scene.splinecode"
               />
             </SplineWrapper>
           </div>

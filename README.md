@@ -596,7 +596,7 @@ A homepage é uma página única com scroll contendo todas as seções principai
 - `npm run start` - Inicia servidor de produção
 - `npm run lint` - Executa o linter
 - `npm run prepare` - Configura Husky hooks
- 
+
 ### Infraestrutura local (Supabase, OAuth, Webhooks, Testes Deno)
 
 O repositório inclui documentação detalhada sobre como configurar e rodar o ambiente de backend local (Supabase CLI, migrações, OAuth providers, Discord Webhook e testes das Edge Functions com Deno). Veja - [infrastruture.md](./infrastructure.md) para passos completos e recomendações de segurança.
@@ -694,13 +694,11 @@ O projeto está configurado para deploy automático na **Vercel**. Cada push par
 
 **Resultado:** Sistema hospedado e funcional com documentação completa.
 
-## 👥 Equipe
+## 👥 Eu
 
-| 👤 Nome          | 🖼️ Foto                                                                                                                         | :octocat: GitHub                                                                                                                                                    | 💼 LinkedIn                                                                                                                                                                       |
-| ---------------- | ------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Eric Leal        | <div align="center"><img src="https://github.com/Eric-Leal.png" width="70px" height="70px" style="object-fit: cover;"></div>    | <div align="center"><a href="https://github.com/Eric-Leal"><img src="https://joaopauloaramuni.github.io/image/github6.png" width="50px" height="50px"></a></div>    | <div align="center"><a href="https://linkedin.com/in/ericgleal"><img src="https://joaopauloaramuni.github.io/image/linkedin2.png" width="50px" height="50px"></a></div>           |
-| Giuliano Percope | <div align="center"><img src="https://github.com/GiulianoLBP.png" width="70px" height="70px" style="object-fit: cover;"></div>  | <div align="center"><a href="https://github.com/GiulianoLBP"><img src="https://joaopauloaramuni.github.io/image/github6.png" width="50px" height="50px"></a></div>  | <div align="center"><a href="https://linkedin.com/in/giuliano-lb-percope"><img src="https://joaopauloaramuni.github.io/image/linkedin2.png" width="50px" height="50px"></a></div> |
-| Laura Pontara    | <div align="center"><img src="https://github.com/LauraPontara.png" width="70px" height="70px" style="object-fit: cover;"></div> | <div align="center"><a href="https://github.com/LauraPontara"><img src="https://joaopauloaramuni.github.io/image/github6.png" width="50px" height="50px"></a></div> | <div align="center"><a href="https://linkedin.com/in/laura-pontara"><img src="https://joaopauloaramuni.github.io/image/linkedin2.png" width="50px" height="50px"></a></div>       |
+| 👤 Nome   | 🖼️ Foto                                                                                                                      | :octocat: GitHub                                                                                                                                                 | 💼 LinkedIn                                                                                                                                                             |
+| --------- | ---------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Eric Leal | <div align="center"><img src="https://github.com/Eric-Leal.png" width="70px" height="70px" style="object-fit: cover;"></div> | <div align="center"><a href="https://github.com/Eric-Leal"><img src="https://joaopauloaramuni.github.io/image/github6.png" width="50px" height="50px"></a></div> | <div align="center"><a href="https://linkedin.com/in/ericgleal"><img src="https://joaopauloaramuni.github.io/image/linkedin2.png" width="50px" height="50px"></a></div> |
 
 ---
 

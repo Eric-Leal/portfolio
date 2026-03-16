@@ -166,7 +166,7 @@ export function MobileMenu() {
 
                 <button
                   onClick={() => handleScroll('contact')}
-                  className="from-brand-3 to-brand-5 mt-2 flex w-full items-center justify-center gap-2 rounded-xl bg-linear-to-r py-3 font-sans text-sm font-normal text-white"
+                  className="from-accent-3 to-accent-5 mt-2 flex w-full items-center justify-center gap-2 rounded-xl bg-linear-to-r py-3 font-sans text-sm font-normal text-white"
                 >
                   <Send size={20} /> {t.cta}
                 </button>

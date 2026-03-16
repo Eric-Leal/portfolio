@@ -6,13 +6,13 @@ export const headlineTranslations: Record<
 > = {
   pt: {
     greeting: 'Olá, eu sou',
-    name: 'Carlos Silva',
+    name: 'Eric Leal',
     rolePart1: 'Engenheiro',
     rolePart2: 'de Software',
   },
   en: {
     greeting: "Hello, I'm",
-    name: 'Carlos Silva',
+    name: 'Eric Leal',
     rolePart1: 'Software',
     rolePart2: 'Engineer',
   },
@@ -23,16 +23,18 @@ export const aboutSectionTranslations = {
     title: 'Sobre',
     auroraText: 'mim',
     description: [
-      'Engenheiro de Software apaixonado por construir produtos digitais com foco em experiência do usuário, performance e código limpo. Tenho experiência com aplicações web full-stack, desde a concepção até a entrega em produção.',
-      'Atualmente trabalho com React, Next.js e TypeScript no front-end, e Node.js com Supabase no back-end. Adoro explorar novas tecnologias, contribuir com open-source e transformar problemas complexos em soluções elegantes.',
+      'Meu nome é Eric, sou de Belo Horizonte, MG, Brasil.',
+      'Sou estudante de Engenharia de Software na PUC Minas. Sou formado em Técnico de Programação de Jogos Digitais pelo SENAI BH CFP Nansen Araújo.',
+      'Tenho foco em desenvolvimento web fullstack. Atualmente sigo evoluindo em aplicações com TypeScript, Next.js e integrações com serviços backend.',
     ],
   },
   en: {
     title: 'About',
     auroraText: 'me',
     description: [
-      'Software Engineer passionate about building digital products with a focus on user experience, performance, and clean code. I have experience with full-stack web applications, from conception to production delivery.',
-      'I currently work with React, Next.js and TypeScript on the front-end, and Node.js with Supabase on the back-end. I love exploring new technologies, contributing to open-source, and turning complex problems into elegant solutions.',
+      'My name is Eric, I am from Belo Horizonte, MG, Brazil.',
+      'I am a student of Software Engineering at PUC Minas. I am a graduate of Technical Programming for Digital Games by SENAI BH CFP Nansen Araújo.',
+      'I focus on fullstack web development. I am currently evolving in applications with TypeScript, Next.js and integrations with backend services.',
     ],
   },
 }
@@ -75,27 +77,44 @@ export const experienceSectionTranslations: Record<
       'Uma linha do tempo da minha evolução técnica e contribuições em diferentes papéis de engenharia.',
     items: [
       {
-        year: '2023',
-        role: 'Senior Developer',
-        company: 'Company A',
+        year: '2024 - 2028',
+        role: 'Graduação em Engenharia de Software',
+        company: 'PUC Minas Lourdes',
         description:
-          'Desenvolvedor líder em projetos de infraestrutura na Company A, com foco em escalabilidade e otimização de performance. Liderou a migração para arquitetura de microsserviços.',
+          'Formação acadêmica em Engenharia de Software. Participei de projetos práticos e atividades extracurriculares que complementaram minha formação técnica e habilidades de trabalho em equipe.',
+        category: 'education',
+      },
+      {
+        year: '2025.2',
+        role: 'Melhores Trabalhos Interdisciplinares de Software - PUC Minas',
+        company: 'Trabalho Interdisciplinar: Aplicações para Cenários Reais',
+        description:
+          'Desenvolvedor fullstack no projeto Gestar+, uma plataforma de gestão de clínica obstétrica com acompanhamento gestacional por enfermeiras obstetras, desenvolvida em Next.js, Node.js, NestJS, TypeScript, PostgreSQL.',
+        category: 'education',
+      },
+      {
+        year: '2025',
+        role: 'Estágio em Desenvolvimento de Software',
+        company: 'Webimob',
+        description:
+          'Atuo como desenvolvedor trabalhando com Next.js e Supabase, fazendo tanto o frontend quanto o backend da aplicação da empresa.',
         category: 'work',
       },
       {
-        year: '2021',
-        role: 'Mid-level Developer',
-        company: 'Company B',
+        year: '2025.1',
+        role: 'Melhores Trabalhos Interdisciplinares de Software - PUC Minas',
+        company:
+          'Trabalho Interdisciplinar: Aplicações para Processos de Negócios',
         description:
-          'Desenvolveu aplicações web de alto tráfego com frameworks modernos. Trabalhou com equipes multidisciplinares para entregar experiências pixel-perfect e integrações robustas de API.',
-        category: 'code',
+          'Projeto FoodBridge desenvolvido em time. Uma plataforma de conexão entre empresas e instituições sem fins lucrativos para doação de alimentos. Contribui para o desenvolvimento de funcionalidades front-end e integrações back-end, utilizando JavaScript, Node.js, Spring Boot, PostgreSQL, CSS e HTML.',
+        category: 'education',
       },
       {
-        year: '2019',
-        role: 'Junior Developer',
-        company: 'Company C',
+        year: '2024.2',
+        role: 'Melhores Trabalhos Interdisciplinares de Software - PUC Minas',
+        company: 'Trabalho Interdisciplinar: Aplicações Web',
         description:
-          'Iniciou a jornada contribuindo com módulos front-end e manutenção de sistemas legados. Aprendeu boas práticas de controle de versão e metodologias ágeis apoiando engenheiros sênior.',
+          'Desenvolvi em grupo o projeto Moneo, uma plataforma de gestão financeira pessoal. Contribui para o desenvolvimento de funcionalidades front-end e integrações back-end, utilizando JavaScript, Node.js, CSS e HTML.',
         category: 'education',
       },
     ],
@@ -107,27 +126,43 @@ export const experienceSectionTranslations: Record<
       'A timeline of my technical evolution and contributions across different engineering roles.',
     items: [
       {
-        year: '2023',
-        role: 'Senior Developer',
-        company: 'Company A',
+        year: '2024 - 2028',
+        role: 'B.S. in Software Engineering',
+        company: 'PUC Minas Lourdes',
         description:
-          'Lead developer for core infrastructure projects at Company A, focusing on scalability and performance optimization. Spearheaded the transition to microservices architecture.',
+          'Academic background in Software Engineering. Participated in hands-on projects and extracurricular activities that complemented my technical training and teamwork skills.',
+        category: 'education',
+      },
+      {
+        year: '2025.2',
+        role: 'Top Interdisciplinary Software Projects - PUC Minas',
+        company: 'Interdisciplinary Work: Real-World Scenarios',
+        description:
+          'Full-stack developer for the Gestar+ project, an obstetric clinic management platform with gestational monitoring by obstetric nurses. Built with Next.js, Node.js, NestJS, TypeScript, and PostgreSQL.',
+        category: 'education',
+      },
+      {
+        year: '2025',
+        role: 'Software Development Intern',
+        company: 'Webimob',
+        description:
+          'Working as a software development intern, contributing to the development of web applications using Next.js and Supabase. I am involved in both frontend and backend aspects of the company’s application.',
         category: 'work',
       },
       {
-        year: '2021',
-        role: 'Mid-level Developer',
-        company: 'Company B',
+        year: '2025.1',
+        role: 'Top Interdisciplinary Software Projects - PUC Minas',
+        company: 'Interdisciplinary Work: Business Process Applications',
         description:
-          'Developed high-traffic web applications using modern frameworks. Collaborated with cross-functional teams to deliver pixel-perfect user experiences and robust API integrations.',
-        category: 'code',
+          'FoodBridge project developed in a team. A platform connecting companies and non-profits for food donations. Contributed to front-end features and back-end integrations using JavaScript, Node.js, Spring Boot, PostgreSQL, CSS, and HTML.',
+        category: 'education',
       },
       {
-        year: '2019',
-        role: 'Junior Developer',
-        company: 'Company C',
+        year: '2024.2',
+        role: 'Top Interdisciplinary Software Projects - PUC Minas',
+        company: 'Interdisciplinary Work: Web Applications',
         description:
-          'Started my journey contributing to front-end modules and maintaining legacy systems. Learned best practices in version control and agile methodologies while supporting senior engineers.',
+          'Developed the Moneo project in a group, a personal financial management platform. Contributed to front-end features and back-end integrations using JavaScript, Node.js, CSS, and HTML.',
         category: 'education',
       },
     ],

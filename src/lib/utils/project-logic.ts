@@ -9,6 +9,7 @@ import type {
   MobileProject,
   MobileHeroMedia,
   ProjectThumbnail,
+  GameProject,
 } from '@/types/project'
 
 export function isWebProject(project: Project): project is WebProject {
@@ -17,6 +18,10 @@ export function isWebProject(project: Project): project is WebProject {
 
 export function isMobileProject(project: Project): project is MobileProject {
   return project.category === 'mobile'
+}
+
+export function isGameProject(project: Project): project is GameProject {
+  return project.category === 'game'
 }
 
 export function isMobileHeroThumbnail(

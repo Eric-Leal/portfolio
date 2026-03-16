@@ -9,11 +9,11 @@
   --font-title: var(--font-cormorant);
 
   /* Escala de Marca - Estáticos (Imagem 1) */
-  --color-brand-1: #29d6d4;
-  --color-brand-2: #00b7e1;
-  --color-brand-3: #0093e3;
-  --color-brand-4: #3068cd;
-  --color-brand-5: #77309a;
+  --color-brand-1: #d9f99d;
+  --color-brand-2: #bef264;
+  --color-brand-3: #84cc16;
+  --color-brand-4: #16a34a;
+  --color-brand-5: #008f39;
 
   /* Mapeamento Semântico Shadcn UI */
   --color-background: var(--background);
@@ -73,10 +73,10 @@
   --foreground: #171717;
   --card: #ffffff;
   --card-foreground: #171717;
-  --primary: #77309a;
+  --primary: #008f39;
   --primary-foreground: #ffffff;
   --border: #dcdcdc;
-  --ring: #77309a;
+  --ring: #00a63f;
   --input: #e5e5e5;
   --muted-foreground: #525252;
 
@@ -85,14 +85,19 @@
   --tx-secondary: #737373;
   --tx-muted: #525252;
   --tx-accent: #262626;
-  --tx-success: #29ab59;
+  --tx-success: #00a63f;
 
   /* ACCENTS LIGHT */
-  --accent-1: #19807f;
-  --accent-2: #00647a;
-  --accent-3: #005380;
-  --accent-4: #1d3f7c;
-  --accent-5: #77309a;
+  --accent-1: #bef264;
+  --accent-2: #a3e635;
+  --accent-3: #65a30d;
+  --accent-4: #16a34a;
+  --accent-5: #008f39;
+
+  /* Cursor vars (permitem override por tema de projeto) */
+  --cur-default: url('/cursors/pointer.cur'), default;
+  --cur-pointer: url('/cursors/link.cur'), pointer;
+  --cur-text: url('/cursors/beam.cur'), text;
 }
 
 .dark {
@@ -102,7 +107,7 @@
   --card: #0a0a0a;
   --card-foreground: #ffffff;
   --border: #171717;
-  --ring: #77309a;
+  --ring: #22c55e;
   --input: #262626;
   --muted-foreground: #737373;
 
@@ -111,20 +116,20 @@
   --tx-secondary: #666666;
   --tx-muted: #d0d5db;
   --tx-accent: #c9c9c9;
-  --tx-success: #16a34a;
+  --tx-success: #4ade80;
 
   /* ACCENTS DARK */
-  --accent-1: #7fe6e5;
-  --accent-2: #47ddff;
-  --accent-3: #4dc0ff;
-  --accent-4: #83a5e2;
-  --accent-5: #d5b1e7;
+  --accent-1: #ecfccb;
+  --accent-2: #d9f99d;
+  --accent-3: #bef264;
+  --accent-4: #86efac;
+  --accent-5: #4ade80;
 }
 
 /* Cursores personalizados */
 /* Cursor base global */
 html {
-  cursor: url('/cursors/pointer.cur'), default;
+  cursor: var(--cur-default);
 }
 
 /* Garantir que tudo herde */
@@ -137,13 +142,13 @@ html {
 /* Links e botões */
 a,
 button {
-  cursor: url('/cursors/link.cur'), pointer;
+  cursor: var(--cur-pointer);
 }
 
 /* Inputs e textarea */
 input,
 textarea {
-  cursor: url('/cursors/beam.cur'), text;
+  cursor: var(--cur-text);
 }
 
 @layer base {
@@ -174,8 +179,8 @@ textarea {
 ::-webkit-scrollbar-thumb {
   background: linear-gradient(
     180deg,
-    var(--color-brand-2),
-    var(--color-brand-5)
+    var(--color-accent-2),
+    var(--color-accent-5)
   );
   border-radius: 999px;
   border: 3px solid transparent;

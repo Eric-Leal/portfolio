@@ -30,19 +30,20 @@ export function ProjectCard({ project }: ProjectCardProps) {
     useGalleryVideo(3)
   const title = project.title[language]
   const isWeb = project.category === 'web'
+  const isGame = project.category === 'game'
   const isMobile = project.category === 'mobile'
 
   // Get thumbnail URLs
   const getThumbnailData = () => {
     if (
-      isWeb &&
+      (isWeb || isGame) &&
       'type' in project.thumbnail &&
       project.thumbnail.type === 'video'
     ) {
       return { videoSrc: project.thumbnail.url, imageSrc: undefined }
     }
     if (
-      isWeb &&
+      (isWeb || isGame) &&
       'type' in project.thumbnail &&
       project.thumbnail.type === 'image'
     ) {
@@ -80,9 +81,9 @@ export function ProjectCard({ project }: ProjectCardProps) {
     >
       <div
         className="from-accent-2/20 to-accent-5/20 relative mb-8 overflow-hidden rounded-2xl bg-linear-to-br px-2 pt-2"
-        style={{ aspectRatio: isWeb ? undefined : '1203/753' }}
+        style={{ aspectRatio: isWeb || isGame ? undefined : '1203/753' }}
       >
-        {isWeb && thumbnailData && (
+        {(isWeb || isGame) && thumbnailData && (
           <Safari
             videoSrc={
               (thumbnailData as { videoSrc?: string; imageSrc?: string })

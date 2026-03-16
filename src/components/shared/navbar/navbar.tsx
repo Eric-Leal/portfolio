@@ -70,7 +70,7 @@ export function Navbar() {
             href="/"
             className="font-title text-tx-primary text-xl font-bold italic transition-opacity hover:opacity-80"
           >
-            Carlos Silva
+            Eric Leal
           </Link>
 
           <NavigationMenu viewport={false}>
@@ -167,7 +167,7 @@ export function Navbar() {
             <LanguageToggle />
             <button
               onClick={() => handleScroll('contact')}
-              className="from-brand-3 to-brand-5 flex items-center gap-1.5 rounded-full bg-linear-to-r px-4 py-2 text-sm font-semibold text-white shadow-sm transition-opacity hover:opacity-90"
+              className="from-accent-3 to-accent-5 flex items-center gap-1.5 rounded-full bg-linear-to-r px-4 py-2 text-sm font-semibold text-white shadow-sm transition-opacity hover:opacity-90"
             >
               <Send size={20} />
               {t.cta}

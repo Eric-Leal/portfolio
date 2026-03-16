@@ -19,6 +19,7 @@ import { AuroraText } from '@/components/ui/aurora-text'
 import { usePortfolioStore } from '@/store/use-portfolio-store'
 import type { Project } from '@/types/project'
 import { AURORA_COLORS } from '@/styles/constants'
+import { ProjectThemeApplier } from './ProjectThemeApplier'
 
 const PROJECT_TRANSLATIONS = {
   pt: { aboutLabel: 'Sobre o', aboutHighlight: 'projeto' },
@@ -37,8 +38,24 @@ export function ProjectHero({ project }: ProjectHeroProps) {
   const t = PROJECT_TRANSLATIONS[language]
   const hasStats = project.stats && project.stats.length > 0
 
+  // Deriva as cores do aurora a partir do tema do projeto (prioriza dark, fallback light, fallback padrão)
+  const theme = project.theme
+  const themePalette = theme?.dark ?? theme?.light
+  const auroraColors = themePalette
+    ? ([
+        themePalette.accent1,
+        themePalette.accent2,
+        themePalette.accent3,
+        themePalette.accent4,
+        themePalette.accent5,
+      ].filter(Boolean) as string[])
+    : AURORA_COLORS
+  const resolvedAuroraColors =
+    auroraColors.length >= 2 ? auroraColors : AURORA_COLORS
+
   return (
     <>
+      <ProjectThemeApplier theme={project.theme} />
       <div className="hidden md:relative md:mt-12 md:block">
         <div className="mx-auto max-w-6xl px-6">
           <div className="grid grid-cols-[1.1fr_0.9fr] items-center gap-12 lg:gap-20">
@@ -70,7 +87,7 @@ export function ProjectHero({ project }: ProjectHeroProps) {
             <span className="font-title font-bold">
               <AuroraText
                 className="text-3xl md:text-6xl"
-                colors={AURORA_COLORS}
+                colors={resolvedAuroraColors}
                 speed={0.8}
               >
                 {t.aboutHighlight}

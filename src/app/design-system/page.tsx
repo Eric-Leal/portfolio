@@ -19,27 +19,27 @@ type StaticColor = {
 const brandColors: StaticColor[] = [
   {
     variable: '--color-brand-1 / brand-1',
-    value: '#29d6d4',
+    value: '#d9f99d',
     usedFor: 'Gradientes, highlights, elementos primários vibrantes',
   },
   {
     variable: '--color-brand-2 / brand-2',
-    value: '#00b7e1',
+    value: '#bef264',
     usedFor: 'Links, ícones ativos, CTA secundário',
   },
   {
     variable: '--color-brand-3 / brand-3',
-    value: '#0093e3',
+    value: '#84cc16',
     usedFor: 'Botões de ação, bordas de foco',
   },
   {
     variable: '--color-brand-4 / brand-4',
-    value: '#3068cd',
+    value: '#16a34a',
     usedFor: 'Texto de ênfase, badges informativas',
   },
   {
     variable: '--color-brand-5 / brand-5',
-    value: '#77309a',
+    value: '#008f39',
     usedFor: 'CTA principal, primary, anel de foco',
   },
 ]
@@ -48,32 +48,32 @@ const accentColors: ColorToken[] = [
   {
     variable: 'accent-1',
     usedFor: 'Destaques sutis, ícones de apoio',
-    light: '#19807f',
-    dark: '#7fe6e5',
+    light: '#bef264',
+    dark: '#ecfccb',
   },
   {
     variable: 'accent-2',
     usedFor: 'Texto de link, hover states',
-    light: '#00647a',
-    dark: '#47ddff',
+    light: '#a3e635',
+    dark: '#d9f99d',
   },
   {
     variable: 'accent-3',
     usedFor: 'Código inline, tags, chips',
-    light: '#005380',
-    dark: '#4dc0ff',
+    light: '#65a30d',
+    dark: '#bef264',
   },
   {
     variable: 'accent-4',
     usedFor: 'Bordas decorativas, separadores coloridos',
-    light: '#1d3f7c',
-    dark: '#83a5e2',
+    light: '#16a34a',
+    dark: '#86efac',
   },
   {
     variable: 'accent-5',
     usedFor: 'Títulos com destaque, gradientes principais',
-    light: '#77309a',
-    dark: '#d5b1e7',
+    light: '#008f39',
+    dark: '#4ade80',
   },
 ]
 
@@ -105,8 +105,8 @@ const textColors: ColorToken[] = [
   {
     variable: 'tx-success',
     usedFor: 'Mensagens de sucesso, badges "disponível"',
-    light: '#29ab59',
-    dark: '#16a34a',
+    light: '#00a63f',
+    dark: '#4ade80',
   },
 ]
 
@@ -138,8 +138,8 @@ const uiColors: ColorToken[] = [
   {
     variable: 'primary',
     usedFor: 'Botão primário, cor de marca aplicada a componentes Shadcn',
-    light: '#77309a',
-    dark: '#77309a',
+    light: '#008f39',
+    dark: '#008f39',
   },
 ]
 

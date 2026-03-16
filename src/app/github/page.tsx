@@ -6,7 +6,7 @@ import { GithubPageContent } from './_content'
 
 const EMPTY_DATA: GitHubData = {
   profile: {
-    name: 'Seu Nome',
+    name: 'Eric Leal',
     login: 'username',
     avatarUrl: '',
     followers: 0,

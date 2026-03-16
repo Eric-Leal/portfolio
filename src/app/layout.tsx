@@ -22,7 +22,7 @@ const cormorant = Cormorant_Infant({
 })
 
 export const metadata: Metadata = {
-  title: 'Seu Nome | Portfolio',
+  title: 'Eric Leal | Portfolio',
   description: 'Software Engineer',
 }
 

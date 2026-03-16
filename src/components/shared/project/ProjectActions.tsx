@@ -12,18 +12,24 @@ import { LuGithub as Github } from 'react-icons/lu'
 
 import { Button } from '@/components/ui/button'
 import type { Project } from '@/types/project'
-import { isWebProject, isMobileProject } from '@/lib/utils/project-logic'
+import {
+  isWebProject,
+  isMobileProject,
+  isGameProject,
+} from '@/lib/utils/project-logic'
 import type { Language } from '@/constants/navigation'
 
 const PROJECT_ACTIONS_TRANSLATIONS = {
   pt: {
     visitSite: 'Acessar Site',
+    gameDownload: 'Baixar Jogo',
     githubRepo: 'Repositório GitHub',
     appStore: 'App Store',
     playStore: 'Play Store',
   },
   en: {
     visitSite: 'Visit Site',
+    gameDownload: 'Download Game',
     githubRepo: 'GitHub Repository',
     appStore: 'App Store',
     playStore: 'Play Store',
@@ -41,7 +47,7 @@ export interface ProjectActionsProps {
 }
 
 /**
- * Botões de ação externos adaptados à categoria do projeto (web ou mobile).
+ * Botões de ação externos adaptados à categoria do projeto.
  */
 export function ProjectActions({
   project,
@@ -115,6 +121,37 @@ export function ProjectActions({
             <a href={playStoreUrl} target="_blank" rel="noopener noreferrer">
               <FaGooglePlay className="size-6" />
               {t.playStore}
+            </a>
+          </Button>
+        )}
+        {project.links.github && (
+          <Button asChild size="lg" variant="outline" className={outlineCn}>
+            <a
+              href={project.links.github}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Github className="size-6" />
+              {t.githubRepo}
+            </a>
+          </Button>
+        )}
+      </div>
+    )
+  }
+
+  if (isGameProject(project)) {
+    return (
+      <div className={cn('flex flex-col gap-3', !fullWidth && 'sm:flex-row')}>
+        {project.links.website && (
+          <Button asChild size="lg" className={btnCn}>
+            <a
+              href={project.links.website}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <ExternalLink className="size-6" />
+              {t.gameDownload}
             </a>
           </Button>
         )}

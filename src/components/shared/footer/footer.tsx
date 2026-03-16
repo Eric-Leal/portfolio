@@ -1,7 +1,8 @@
 'use client'
 
+import Image from 'next/image'
 import Link from 'next/link'
-import { LuGithub, LuLinkedin, LuInstagram } from 'react-icons/lu'
+import { LuGithub, LuLinkedin } from 'react-icons/lu'
 import { Button } from '@/components/ui/button'
 import { AuroraText } from '@/components/ui/aurora-text'
 import { usePortfolioStore } from '@/store/use-portfolio-store'
@@ -14,18 +15,13 @@ import { AURORA_COLORS } from '@/styles/constants'
 const socialLinks = [
   {
     label: 'GitHub',
-    href: 'https://github.com',
+    href: 'https://github.com/Eric-Leal',
     icon: LuGithub,
   },
   {
     label: 'LinkedIn',
-    href: 'https://linkedin.com',
+    href: 'https://www.linkedin.com/in/ericgleal/',
     icon: LuLinkedin,
-  },
-  {
-    label: 'Instagram',
-    href: 'https://instagram.com',
-    icon: LuInstagram,
   },
 ]
 
@@ -53,43 +49,21 @@ export function Footer() {
         <div className="flex flex-col items-center gap-6 lg:flex-row lg:items-center lg:justify-between">
           {/* Avatar placeholder */}
           <div
-            className="border-border bg-card shrink-0 overflow-hidden rounded-full border-2"
+            className="border-border bg-card relative shrink-0 overflow-hidden rounded-full border-2"
             style={{
               width: 'clamp(120px, 20vw, 180px)',
               height: 'clamp(120px, 20vw, 180px)',
             }}
             aria-label="Foto de perfil"
           >
-            <svg
-              viewBox="0 0 180 180"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              className="text-tx-secondary h-full w-full"
-            >
-              {/* Background fill using currentColor at low opacity */}
-              <rect
-                width="180"
-                height="180"
-                fill="currentColor"
-                fillOpacity="0.06"
-              />
-              {/* Person silhouette */}
-              <circle
-                cx="90"
-                cy="72"
-                r="32"
-                stroke="currentColor"
-                strokeWidth="4"
-                strokeOpacity="0.45"
-              />
-              <path
-                d="M22 166c0-37.555 30.445-68 68-68s68 30.445 68 68"
-                stroke="currentColor"
-                strokeWidth="4"
-                strokeLinecap="round"
-                strokeOpacity="0.45"
-              />
-            </svg>
+            <Image
+              src="/images/Eric.jpg"
+              alt="Foto de perfil de Eric"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 120px, 180px"
+              priority
+            />
           </div>
 
           {/* Headline — right-aligned on desktop */}
