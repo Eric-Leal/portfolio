@@ -102,7 +102,7 @@ export interface ProjectMediaProps {
 export function ProjectMedia({ project }: ProjectMediaProps) {
   return (
     <>
-      <div className="sticky top-0 z-0 md:hidden">
+      <div className="relative z-0 md:hidden">
         <div className="bg-background relative px-8 pt-8 pb-16">
           <ProjectFrame project={project} />
           <div
