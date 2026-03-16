@@ -65,9 +65,9 @@ export const projectThemes = {
       primary: '#f08a16',
     },
     cursors: {
-      default: '/cursors/foodbridge/pointer.cur',
-      pointer: '/cursors/foodbridge/link.cur',
-      text: '/cursors/foodbridge/beam.cur',
+      default: '/cursors/foodBridge/pointer.cur',
+      pointer: '/cursors/foodBridge/link.cur',
+      text: '/cursors/foodBridge/beam.cur',
     },
   },
 } as const satisfies Record<string, ProjectTheme>
