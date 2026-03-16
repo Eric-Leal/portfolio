@@ -22,8 +22,8 @@ export const projects: Project[] = [
     },
     category: 'game',
     thumbnail: {
-      type: 'image',
-      url: 'https://wnfwivuugmumfqczpyjt.supabase.co/storage/v1/object/public/projetos/V-Threat/gif.gif',
+      type: 'video',
+      url: 'https://wnfwivuugmumfqczpyjt.supabase.co/storage/v1/object/public/projetos/V-Threat/video.mp4',
     },
     tags: [
       'Unreal Engine',
@@ -83,7 +83,7 @@ export const projects: Project[] = [
       'Vercel',
     ],
     links: {
-      github: 'https://github.com',
+      github: '',
       website: 'https://www.foodbridge.site/',
     },
     theme: projectThemes.foodBridge,
