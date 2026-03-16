@@ -35,6 +35,8 @@ function WebFrame({ project }: { project: WebProject }) {
 
 function GameFrame({ project }: { project: GameProject }) {
   const thumbnail = project.thumbnail as ProjectThumbnail
+  const isGifThumbnail =
+    thumbnail.type === 'image' && thumbnail.url.toLowerCase().endsWith('.gif')
   return (
     <div className="w-full overflow-hidden rounded-2xl drop-shadow-[0_20px_60px_rgba(0,0,0,0.15)] md:scale-110 md:transform dark:drop-shadow-[0_20px_80px_rgba(255,255,255,0.06)]">
       {thumbnail.type === 'video' ? (
@@ -45,6 +47,13 @@ function GameFrame({ project }: { project: GameProject }) {
           loop
           playsInline
           className="h-full w-full object-cover"
+        />
+      ) : isGifThumbnail ? (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src={thumbnail.url}
+          alt={project.title.en}
+          className="h-auto w-full object-cover"
         />
       ) : (
         <Image

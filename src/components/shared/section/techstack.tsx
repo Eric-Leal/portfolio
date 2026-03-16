@@ -6,7 +6,7 @@ import { Icon } from '@iconify/react'
 
 function TechItem({ item }: { item: Tech }) {
   return (
-    <div className="border-border bg-card text-tx-secondary hover:border-brand-5/40 hover:text-tx-primary flex items-center gap-2.5 rounded-full border px-4 py-2 text-sm font-medium transition-colors">
+    <div className="border-border bg-card text-tx-secondary hover:border-brand-5/40 hover:text-tx-primary flex items-center gap-2.5 rounded-full border px-4 py-2 text-sm font-medium transition-colors dark:border-white/20">
       <Icon
         icon={item.icon}
         width={16}

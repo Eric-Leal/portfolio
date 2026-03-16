@@ -77,7 +77,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
   return (
     <Link
       href={`/projects/${project.slug}`}
-      className="group border-border from-background to-muted/30 relative block overflow-hidden rounded-3xl border bg-linear-to-br transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl"
+      className="group border-border from-background to-muted/30 relative block overflow-hidden rounded-3xl border bg-linear-to-br transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl dark:border-white/20"
     >
       <div
         className="from-accent-2/20 to-accent-5/20 relative mb-8 overflow-hidden rounded-2xl bg-linear-to-br px-2 pt-2"
