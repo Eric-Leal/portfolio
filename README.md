@@ -6,19 +6,19 @@
 
 ---
 
-[![Versão](https://img.shields.io/badge/Versão-v0.1.0-blue?style=for-the-badge)](https://github.com/LauraPontara/portfolio/releases)
+[![Versão](https://img.shields.io/badge/Versão-v0.1.0-blue?style=for-the-badge)](https://github.com/Eric-Leal/portfolio/releases)
 ![Next.js](https://img.shields.io/badge/Next.js-16.1.6-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)
 ![React](https://img.shields.io/badge/React-19.2.3-61DAFB?style=for-the-badge&logo=react&logoColor=black)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
 ![TailwindCSS](https://img.shields.io/badge/TailwindCSS-4-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)
 ![Supabase](https://img.shields.io/badge/Supabase-2.98.0-007ec6?style=for-the-badge&logo=supabase&logoColor=white)
-![GitHub repo size](https://img.shields.io/github/repo-size/LauraPontara/portfolio?style=for-the-badge&logo=files)
-![GitHub directory file count](https://img.shields.io/github/directory-file-count/LauraPontara/portfolio?style=for-the-badge&logo=files)
-![GitHub commit activity](https://img.shields.io/github/commit-activity/m/LauraPontara/portfolio?style=for-the-badge&color=007ec6&logo=gitkraken)
-![GitHub last commit](https://img.shields.io/github/last-commit/LauraPontara/portfolio?style=for-the-badge&logo=clockify)
+![GitHub repo size](https://img.shields.io/github/repo-size/Eric-Leal/portfolio?style=for-the-badge&logo=files)
+![GitHub directory file count](https://img.shields.io/github/directory-file-count/Eric-Leal/portfolio?style=for-the-badge&logo=files)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/m/Eric-Leal/portfolio?style=for-the-badge&color=007ec6&logo=gitkraken)
+![GitHub last commit](https://img.shields.io/github/last-commit/Eric-Leal/portfolio?style=for-the-badge&logo=clockify)
 ![Vercel](https://img.shields.io/badge/Vercel-Deploy-000000?style=for-the-badge&logo=vercel&logoColor=white)
 
-![Views Counter](https://views-counter.vercel.app/badge?pageId=https%3A%2F%2Fgithub%2Ecom%2FLauraPontara%2Fportfolio&leftColor=555555&rightColor=007ec6&type=total&label=RepoViews)
+![Views Counter](https://views-counter.vercel.app/badge?pageId=https%3A%2F%2Fgithub%2Ecom%2FEric-Leal%2Fportfolio&leftColor=555555&rightColor=007ec6&type=total&label=RepoViews)
 
 ---
 
@@ -533,7 +533,7 @@ A homepage é uma página única com scroll contendo todas as seções principai
 1. **Clone o repositório:**
 
    ```bash
-   git clone https://github.com//portfolio.git
+   git clone https://github.com/Eric-Leal/portfolio.git
    cd portfolio
    ```
 
