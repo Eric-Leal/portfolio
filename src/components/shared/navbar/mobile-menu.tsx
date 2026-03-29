@@ -102,7 +102,7 @@ export function MobileMenu() {
         >
           <div className="flex items-center gap-3">
             <span className="font-title text-tx-primary text-lg font-bold italic">
-              CS
+              EL
             </span>
             <span className="bg-border h-4 w-px" />
           </div>
